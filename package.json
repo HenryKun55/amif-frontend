@@ -8,21 +8,33 @@
     "build": "tsc && vite build",
     "storybook": "start-storybook -p 6006",
     "preview": "vite preview",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "prepare": "husky install",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "babelMacros": {
     "twin": {
       "preset": "emotion"
     }
   },
+  "lint-staged": {
+    "src/**/*": [
+      "yarn lint --fix --ext .ts,.tsx"
+    ]
+  },
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
+    "@reduxjs/toolkit": "^1.8.5",
     "@tanstack/react-query": "^4.3.4",
     "axios": "^0.27.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "6"
+    "react-hook-form": "^7.36.0",
+    "react-redux": "^8.0.2",
+    "react-router-dom": "6",
+    "vite-tsconfig-paths": "^3.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.19.1",
@@ -34,6 +46,7 @@
     "@storybook/builder-vite": "^0.2.2",
     "@storybook/react": "^6.5.12",
     "@storybook/testing-library": "0.0.13",
+    "@types/node": "^18.7.18",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.37.0",
@@ -45,11 +58,15 @@
     "eslint": "^8.23.1",
     "eslint-plugin-react": "^7.31.8",
     "eslint-plugin-storybook": "^0.6.4",
+    "husky": "^8.0.1",
+    "jsdom": "^20.0.0",
+    "lint-staged": "^13.0.3",
     "postcss": "^8.4.16",
     "prettier": "^2.7.1",
     "tailwindcss": "^3.1.8",
     "twin.macro": "^2.8.2",
     "typescript": "^4.6.4",
-    "vite": "^3.1.0"
+    "vite": "^3.1.0",
+    "vitest": "^0.23.4"
   }
 }

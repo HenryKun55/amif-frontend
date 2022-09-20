@@ -1,5 +1,23 @@
-import axios from 'axios'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-export const api = axios.create({
-  baseURL: 'https://63250b209075b9cbee458b97.mockapi.io/v1/api/',
+const baseUrl = 'https://sandbox.bs2bet.com/v2'
+
+export const TOKEN_KEY = '@betapp/token'
+
+const api = createApi({
+  tagTypes: ['Events', 'Tickets', 'Odds', 'Sports'],
+  baseQuery: fetchBaseQuery({
+    baseUrl,
+    prepareHeaders: async headers => {
+      const token = await localStorage.getItem(TOKEN_KEY)
+      if (token) {
+        headers.set('Authorization', `Bearer ${token}`)
+      }
+      headers.set('environment', 'staging')
+      return headers
+    },
+  }),
+  endpoints: () => ({}),
 })
+
+export default api
