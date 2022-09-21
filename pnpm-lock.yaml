@@ -10,6 +10,7 @@ specifiers:
   '@storybook/addon-essentials': ^6.5.12
   '@storybook/addon-interactions': ^6.5.12
   '@storybook/addon-links': ^6.5.12
+  '@storybook/addon-postcss': ^2.0.0
   '@storybook/builder-vite': ^0.2.2
   '@storybook/react': ^6.5.12
   '@storybook/testing-library': 0.0.13
@@ -37,6 +38,7 @@ specifiers:
   react-hook-form: ^7.36.0
   react-redux: ^8.0.2
   react-router-dom: '6'
+  storybook-addon-react-router-v6: ^0.2.1
   tailwindcss: ^3.1.8
   twin.macro: ^2.8.2
   typescript: ^4.6.4
@@ -64,6 +66,7 @@ devDependencies:
   '@storybook/addon-essentials': 6.5.12_xsr2yfujwksogvhmqtcae2yzlm
   '@storybook/addon-interactions': 6.5.12_eyejrx2s4yavdns257vdntzsba
   '@storybook/addon-links': 6.5.12_biqbaboplfbrettd7655fr4n2y
+  '@storybook/addon-postcss': 2.0.0
   '@storybook/builder-vite': 0.2.2_xueb3tlwlfx4nwrd6msppdr74a
   '@storybook/react': 6.5.12_xsr2yfujwksogvhmqtcae2yzlm
   '@storybook/testing-library': 0.0.13_biqbaboplfbrettd7655fr4n2y
@@ -84,6 +87,7 @@ devDependencies:
   lint-staged: 13.0.3
   postcss: 8.4.16
   prettier: 2.7.1
+  storybook-addon-react-router-v6: 0.2.1_uwxslzsvhkpqe7cyyks6gjwhuu
   tailwindcss: 3.1.8_postcss@8.4.16
   twin.macro: 2.8.2
   typescript: 4.8.3
@@ -2107,7 +2111,6 @@ packages:
   /@remix-run/router/1.0.0:
     resolution: {integrity: sha512-SCR1cxRSMNKjaVYptCzBApPDqGwa3FGdjVHc+rOToocNPHQdIYLZBfv/3f+KvYuXDkUGVIW9IAzmPNZDRL1I4A==}
     engines: {node: '>=14'}
-    dev: false
 
   /@rollup/pluginutils/4.2.1:
     resolution: {integrity: sha512-iKnFXr7NkdZAIHiIWE+BX5ULi/ucVFYWD6TbAV+rZctiRTY2PL6tsIKhoIOaoskiWAkgu+VsbXgUVDNLHf+InQ==}
@@ -2464,6 +2467,19 @@ packages:
       react-dom: 18.2.0_react@18.2.0
       regenerator-runtime: 0.13.9
       ts-dedent: 2.2.0
+    dev: true
+
+  /@storybook/addon-postcss/2.0.0:
+    resolution: {integrity: sha512-Nt82A7e9zJH4+A+VzLKKswUfru+T6FJTakj4dccP0i8DSn7a0CkzRPrLuZBq8tg4voV6gD74bcDf3gViCVBGtA==}
+    engines: {node: '>=10', yarn: ^1.17.0}
+    dependencies:
+      '@storybook/node-logger': 6.5.12
+      css-loader: 3.6.0
+      postcss: 7.0.39
+      postcss-loader: 4.3.0_postcss@7.0.39
+      style-loader: 1.3.0
+    transitivePeerDependencies:
+      - webpack
     dev: true
 
   /@storybook/addon-toolbars/6.5.12_biqbaboplfbrettd7655fr4n2y:
@@ -5700,6 +5716,27 @@ packages:
 
   /css-color-names/0.0.4:
     resolution: {integrity: sha512-zj5D7X1U2h2zsXOAM8EyUREBnnts6H+Jm+d1M2DbiQQcUtnqgQsMrdo8JW9R80YFUmIdBZeMu5wvYM7hcgWP/Q==}
+    dev: true
+
+  /css-loader/3.6.0:
+    resolution: {integrity: sha512-M5lSukoWi1If8dhQAUCvj4H8vUt3vOnwbQBH9DdTm/s4Ym2B/3dPMtYZeJmq7Q3S3Pa+I94DcZ7pc9bP14cWIQ==}
+    engines: {node: '>= 8.9.0'}
+    peerDependencies:
+      webpack: ^4.0.0 || ^5.0.0
+    dependencies:
+      camelcase: 5.3.1
+      cssesc: 3.0.0
+      icss-utils: 4.1.1
+      loader-utils: 1.4.0
+      normalize-path: 3.0.0
+      postcss: 7.0.39
+      postcss-modules-extract-imports: 2.0.0
+      postcss-modules-local-by-default: 3.0.3
+      postcss-modules-scope: 2.2.0
+      postcss-modules-values: 3.0.0
+      postcss-value-parser: 4.2.0
+      schema-utils: 2.7.1
+      semver: 6.3.0
     dev: true
 
   /css-loader/3.6.0_webpack@4.46.0:
@@ -10078,6 +10115,21 @@ packages:
       webpack: 4.46.0
     dev: true
 
+  /postcss-loader/4.3.0_postcss@7.0.39:
+    resolution: {integrity: sha512-M/dSoIiNDOo8Rk0mUqoj4kpGq91gcxCfb9PoyZVdZ76/AuhxylHDYZblNE8o+EQ9AMSASeMFEKxZf5aU6wlx1Q==}
+    engines: {node: '>= 10.13.0'}
+    peerDependencies:
+      postcss: ^7.0.0 || ^8.0.1
+      webpack: ^4.0.0 || ^5.0.0
+    dependencies:
+      cosmiconfig: 7.0.1
+      klona: 2.0.5
+      loader-utils: 2.0.2
+      postcss: 7.0.39
+      schema-utils: 3.1.1
+      semver: 7.3.7
+    dev: true
+
   /postcss-modules-extract-imports/2.0.0:
     resolution: {integrity: sha512-LaYLDNS4SG8Q5WAWqIJgdHPJrDDr/Lv775rMBFUbgjTz6j34lUznACHcdRWroPvXANP2Vj7yNK57vp9eFqzLWQ==}
     engines: {node: '>= 6'}
@@ -10581,7 +10633,6 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-router: 6.4.0_react@18.2.0
-    dev: false
 
   /react-router/6.4.0_react@18.2.0:
     resolution: {integrity: sha512-B+5bEXFlgR1XUdHYR6P94g299SjrfCBMmEDJNcFbpAyRH1j1748yt9NdDhW3++nw1lk3zQJ6aOO66zUx3KlTZg==}
@@ -10591,7 +10642,6 @@ packages:
     dependencies:
       '@remix-run/router': 1.0.0
       react: 18.2.0
-    dev: false
 
   /react/18.2.0:
     resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
@@ -11464,6 +11514,30 @@ packages:
     resolution: {integrity: sha512-siT1RiqlfQnGqgT/YzXVUNsom9S0H1OX+dpdGN1xkyYATo4I6sep5NmsRD/40s3IIOvlCq6akxkqG82urIZW1w==}
     dev: true
 
+  /storybook-addon-react-router-v6/0.2.1_uwxslzsvhkpqe7cyyks6gjwhuu:
+    resolution: {integrity: sha512-dwYLaE6/bsGnkTn1l5rb5SYIhv2xwwSeRkhWX86bihDWJjz/+NlWSN+r4Kp2WNMVN9vEhMleunXPiGJiFUn7Hg==}
+    peerDependencies:
+      '@storybook/addons': ^6.4.0
+      '@storybook/api': ^6.4.0
+      '@storybook/components': ^6.4.0
+      '@storybook/core-events': ^6.4.0
+      '@storybook/theming': ^6.4.0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-router: ^6.3.0
+      react-router-dom: ^6.3.0
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      react-inspector: 5.1.1_react@18.2.0
+      react-router-dom: 6.4.0_biqbaboplfbrettd7655fr4n2y
+    dev: true
+
   /stream-browserify/2.0.2:
     resolution: {integrity: sha512-nX6hmklHs/gr2FuxYDltq8fJA1GDlxKQCz8O/IM4atRqBH8OORmBNgfvW5gG10GT/qQ9u0CzIvr2X5Pkt6ntqg==}
     dependencies:
@@ -11652,6 +11726,16 @@ packages:
     resolution: {integrity: sha512-pv48ybn4iE1O9RLgCAN0iU4Xv7RlBTiit6DKmMiErbs9x1wH6vXBs45tWc0H5wUIF6TLTrKweqkmYF/iraQKNw==}
     dependencies:
       acorn: 8.8.0
+    dev: true
+
+  /style-loader/1.3.0:
+    resolution: {integrity: sha512-V7TCORko8rs9rIqkSrlMfkqA63DfoGBBJmK1kKGCcSi+BWb4cqz0SRsnp4l6rU5iwOEd0/2ePv68SV22VXon4Q==}
+    engines: {node: '>= 8.9.0'}
+    peerDependencies:
+      webpack: ^4.0.0 || ^5.0.0
+    dependencies:
+      loader-utils: 2.0.2
+      schema-utils: 2.7.1
     dev: true
 
   /style-loader/1.3.0_webpack@4.46.0:
