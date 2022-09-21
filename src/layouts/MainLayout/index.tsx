@@ -1,10 +1,11 @@
+import { Navigation } from '@/components/Navigation'
 import { Outlet } from 'react-router-dom'
 import * as S from './styles'
 
 export const MainLayout = () => {
   return (
     <S.Container>
-      <h1>Hello layoutr</h1>
+      <Navigation />
       <Outlet />
     </S.Container>
   )
