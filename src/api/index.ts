@@ -1,11 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-const baseUrl = 'https://sandbox.bs2bet.com/v2'
+const baseUrl = import.meta.env.VITE_API_URL
 
 export const TOKEN_KEY = '@betapp/token'
 
 const api = createApi({
-  tagTypes: ['Events', 'Tickets', 'Odds', 'Sports'],
+  tagTypes: ['Events'],
   baseQuery: fetchBaseQuery({
     baseUrl,
     prepareHeaders: async headers => {
