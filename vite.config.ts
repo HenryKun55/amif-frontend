@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tsconfigPaths from 'vite-tsconfig-paths'
+import EnvironmentPlugin from 'vite-plugin-environment'
 
 export default defineConfig({
   optimizeDeps: {
@@ -13,6 +14,10 @@ export default defineConfig({
   },
   plugins: [
     tsconfigPaths(),
+    EnvironmentPlugin(
+      { APP_VERSION: 'local' },
+      { defineOn: 'import.meta.env' },
+    ),
     react({
       babel: {
         plugins: [
