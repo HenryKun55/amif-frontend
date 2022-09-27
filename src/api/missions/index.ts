@@ -12,8 +12,8 @@ import {
 const endpoints = {
   createMission: () => '/missions',
   listMissions: () => '/missions',
-  findMission: (id: string) => `/missions${id}`,
-  updateMission: (id: string) => `/missions${id}`,
+  findMission: (id: string) => `/missions/${id}`,
+  updateMission: (id: string) => `/missions/${id}`,
 }
 
 const eventsApi = api.injectEndpoints({
@@ -43,9 +43,10 @@ const eventsApi = api.injectEndpoints({
       query: ({ id }) => endpoints.findMission(id),
     }),
     updateMission: builder.mutation<void, UpdateMissionRequest>({
-      query: params => ({
-        url: endpoints.updateMission(params.id),
-        params,
+      query: ({ id, ...body }) => ({
+        url: endpoints.updateMission(id),
+        method: 'PUT',
+        body,
       }),
     }),
   }),
