@@ -4,41 +4,60 @@
  *
  */
 
-import { InputHTMLAttributes } from 'react'
-import { useController } from 'react-hook-form'
+import { StyledComponent } from '@emotion/styled'
+import { ChangeEventHandler, InputHTMLAttributes, ReactNode } from 'react'
+import {
+  DeepMap,
+  FieldError,
+  FieldValues,
+  Path,
+  UseFormRegister,
+} from 'react-hook-form'
 
 import * as S from './styles'
 
-export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
-  name: string
-  control: any
-  error?: string
-  label?: string
-  defaultValue?: string
-  containerClassName?: string
-}
+export type InputFieldProps<TFormValues extends FieldValues> =
+  InputHTMLAttributes<HTMLInputElement> & {
+    name: Path<TFormValues>
+    register: UseFormRegister<TFormValues>
+    errors?: DeepMap<FieldValues, FieldError>
+    label?: ReactNode
+    mask?: (value: string) => string
+  }
 
-export const Input = ({
+export type InputAs<TFormValues extends FieldValues> = StyledComponent<
+  InputFieldProps<TFormValues>
+>
+
+export const Input = <TFormValues extends FieldValues>({
   name,
-  control,
-  error,
+  errors,
   label,
-  defaultValue = '',
-  containerClassName,
+  mask,
+  register,
+  className,
   ...props
-}: InputProps) => {
-  const { field } = useController({ name, defaultValue, control })
+}: InputFieldProps<TFormValues>) => {
+  const onChange: ChangeEventHandler<HTMLInputElement> = event => {
+    if (mask) {
+      event.target.value = mask(event.target.value)
+    }
+  }
+
+  const getMessage = () => {
+    if (!errors) return
+    const names = name.split('.')
+    return names.reduce((acc, curr) => {
+      if (!acc) return acc
+      return acc[curr]
+    }, errors)?.message
+  }
 
   return (
-    <S.Wrapper className={containerClassName}>
+    <S.Wrapper className={className}>
       {label && <S.Label htmlFor={name}>{label}</S.Label>}
-      <S.Input
-        value={field.value}
-        onChange={field.onChange}
-        name={name}
-        {...props}
-      />
-      {error && <span>{error}</span>}
+      <S.Input {...props} {...register(name, { onChange })} />
+      {errors && <span>{getMessage()}</span>}
     </S.Wrapper>
   )
 }

@@ -18,8 +18,8 @@ export const Router = () => {
         <DOMRoute path={Routes.Home} element={<MainLayout />}>
           <DOMRoute index element={<Home />} />
         </DOMRoute>
-        <DOMRoute path={AdminRoutes.SignIn} element={<SignIn />} />
-        <DOMRoute path={AdminRoutes.Home} element={<AdminLayout />}>
+        <DOMRoute path={AdminRoutes.Admin_SignIn} element={<SignIn />} />
+        <DOMRoute path={AdminRoutes.Admin_Home} element={<AdminLayout />}>
           <DOMRoute index element={<AdminHome />} />
         </DOMRoute>
       </DOMRoutes>

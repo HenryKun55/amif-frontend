@@ -11,10 +11,8 @@ import schema, { FormProps } from './validator'
 
 export const Form = () => {
   const {
-    reset,
-    control,
+    register,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm<FormProps>({ resolver: zodResolver(schema) })
 
@@ -28,7 +26,7 @@ export const Form = () => {
       password,
     })
       .unwrap()
-      .then(() => navigate(AdminRoutes.Home))
+      .then(() => navigate(AdminRoutes.Admin_Home))
       .catch(() => {
         alert('Ocorreu ume erro, tente novamente')
       })
@@ -37,19 +35,17 @@ export const Form = () => {
   return (
     <S.Form onSubmit={handleSubmit(onSubmit)}>
       <Input
-        control={control}
         name="username"
-        defaultValue=""
-        error={errors.username?.message}
+        errors={errors}
         label="Usuário"
+        register={register}
       />
       <Input
         type="password"
-        control={control}
         name="password"
-        defaultValue=""
-        error={errors.username?.message}
+        errors={errors}
         label="Usuário"
+        register={register}
       />
       <Button type="submit">Entrar</Button>
     </S.Form>

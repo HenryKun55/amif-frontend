@@ -1,4 +1,4 @@
 export enum AdminRoutes {
-  SignIn = '/admin/sign-in',
-  Home = '/admin/home',
+  Admin_SignIn = '/admin/sign-in',
+  Admin_Home = '/admin/home',
 }
