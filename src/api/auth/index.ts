@@ -1,28 +1,23 @@
-import { User } from '@/@types/models/User'
 import api from '..'
-import { LoginRequest, LoginResponse } from './types'
+import { SignInRequest, SignInResponse } from './types'
 
 const endpoints = {
-  login: () => 'auth/login',
-  getUserProfile: () => 'auth/user-profile',
+  signIn: () => 'sign-in',
 }
 
 const authApi = api.injectEndpoints({
   endpoints: builder => ({
-    login: builder.mutation<LoginResponse, LoginRequest>({
+    signIn: builder.mutation<SignInResponse, SignInRequest>({
       query: body => ({
-        url: endpoints.login(),
+        url: endpoints.signIn(),
         method: 'POST',
         body,
       }),
-    }),
-    getUserProfile: builder.query<User, void>({
-      query: endpoints.getUserProfile,
     }),
   }),
   overrideExisting: false,
 })
 
-export const { useLoginMutation, useGetUserProfileQuery } = authApi
+export const { useSignInMutation } = authApi
 
 export default authApi

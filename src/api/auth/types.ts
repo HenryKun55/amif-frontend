@@ -1,13 +1,11 @@
 import { User } from '@/@types/models/User'
 
-export type LoginRequest = {
-  email: string
+export type SignInRequest = {
+  username: string
   password: string
 }
 
-export type LoginResponse = {
-  access_token: string
-  token_type: string
-  expires_in: number
+export type SignInResponse = {
+  token: string
   user: User
 }

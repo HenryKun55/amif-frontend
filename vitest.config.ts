@@ -4,5 +4,8 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  test: {},
+  test: {
+    includeSource: ['src/**/*.{js,ts}'],
+    setupFiles: 'dotenv/config',
+  },
 })

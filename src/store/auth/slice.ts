@@ -25,19 +25,12 @@ const slice = createSlice({
   },
   extraReducers: builder => {
     builder.addMatcher(
-      authApi.endpoints.login.matchFulfilled,
+      authApi.endpoints.signIn.matchFulfilled,
       (state, action) => {
-        localStorage.setItem(TOKEN_KEY, action.payload.access_token)
+        localStorage.setItem(TOKEN_KEY, action.payload.token)
 
-        state.token = action.payload.access_token
+        state.token = action.payload.token
         state.user = action.payload.user
-      },
-    )
-
-    builder.addMatcher(
-      authApi.endpoints.getUserProfile.matchFulfilled,
-      (state, action) => {
-        state.user = action.payload
       },
     )
   },
