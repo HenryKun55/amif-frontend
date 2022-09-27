@@ -5,7 +5,7 @@ const baseUrl = import.meta.env.VITE_API_URL
 export const TOKEN_KEY = '@betapp/token'
 
 const api = createApi({
-  tagTypes: ['Events'],
+  tagTypes: ['Events', 'Missions'],
   baseQuery: fetchBaseQuery({
     baseUrl,
     prepareHeaders: async headers => {

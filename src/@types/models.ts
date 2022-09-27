@@ -37,3 +37,19 @@ export type Event = {
   canSubscribe: boolean
   createdAt?: string
 }
+
+export type Mission = {
+  id: string
+  creatorId: string
+  addressId: string
+  creator?: User
+  address?: Address
+  title: string
+  description: string
+  youtubeUrl?: string
+  isActive: boolean
+  isDeleted: boolean
+  startsAt: Date
+  imagesUrls: string[]
+  createdAt?: Date
+}
