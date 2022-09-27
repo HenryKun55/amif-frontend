@@ -1,10 +1,12 @@
-export type PaginatedRequest = {
+export type PagedRequest = {
   page?: number
-  per_page?: number
+  perPage?: number
 }
 
-export type Paginated<T> = {
+export type Paged<T> = {
   data: T[]
-  current_page: number
-  last_page: number
+  page: number
+  total: number
+  perPage: number
+  totalPages: number
 }

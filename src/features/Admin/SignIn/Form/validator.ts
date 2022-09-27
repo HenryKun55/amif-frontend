@@ -6,7 +6,9 @@ const schema: z.ZodType<SignInRequest> = z.lazy(() =>
     username: z
       .string({ required_error: 'Campo obrigatório' })
       .min(1, 'Campo obrigatório'),
-    password: z.string().min(3, 'Campo obrigatório'),
+    password: z
+      .string({ required_error: 'Campo obrigatório' })
+      .min(3, 'Campo obrigatório'),
   }),
 )
 

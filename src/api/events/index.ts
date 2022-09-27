@@ -1,18 +1,34 @@
 import api from '..'
-import { ListUpcomingEventsRequest, ListUpcomingEventsResponse } from './types'
+import {
+  CreateEventRequest,
+  CreateEventResponse,
+  FindEventRequest,
+  FindEventResponse,
+  FindMainEventResponse,
+  ListEventsRequest,
+  ListEventsResponse,
+  MakeEventAsMainRequest,
+} from './types'
 
 const endpoints = {
-  listUpcoming: () => 'events/upcoming',
+  createEvent: () => '/events',
+  listEvents: () => '/events',
+  findMainEvent: () => '/events/main',
+  findEvent: (id: string) => `/events/${id}`,
+  makeEventAsMain: (id: string) => `/events/${id}/make-main`,
 }
 
 const eventsApi = api.injectEndpoints({
   endpoints: builder => ({
-    listUpcoming: builder.query<
-      ListUpcomingEventsResponse,
-      ListUpcomingEventsRequest
-    >({
+    createEvent: builder.mutation<CreateEventResponse, CreateEventRequest>({
       query: params => ({
-        url: endpoints.listUpcoming(),
+        url: endpoints.createEvent(),
+        params,
+      }),
+    }),
+    listEvents: builder.query<ListEventsResponse, ListEventsRequest>({
+      query: params => ({
+        url: endpoints.listEvents(),
         params,
       }),
       providesTags: result =>
@@ -23,10 +39,25 @@ const eventsApi = api.injectEndpoints({
             ]
           : [{ type: 'Events', id: 'LIST' }],
     }),
+    findMainEvent: builder.query<FindMainEventResponse, void>({
+      query: endpoints.findMainEvent,
+    }),
+    findEvent: builder.query<FindEventResponse, FindEventRequest>({
+      query: ({ id }) => endpoints.findEvent(id),
+    }),
+    makeEventAsMain: builder.query<void, MakeEventAsMainRequest>({
+      query: ({ id }) => endpoints.makeEventAsMain(id),
+    }),
   }),
   overrideExisting: false,
 })
 
-export const { useListUpcomingQuery } = eventsApi
+export const {
+  useListEventsQuery,
+  useCreateEventMutation,
+  useFindMainEventQuery,
+  useFindEventQuery,
+  useMakeEventAsMainQuery,
+} = eventsApi
 
 export default eventsApi

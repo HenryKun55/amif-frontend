@@ -1,4 +1,4 @@
-import { User } from '@/@types/models/User'
+import { User } from '@/@types/models'
 import { createSlice } from '@reduxjs/toolkit'
 
 export type CartState = {

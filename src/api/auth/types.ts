@@ -1,4 +1,4 @@
-import { User } from '@/@types/models/User'
+import { User } from '@/@types/models'
 
 export type SignInRequest = {
   username: string
