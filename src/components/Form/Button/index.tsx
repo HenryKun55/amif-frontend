@@ -3,6 +3,7 @@ import * as S from './styles'
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: 'default' | 'outlined'
+  size?: 'sm' | 'md' | 'lg'
   fullWidth?: boolean
 }
 
