@@ -8,8 +8,8 @@ const api = createApi({
   tagTypes: ['Events'],
   baseQuery: fetchBaseQuery({
     baseUrl,
-    prepareHeaders: async headers => {
-      const token = await localStorage.getItem(TOKEN_KEY)
+    prepareHeaders: headers => {
+      const token = localStorage.getItem(TOKEN_KEY)
       if (token) {
         headers.set('Authorization', `Bearer ${token}`)
       }

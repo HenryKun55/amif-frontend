@@ -3,6 +3,7 @@ import { MainLayout } from '@/layouts/MainLayout'
 import { AdminHome } from '@/pages/Admin/Home'
 import { SignIn } from '@/pages/Admin/SignIn'
 import { Home } from '@/pages/Home'
+import { Playground } from '@/pages/Playground'
 import {
   BrowserRouter,
   Routes as DOMRoutes,
@@ -15,6 +16,7 @@ export const Router = () => {
   return (
     <BrowserRouter>
       <DOMRoutes>
+        <DOMRoute path="/playground" element={<Playground />} />
         <DOMRoute path={Routes.Home} element={<MainLayout />}>
           <DOMRoute index element={<Home />} />
         </DOMRoute>
