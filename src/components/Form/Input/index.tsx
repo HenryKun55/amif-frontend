@@ -56,8 +56,8 @@ export const Input = <TFormValues extends FieldValues>({
   return (
     <S.Wrapper className={className}>
       {label && <S.Label htmlFor={name}>{label}</S.Label>}
-      <S.Input {...props} {...register(name, { onChange })} />
-      {errors && <span>{getMessage()}</span>}
+      <S.Input error={!!errors} {...props} {...register(name, { onChange })} />
+      {errors && <S.Error>{getMessage()}</S.Error>}
     </S.Wrapper>
   )
 }
