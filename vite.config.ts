@@ -8,6 +8,7 @@ export default defineConfig({
       target: 'es2020',
     },
   },
+  publicDir: 'assets',
   esbuild: {
     logOverride: { 'this-is-undefined-in-esm': 'silent' },
   },

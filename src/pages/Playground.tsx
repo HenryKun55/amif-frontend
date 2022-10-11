@@ -1,3 +1,4 @@
+import { Footer } from '@/components/Footer'
 import { Button } from '@/components/Form/Button'
 import { Input } from '@/components/Form/Input'
 import { useForm } from 'react-hook-form'
@@ -18,6 +19,7 @@ export function Playground() {
           labelsada: { message: 'meu pau na tua calçada' },
         }}
       />
+      <Footer />
     </div>
   )
 }
