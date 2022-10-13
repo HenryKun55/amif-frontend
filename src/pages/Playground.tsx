@@ -1,23 +1,14 @@
-import { Button } from '@/components/Form/Button'
-import { Input } from '@/components/Form/Input'
-import { useForm } from 'react-hook-form'
+import { AdminNavBar } from '@/components/AdminNavBar'
+import { SideBar } from '@/components/SideBar'
+import tw, { styled } from 'twin.macro'
+
+const Container = styled.div([tw`w-screen h-full flex flex-col`])
 
 export function Playground() {
-  const { register } = useForm()
   return (
-    <div>
-      <Button disabled variant="outlined">
-        Primary
-      </Button>
-      <Input
-        name="labelsada"
-        register={register}
-        label="labelsada"
-        placeholder="labelsada input"
-        errors={{
-          labelsada: { message: 'meu pau na tua calçada' },
-        }}
-      />
-    </div>
+    <Container>
+      <AdminNavBar />
+      <SideBar />
+    </Container>
   )
 }
