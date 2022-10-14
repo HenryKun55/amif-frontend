@@ -18,10 +18,12 @@ export const AdminEvents = () => {
         {
           Header: 'Name',
           accessor: 'name',
+          defaultCanSort: true,
         },
         {
           Header: 'Phone Number',
           accessor: 'phoneNumber',
+          defaultCanSort: true,
         },
         {
           Header: 'Email',
@@ -34,6 +36,7 @@ export const AdminEvents = () => {
         {
           Header: 'Created At',
           accessor: 'createdIn',
+          defaultCanSort: true,
         },
       ] as Column<TableData>[],
     [],
@@ -56,6 +59,7 @@ export const AdminEvents = () => {
         pageSize={20}
         totalPages={25}
         totalCount={500}
+        isSelectable
         onFetchData={() => console.log('Fetch data')}
       />
     </S.Container>

@@ -16,6 +16,7 @@ import { Empty } from './Empty'
 import { Header } from './Header'
 import { Loading } from './Loading'
 import { Pagination } from './Pagination'
+import * as S from './styles'
 
 export type SortDirection = 'asc' | 'desc'
 
@@ -133,14 +134,14 @@ export const Table = <T extends Record<string, unknown>>({
 
   return (
     <div>
-      <table {...props} {...getTableProps()}>
+      <S.Table {...props} {...getTableProps()}>
         <Header headerGroups={headerGroups} />
         <Body
           page={page}
           prepareRow={prepareRow}
           getTableBodyProps={getTableBodyProps}
         />
-      </table>
+      </S.Table>
       <Pagination
         siblingCount={1}
         currentPage={pageIndex + 1}

@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-key */
-import React from 'react'
+import { Fragment } from 'react'
 import {
   MdOutlineArrowDropDown,
   MdOutlineArrowDropUp,
@@ -28,17 +28,17 @@ export const Header = <T extends object>({ headerGroups }: HeaderProps<T>) => {
   return (
     <thead>
       {headerGroups.map(headerGroup => (
-        <tr {...headerGroup.getHeaderGroupProps()}>
+        <S.Row {...headerGroup.getHeaderGroupProps()}>
           {headerGroup.headers.map(column =>
             column.Header ? (
-              <td
+              <S.Header
                 {...column.getHeaderProps(
                   column.defaultCanSort
                     ? column.getSortByToggleProps()
                     : undefined,
                 )}
               >
-                <>
+                <Fragment>
                   {column.defaultCanSort ? (
                     <S.HeaderButton>
                       {column.render('Header')}
@@ -47,11 +47,11 @@ export const Header = <T extends object>({ headerGroups }: HeaderProps<T>) => {
                   ) : (
                     column.render('Header')
                   )}
-                </>
-              </td>
+                </Fragment>
+              </S.Header>
             ) : null,
           )}
-        </tr>
+        </S.Row>
       ))}
     </thead>
   )

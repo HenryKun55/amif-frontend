@@ -9,7 +9,7 @@ interface ControlsProps {
 }
 
 export const Container = styled.div([
-  tw`w-full flex items-center justify-between px-8`,
+  tw`w-full flex items-center justify-center px-8`,
 ])
 
 export const ShowingText = styled.span([tw`text-blue-600 text-sm`])

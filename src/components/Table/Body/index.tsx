@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-key */
 import { Row, TableBodyPropGetter, TableBodyProps } from 'react-table'
 
+import * as S from './styles'
+
 export interface BodyProps<T extends object> {
   getTableBodyProps: (propGetter?: TableBodyPropGetter<T>) => TableBodyProps
   page: Row<T>[]
@@ -17,11 +19,11 @@ export const Body = <T extends object>({
       {page.map(row => {
         prepareRow(row)
         return (
-          <tr {...row.getRowProps()}>
+          <S.Row {...row.getRowProps()}>
             {row.cells.map(cell => (
-              <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+              <S.Cell {...cell.getCellProps()}>{cell.render('Cell')}</S.Cell>
             ))}
-          </tr>
+          </S.Row>
         )
       })}
     </tbody>
