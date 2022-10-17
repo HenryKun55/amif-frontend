@@ -9,9 +9,11 @@ type InputProps = {
 }
 
 export const Input = styled.input<InputProps>(({ error }) => [
-  tw`appearance-none outline-none p-3 text-xs border border-gray-300 rounded capitalize placeholder:(text-gray-400 text-sm) `,
-  tw`focus:(border-blue-500 ring-1)`,
-
+  tw`appearance-none outline-none`,
+  tw`p-3 text-xs border border-gray-300 rounded`,
+  tw`placeholder:(text-gray-400 text-sm)`,
+  tw`transition-all ease-in-out duration-200`,
+  tw`focus:(border-blue-500 ring-2)`,
   error && tw`border-red-500 focus:(border-red-500 ring-red-200)`,
 ])
 

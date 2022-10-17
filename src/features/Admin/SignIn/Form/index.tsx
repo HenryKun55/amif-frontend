@@ -34,6 +34,7 @@ export const Form = () => {
 
   return (
     <S.Form onSubmit={handleSubmit(onSubmit)}>
+      <S.Title>Bem-vindo de volta</S.Title>
       <Input
         name="username"
         errors={errors}
@@ -44,10 +45,12 @@ export const Form = () => {
         type="password"
         name="password"
         errors={errors}
-        label="Usuário"
+        label="Senha"
         register={register}
       />
-      <Button type="submit">Entrar</Button>
+      <Button type="submit" disabled={isLoading} fullWidth>
+        Entrar
+      </Button>
     </S.Form>
   )
 }
