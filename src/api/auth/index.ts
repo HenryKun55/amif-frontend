@@ -1,8 +1,9 @@
 import api from '..'
-import { SignInRequest, SignInResponse } from './types'
+import { FetchProfileResponse, SignInRequest, SignInResponse } from './types'
 
 const endpoints = {
   signIn: () => 'sign-in',
+  profile: () => 'profile',
 }
 
 const authApi = api.injectEndpoints({
@@ -14,10 +15,13 @@ const authApi = api.injectEndpoints({
         body,
       }),
     }),
+    fetchProfile: builder.query<FetchProfileResponse, void>({
+      query: endpoints.profile,
+    }),
   }),
   overrideExisting: false,
 })
 
-export const { useSignInMutation } = authApi
+export const { useFetchProfileQuery, useSignInMutation } = authApi
 
 export default authApi

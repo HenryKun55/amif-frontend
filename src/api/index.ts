@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 const baseUrl = import.meta.env.VITE_API_URL
 
-export const TOKEN_KEY = '@betapp/token'
+export const TOKEN_KEY = '@amif/token'
 
 const api = createApi({
   tagTypes: ['Events'],
