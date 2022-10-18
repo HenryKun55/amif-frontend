@@ -1,66 +1,76 @@
-import { Table } from '@/components/Table'
-import { useMemo } from 'react'
+import { useListEventsQuery } from '@/api/events'
+import { FetchDataProps, Table } from '@/components/Table'
+import { useCallback, useMemo, useState } from 'react'
 import { Column } from 'react-table'
+import { Event } from '@/api/models'
 import * as S from './styles'
-
-type TableData = {
-  name: string
-  phoneNumber: string
-  email: string
-  lastActivity: string
-  createdIn: string
-}
+import { format } from 'date-fns'
+import { MdCheckCircleOutline, MdOutlineCancel } from 'react-icons/md'
 
 export const AdminEvents = () => {
+  const [page, setPage] = useState(1)
+  const { data } = useListEventsQuery({ page })
+
   const columns = useMemo(
     () =>
       [
         {
-          Header: 'Name',
-          accessor: 'name',
-          defaultCanSort: true,
+          Header: 'Título',
+          accessor: 'title',
         },
         {
-          Header: 'Phone Number',
-          accessor: 'phoneNumber',
-          defaultCanSort: true,
+          Header: 'Descrição',
+          accessor: 'description',
         },
         {
-          Header: 'Email',
-          accessor: 'email',
+          id: 'startsAt',
+          Header: 'Data',
+          accessor: (event: Event) =>
+            format(new Date(event.startsAt || ''), 'dd/MM/yyyy'),
         },
         {
-          Header: 'Last Activity',
-          accessor: 'lastActivity',
+          id: 'isMain',
+          Header: 'Principal',
+          accessor: (event: Event) =>
+            event.isMain ? (
+              <MdCheckCircleOutline size={20} color="green" />
+            ) : null,
         },
         {
-          Header: 'Created At',
-          accessor: 'createdIn',
-          defaultCanSort: true,
+          id: 'isActive',
+          Header: 'Ativo',
+          accessor: (event: Event) =>
+            event.isActive ? (
+              <MdCheckCircleOutline size={20} color="green" />
+            ) : (
+              <MdOutlineCancel size={20} color="red" />
+            ),
         },
-      ] as Column<TableData>[],
+        // {
+        //   Header: 'Ações',
+        //   accessor: (event: Event) => (
+        //     <
+        //   ),
+        // },
+      ] as Column<Event>[],
     [],
   )
-  const data = [
-    ...Array.from({ length: 25 }).map((_, index) => ({
-      name: 'Jon Doe ' + (index + 1),
-      email: 'jondoe@email.com',
-      phoneNumber: '+1 255 999 9999',
-      lastActivity: 'sms 2 Weeks ago',
-      createdIn: 'Feb 17 2020',
-    })),
-  ]
+
+  console.log(data)
+
+  const handleFetchData = useCallback((args: FetchDataProps<Event>) => {
+    setPage(args.pageIndex + 1)
+  }, [])
 
   return (
     <S.Container>
-      <Table<TableData>
-        data={data}
+      <Table<Event>
+        data={data?.data || []}
         columns={columns}
-        pageSize={20}
-        totalPages={25}
-        totalCount={500}
-        isSelectable
-        onFetchData={() => console.log('Fetch data')}
+        pageSize={data?.perPage || 0}
+        totalPages={data?.totalPages || 0}
+        totalCount={data?.total || 0}
+        onFetchData={handleFetchData}
       />
     </S.Container>
   )
