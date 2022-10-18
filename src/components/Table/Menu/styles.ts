@@ -1,4 +1,4 @@
-import tw, { styled } from 'twin.macro'
+import tw, { css, styled } from 'twin.macro'
 import * as PopoverPrimitive from '@radix-ui/react-popover'
 
 export const Popover = PopoverPrimitive.Root
@@ -16,6 +16,13 @@ export const More = styled.div([
 
 export const Action = styled.div([
   tw`flex items-center gap-3 hover:(bg-blue-100 text-blue-500) px-4 py-1 cursor-pointer`,
+  css`
+    color: black !important;
+
+    &:hover {
+      color: ${tw`text-blue-500`} !important;
+    }
+  `,
 ])
 
 export const ActionTitle = styled.span([tw``])
