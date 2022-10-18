@@ -9,3 +9,5 @@ export type SignInResponse = {
   token: string
   user: User
 }
+
+export type FetchProfileResponse = User
