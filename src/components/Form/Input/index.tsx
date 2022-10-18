@@ -5,7 +5,12 @@
  */
 
 import { StyledComponent } from '@emotion/styled'
-import { ChangeEventHandler, InputHTMLAttributes, ReactNode } from 'react'
+import {
+  ChangeEventHandler,
+  InputHTMLAttributes,
+  ReactNode,
+  useMemo,
+} from 'react'
 import {
   DeepMap,
   FieldError,
@@ -44,6 +49,11 @@ export const Input = <TFormValues extends FieldValues>({
     }
   }
 
+  const hasError = useMemo(
+    () => typeof errors === 'object' && Object.keys(errors).length > 0,
+    [errors],
+  )
+
   const getMessage = () => {
     if (!errors) return
     const names = name.split('.')
@@ -56,7 +66,7 @@ export const Input = <TFormValues extends FieldValues>({
   return (
     <S.Wrapper className={className}>
       {label && <S.Label htmlFor={name}>{label}</S.Label>}
-      <S.Input error={!!errors} {...props} {...register(name, { onChange })} />
+      <S.Input error={hasError} {...props} {...register(name, { onChange })} />
       {errors && <S.Error>{getMessage()}</S.Error>}
     </S.Wrapper>
   )
