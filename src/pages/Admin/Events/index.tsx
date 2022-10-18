@@ -5,11 +5,19 @@ import { Column } from 'react-table'
 import { Event } from '@/api/models'
 import * as S from './styles'
 import { format } from 'date-fns'
-import { MdCheckCircleOutline, MdOutlineCancel } from 'react-icons/md'
+import {
+  MdCheckCircleOutline,
+  MdOutlineCancel,
+  MdOutlineRemoveRedEye,
+} from 'react-icons/md'
+import { TableMenu } from '@/components/Table/Menu'
+import { useNavigate } from 'react-router-dom'
+import { AdminRoutes } from '@/routes/admin-routes'
 
 export const AdminEvents = () => {
   const [page, setPage] = useState(1)
   const { data } = useListEventsQuery({ page })
+  const navigate = useNavigate()
 
   const columns = useMemo(
     () =>
@@ -46,12 +54,32 @@ export const AdminEvents = () => {
               <MdOutlineCancel size={20} color="red" />
             ),
         },
-        // {
-        //   Header: 'Ações',
-        //   accessor: (event: Event) => (
-        //     <
-        //   ),
-        // },
+        {
+          Header: 'Ações',
+          accessor: (event: Event) => (
+            <TableMenu
+              actions={[
+                {
+                  title: 'Ver',
+                  icon: <MdOutlineRemoveRedEye size={20} />,
+                  onClick: () =>
+                    navigate(
+                      AdminRoutes.Admin_Eventos_Id.replace(':id', event.id),
+                    ),
+                },
+                {
+                  title: event.isActive ? 'Desativar' : 'Ativar',
+                  icon: event.isActive ? (
+                    <MdOutlineCancel size={20} />
+                  ) : (
+                    <MdCheckCircleOutline size={20} />
+                  ),
+                  onClick: () => console.log('Active/Deactive'),
+                },
+              ]}
+            />
+          ),
+        },
       ] as Column<Event>[],
     [],
   )

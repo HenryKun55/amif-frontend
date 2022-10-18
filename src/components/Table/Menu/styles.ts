@@ -1,0 +1,23 @@
+import tw, { styled } from 'twin.macro'
+import * as PopoverPrimitive from '@radix-ui/react-popover'
+
+export const Popover = PopoverPrimitive.Root
+
+export const PopoverTrigger = styled(PopoverPrimitive.Trigger)([tw`w-7`])
+
+export const PopoverContent = styled(PopoverPrimitive.Content)([
+  tw`w-44 border ring-1 shadow-xl rounded py-2 bg-white`,
+])
+
+export const More = styled.div([
+  tw`bg-gray-100 w-7 h-7 flex items-center justify-center rounded-full`,
+  tw`cursor-pointer hover:(bg-blue-100 text-blue-500)`,
+])
+
+export const Action = styled.div([
+  tw`flex items-center gap-3 hover:(bg-blue-100 text-blue-500) px-4 py-1 cursor-pointer`,
+])
+
+export const ActionTitle = styled.span([tw``])
+
+export const ActionIcon = styled.div([tw``])
