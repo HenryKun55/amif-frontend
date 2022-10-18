@@ -12,14 +12,14 @@ export const Footer = () => {
           <S.Title>Descrição da empresa</S.Title>
           <S.Social>
             <S.SocialLink
-              href="https://www.facebook.com"
+              href="https://www.instagram.com/amifoficial/"
               target="_blank"
               rel="noreferrer"
             >
               <S.FacebookIcon />
             </S.SocialLink>
             <S.SocialLink
-              href="https://www.facebook.com"
+              href="https://www.instagram.com/amifoficial/"
               target="_blank"
               rel="noreferrer"
             >
