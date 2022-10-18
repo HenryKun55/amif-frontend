@@ -3,11 +3,13 @@ import * as S from './styles'
 
 export const SignIn = () => {
   return (
-    <S.Wrapper>
-      <S.Title>AMIF</S.Title>
-      <S.Content>
+    <S.Container>
+      <S.FormContainer>
         <Form />
-      </S.Content>
-    </S.Wrapper>
+      </S.FormContainer>
+      <S.Box>
+        <S.LogoFake />
+      </S.Box>
+    </S.Container>
   )
 }
