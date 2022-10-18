@@ -1,5 +1,7 @@
 import * as S from './styles'
 import logo from 'assets/logo.svg'
+import { Routes } from '@/routes/routes'
+import { Link } from 'react-router-dom'
 
 export const Footer = () => {
   return (
@@ -26,10 +28,18 @@ export const Footer = () => {
           </S.Social>
         </S.Content>
         <S.Navigation>
-          <S.NavigationText>Missões</S.NavigationText>
-          <S.NavigationText>Eventos</S.NavigationText>
-          <S.NavigationText>Torne-se um associado</S.NavigationText>
-          <S.NavigationText>Doe</S.NavigationText>
+          <Link to={Routes.Mission}>
+            <S.NavigationText>Missões</S.NavigationText>
+          </Link>
+          <Link to={Routes.Event}>
+            <S.NavigationText>Eventos</S.NavigationText>
+          </Link>
+          <Link to={Routes.Associate}>
+            <S.NavigationText>Torne-se um associado</S.NavigationText>
+          </Link>
+          <Link to={Routes.Donate}>
+            <S.NavigationText>Doe</S.NavigationText>
+          </Link>
         </S.Navigation>
       </S.Container>
       <S.Description>

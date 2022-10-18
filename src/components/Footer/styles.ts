@@ -2,7 +2,7 @@ import tw, { styled } from 'twin.macro'
 import { BsFacebook, BsInstagram } from 'react-icons/bs'
 
 export const Wrapper = styled.footer([
-  tw`flex flex-col items-center h-[300px] p-10 bg-blue-50`,
+  tw`flex flex-col items-center min-h-[300px] p-10 bg-blue-50`,
 ])
 
 export const Container = styled.div([
@@ -15,7 +15,7 @@ export const Logo = styled.img([tw`w-[134px] h-[64px] object-contain`])
 
 export const Title = styled.span([tw`text-sm text-gray-700`])
 
-export const Social = styled.div([tw`flex gap-4 pt-5`])
+export const Social = styled.div([tw`flex gap-4 pt-5 justify-center`])
 
 export const SocialLink = styled.a()
 
@@ -25,11 +25,13 @@ export const FacebookIcon = styled(BsFacebook)([
 export const InstagramIcon = styled(BsInstagram)([tw`w-10 h-10 text-blue-400`])
 
 export const Navigation = styled.ul([
-  tw`flex gap-14 items-center justify-center`,
+  tw`flex flex-wrap gap-14 items-center justify-center`,
 ])
 
 export const NavigationText = styled.li([
   tw`text-lg font-semibold text-gray-900`,
 ])
 
-export const Description = styled.span([tw`mt-auto text-gray-600`])
+export const Description = styled.span([
+  tw`mt-auto text-gray-600 text-center pt-5`,
+])
