@@ -5,6 +5,7 @@ specifiers:
   '@emotion/babel-plugin-jsx-pragmatic': ^0.2.0
   '@emotion/react': ^11.10.4
   '@emotion/styled': ^11.10.4
+  '@formkit/auto-animate': 1.0.0-beta.3
   '@hookform/resolvers': ^2.9.8
   '@reduxjs/toolkit': ^1.8.5
   '@tanstack/react-query': ^4.3.4
@@ -43,6 +44,7 @@ specifiers:
 dependencies:
   '@emotion/react': 11.10.4_axxkdcpdr7up57umjkldobkynm
   '@emotion/styled': 11.10.4_sn4wuyy54zwps25tv4w7lbiz6i
+  '@formkit/auto-animate': 1.0.0-beta.3
   '@hookform/resolvers': 2.9.8_react-hook-form@7.36.0
   '@reduxjs/toolkit': 1.8.5_kkwg4cbsojnjnupd3btipussee
   '@tanstack/react-query': 4.3.9_biqbaboplfbrettd7655fr4n2y
@@ -512,6 +514,10 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@formkit/auto-animate/1.0.0-beta.3:
+    resolution: {integrity: sha512-glsi+ytwQpxT/Ctr9GtcIfVr4dO6mJ04mQbNU8MFSdCdqMopHtyfU5Fib0+9lNFIeR0luY4/0NW95/2R5pKsag==}
+    dev: false
 
   /@hookform/resolvers/2.9.8_react-hook-form@7.36.0:
     resolution: {integrity: sha512-iVVjH0USq+1TqDdGkWe2M1x7Wn5OFPgVRo7CbWFsXTqqXqCaZtZcnzJu+UhljCWbthFWxWGXKLGYUDPZ04oVvQ==}
