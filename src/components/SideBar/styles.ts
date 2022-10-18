@@ -16,7 +16,7 @@ type LinkProps = {
 export const Link = styled(DOMLink, {
   shouldForwardProp: props => props !== 'active',
 })<LinkProps>(({ active }) => [
-  tw`w-full flex items-center gap-3 px-6 py-2 rounded font-semibold`,
+  tw`w-full flex items-center gap-3 py-2 rounded font-semibold`,
   tw`cursor-pointer transition-all ease-in-out duration-200`,
   tw`hover:(bg-blue-100 text-blue-500 ring-1)`,
   active && tw`bg-blue-100 text-blue-500 ring-1`,
