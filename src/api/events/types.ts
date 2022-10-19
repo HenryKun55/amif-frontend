@@ -1,9 +1,10 @@
-import { User } from '@/@types/models/User'
-import { Paginated, PaginatedRequest } from '../types'
+import { Paged, PagedRequest } from '../types'
+import { Event } from '../models'
 
-export type ListUpcomingEventsRequest = PaginatedRequest & {
-  sport_id: number
-  day: string
+export type ListEventsRequest = PagedRequest & {
+  title?: string
+  startsAt?: string
+  active?: boolean
 }
 
-export type ListUpcomingEventsResponse = Paginated<User>
+export type ListEventsReponse = Paged<Event>
