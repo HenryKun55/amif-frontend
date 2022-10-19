@@ -13,7 +13,6 @@ const api = createApi({
       if (token) {
         headers.set('Authorization', `Bearer ${token}`)
       }
-      headers.set('environment', 'staging')
       return headers
     },
   }),

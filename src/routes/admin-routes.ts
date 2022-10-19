@@ -2,6 +2,7 @@ export enum AdminRoutes {
   Admin_SignIn = '/admin/sign-in',
   Admin_Home = '/admin',
   Admin_Eventos = '/admin/eventos',
+  Admin_Eventos_Id = '/admin/eventos/:id',
   Admin_Missoes = '/admin/missoes',
   Admin_Associados = '/admin/associados',
   Admin_Mantenedores = '/admin/mantenedores',

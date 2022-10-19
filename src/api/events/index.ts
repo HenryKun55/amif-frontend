@@ -1,18 +1,15 @@
 import api from '..'
-import { ListUpcomingEventsRequest, ListUpcomingEventsResponse } from './types'
+import { ListEventsRequest, ListEventsReponse } from './types'
 
 const endpoints = {
-  listUpcoming: () => 'events/upcoming',
+  listEvents: () => 'events',
 }
 
 const eventsApi = api.injectEndpoints({
   endpoints: builder => ({
-    listUpcoming: builder.query<
-      ListUpcomingEventsResponse,
-      ListUpcomingEventsRequest
-    >({
+    listEvents: builder.query<ListEventsReponse, ListEventsRequest>({
       query: params => ({
-        url: endpoints.listUpcoming(),
+        url: endpoints.listEvents(),
         params,
       }),
       providesTags: result =>
@@ -27,6 +24,6 @@ const eventsApi = api.injectEndpoints({
   overrideExisting: false,
 })
 
-export const { useListUpcomingQuery } = eventsApi
+export const { useListEventsQuery } = eventsApi
 
 export default eventsApi
