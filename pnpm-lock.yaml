@@ -5,6 +5,7 @@ specifiers:
   '@emotion/babel-plugin-jsx-pragmatic': ^0.2.0
   '@emotion/react': ^11.10.4
   '@emotion/styled': ^11.10.4
+  '@formkit/auto-animate': 1.0.0-beta.3
   '@hookform/resolvers': ^2.9.8
   '@radix-ui/react-popover': ^1.0.2
   '@reduxjs/toolkit': ^1.8.5
@@ -47,6 +48,7 @@ specifiers:
 dependencies:
   '@emotion/react': 11.10.4_axxkdcpdr7up57umjkldobkynm
   '@emotion/styled': 11.10.4_sn4wuyy54zwps25tv4w7lbiz6i
+  '@formkit/auto-animate': 1.0.0-beta.3
   '@hookform/resolvers': 2.9.8_react-hook-form@7.36.0
   '@radix-ui/react-popover': 1.0.2_7ey2zzynotv32rpkwno45fsx4e
   '@reduxjs/toolkit': 1.8.5_kkwg4cbsojnjnupd3btipussee
@@ -543,6 +545,10 @@ packages:
       use-isomorphic-layout-effect: 1.1.2_w5j4k42lgipnm43s3brx6h3c34
     transitivePeerDependencies:
       - '@types/react'
+    dev: false
+
+  /@formkit/auto-animate/1.0.0-beta.3:
+    resolution: {integrity: sha512-glsi+ytwQpxT/Ctr9GtcIfVr4dO6mJ04mQbNU8MFSdCdqMopHtyfU5Fib0+9lNFIeR0luY4/0NW95/2R5pKsag==}
     dev: false
 
   /@hookform/resolvers/2.9.8_react-hook-form@7.36.0:
