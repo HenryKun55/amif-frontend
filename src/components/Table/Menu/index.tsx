@@ -1,3 +1,9 @@
+/**
+ *
+ * Table Menu
+ *
+ */
+
 import { ReactNode } from 'react'
 import { MdOutlineMoreVert } from 'react-icons/md'
 import * as S from './styles'

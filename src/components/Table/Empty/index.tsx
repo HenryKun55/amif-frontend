@@ -1,3 +1,9 @@
+/**
+ *
+ * Table Empty
+ *
+ */
+
 export interface EmptyProps {
   message: string
 }

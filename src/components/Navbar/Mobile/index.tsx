@@ -1,3 +1,9 @@
+/**
+ *
+ * Navbar Mobile
+ *
+ */
+
 import { menuItems } from '..'
 import { IoMdArrowRoundForward } from 'react-icons/io'
 import * as S from './styles'
