@@ -1,3 +1,9 @@
+/**
+ *
+ * Navbar
+ *
+ */
+
 import * as S from './style'
 import Logo from '../../assets/logo.svg'
 import { Button } from '../Form/Button'
