@@ -1,3 +1,9 @@
+/**
+ *
+ * Table
+ *
+ */
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { TableHTMLAttributes, useEffect } from 'react'
 import {

@@ -1,3 +1,9 @@
+/**
+ *
+ * SideBar
+ *
+ */
+
 import {
   MdBookmark,
   MdManageAccounts,

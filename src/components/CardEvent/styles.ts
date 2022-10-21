@@ -1,7 +1,6 @@
 import tw, { styled, css } from 'twin.macro'
 
 export const Container = styled.div([
-  tw`m-3.5`,
   tw`flex flex-col w-[300px] h-[250px] rounded-3xl shadow-xl`,
   tw`hover:w-[320px] hover:h-[270px] hover:cursor-pointer transition-all ease-in-out duration-200`,
 ])
