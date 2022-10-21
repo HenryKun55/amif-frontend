@@ -3,5 +3,7 @@ export enum Routes {
   Eventos = '/eventos',
   Eventos_Id = '/eventos/:id',
   Mission = '/missoes',
+  Associate = '/associados',
   Maintainer = '/mantenedor',
+  Donate = '/doe',
 }
