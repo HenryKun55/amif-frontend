@@ -41,7 +41,13 @@ export const BannerEventMain = ({ event }: BannerEventMainProps) => {
   const onlyWidth = useWindowWidth()
 
   const textLimit = (text: string) => {
-    return `${text.substr(0, 100)}...`
+    if (description.length > 600 && onlyWidth > 500) {
+      return `${text.substr(0, 580)}... VER MAIS.`
+    }
+    if (onlyWidth <= 500) {
+      return `${text.substr(0, 350)}... VER MAIS.`
+    }
+    return text
   }
 
   return (
@@ -52,9 +58,7 @@ export const BannerEventMain = ({ event }: BannerEventMainProps) => {
       <S.Content>
         <S.Section>
           <S.Title>{title}</S.Title>
-          <S.Description>
-            {onlyWidth >= 768 ? textLimit(description) : description}
-          </S.Description>
+          <S.Description>{textLimit(description)}</S.Description>
           <S.SectionFooter>
             <S.Span>
               <HiOutlineLocationMarker /> {address?.street}, {address?.city},{' '}
@@ -70,16 +74,14 @@ export const BannerEventMain = ({ event }: BannerEventMainProps) => {
             </S.Span>
           </S.SectionFooter>
         </S.Section>
-        {canSubscribe && (
-          <S.Right>
-            <S.Subscribe>
-              <Button size="lg" shape="pill">
-                Inscreva-se
-              </Button>
-            </S.Subscribe>
-          </S.Right>
-        )}
       </S.Content>
+      {canSubscribe && (
+        <S.Subscribe>
+          <Button size={onlyWidth < 600 ? 'sm' : 'lg'} shape="pill">
+            Inscreva-se
+          </Button>
+        </S.Subscribe>
+      )}
     </S.Container>
   )
 }
