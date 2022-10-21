@@ -1,8 +1,6 @@
 import tw, { styled } from 'twin.macro'
 
-export const Container = styled.div([
-  tw`w-full h-full flex flex-col items-center justify-center`,
-])
+export const Container = styled.div([tw`w-full h-full flex flex-col `])
 
 export const List = styled.ul([tw`flex flex-col gap-4 p-5 list-none`])
 
