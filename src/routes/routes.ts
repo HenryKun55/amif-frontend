@@ -3,4 +3,5 @@ export enum Routes {
   Event = '/eventos',
   Mission = '/missoes',
   Maintainer = '/mantenedor',
+  Donate = '/doe',
 }

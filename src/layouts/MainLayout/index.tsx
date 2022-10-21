@@ -14,7 +14,9 @@ export const MainLayout = () => {
         onClose={() => setIsMenuExpand(false)}
         isExpanded={isMenuExpand}
       />
-      <Outlet />
+      <S.Content>
+        <Outlet />
+      </S.Content>
     </S.Wrapper>
   )
 }
