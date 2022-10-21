@@ -16,7 +16,7 @@ import { BsCalendarEvent } from 'react-icons/bs'
 
 export const menuItems = [
   { name: 'Início', href: Routes.Home, icon: <AiOutlineHome size={25} /> },
-  { name: 'Eventos', href: Routes.Event, icon: <BsCalendarEvent /> },
+  { name: 'Eventos', href: Routes.Eventos, icon: <BsCalendarEvent /> },
   { name: 'Missões', href: Routes.Mission, icon: <GiCrucifix /> },
   {
     name: 'Torne-se um Mantenedor',
