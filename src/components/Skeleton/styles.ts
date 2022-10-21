@@ -8,7 +8,7 @@ const containerModifiers: { [key: string]: TwStyle } = {
 
 export const Container = styled.div<SkeletonProps>(
   ({ width, height, shape = 'rounded' }) => [
-    tw`bg-gray-500 flex-shrink-0`,
+    tw`flex-shrink-0 animate-loading`,
     containerModifiers[shape],
     css`
       width: ${width}px;
