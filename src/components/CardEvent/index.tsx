@@ -11,9 +11,13 @@ import SetDefaultOptions from 'date-fns/setDefaultOptions'
 import { Button } from '../Form/Button'
 import { HiOutlineLocationMarker } from 'react-icons/hi'
 import { BsClock } from 'react-icons/bs'
+import { MouseEventHandler, useMemo } from 'react'
+import DefaultImage from '../../assets/default-image.svg'
+import { Routes } from '@/routes/routes'
 
 type CardEventProps = {
   event: {
+    id: string
     startDate: string
     startHour: string
     canSubscribe: boolean
@@ -27,29 +31,45 @@ type CardEventProps = {
       city?: string
     }
   }
+  className?: string
+  onSubscribe?: () => void
 }
 
-export const CardEvent = ({ event }: CardEventProps) => {
-  const { startDate, startHour, canSubscribe, title, images, address } = event
+export const CardEvent = ({
+  event,
+  className,
+  onSubscribe,
+}: CardEventProps) => {
+  const { id, startDate, startHour, canSubscribe, title, images, address } =
+    event
 
   SetDefaultOptions({ locale: ptBR })
 
-  const day = format(new Date(startDate), 'ee')
-  const mounth = format(new Date(startDate), 'LLL')
+  const [day, month] = format(new Date(startDate), 'ee LLL').split(' ')
+
+  const imageUrl = useMemo(() => images[0]?.url || DefaultImage, [images])
+
+  const handleSubscribe: MouseEventHandler<HTMLButtonElement> = event => {
+    event.preventDefault()
+    onSubscribe?.()
+  }
 
   return (
-    <S.Container>
-      <S.Banner background={images[0].url}>
+    <S.Container
+      to={Routes.Eventos_Id.replace(':id', id)}
+      className={className}
+    >
+      <S.Banner background={imageUrl}>
         <S.Left>
           <S.Date>
             <S.Day>{day}</S.Day>
-            <S.Month>{mounth}</S.Month>
+            <S.Month>{month}</S.Month>
           </S.Date>
         </S.Left>
         <S.Right>
           {canSubscribe && (
             <S.Subscribe>
-              <Button size="sm" shape="pill">
+              <Button size="sm" onClick={handleSubscribe}>
                 Inscreva-se
               </Button>
             </S.Subscribe>

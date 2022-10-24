@@ -1,9 +1,10 @@
+import { EventList } from '@/features/Home/EventList'
 import * as S from './styles'
 
-export function Home() {
+export const Home = () => {
   return (
     <S.Container>
-      <h2>Home page</h2>
+      <EventList />
     </S.Container>
   )
 }

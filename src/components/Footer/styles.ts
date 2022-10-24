@@ -6,7 +6,7 @@ export const Wrapper = styled.footer([
 ])
 
 export const Container = styled.div([
-  tw`flex flex-wrap gap-3 justify-center lg:(flex gap-28 justify-between)`,
+  tw`flex flex-wrap gap-3 justify-center lg:(flex w-full max-w-container justify-between)`,
 ])
 
 export const Content = styled.div([tw`flex flex-wrap flex-col`])

@@ -35,17 +35,18 @@ export interface FetchDataProps<T extends Record<string, unknown>> {
 
 export type TableProps<T extends Record<string, unknown>> =
   TableHTMLAttributes<HTMLTableElement> &
-    TableOptions<T> & {
-      totalPages?: number
-      totalCount: number
-      onFetchData: (props: FetchDataProps<T>) => void
-      pageIndex?: number
-      pageSize?: number
-      isLoading?: boolean
-      isSelectable?: boolean
-      emptyMessage?: string
-      onSelectRow?: (selectedFlatRows: Row<T>[]) => void
-    }
+  TableOptions<T> & {
+    totalPages?: number
+    totalCount: number
+    onFetchData: (props: FetchDataProps<T>) => void
+    pageIndex?: number
+    pageSize?: number
+    loadingColumns?: number
+    isLoading?: boolean
+    isSelectable?: boolean
+    emptyMessage?: string
+    onSelectRow?: (selectedFlatRows: Row<T>[]) => void
+  }
 
 export const Table = <T extends Record<string, unknown>>({
   data,
@@ -54,6 +55,7 @@ export const Table = <T extends Record<string, unknown>>({
   totalCount,
   emptyMessage,
   isSelectable,
+  loadingColumns = 6,
   pageIndex: controlledPageIndex = 0,
   pageSize: controlledPageSize = 15,
   totalPages: controlledPageCount = 1,
@@ -132,7 +134,7 @@ export const Table = <T extends Record<string, unknown>>({
   }, [onSelectRow, selectedFlatRows])
 
   if (isLoading) {
-    return <Loading />
+    return <Loading columns={loadingColumns} />
   }
   if (data.length === 0) {
     return <Empty message={emptyMessage || 'Nenhum item foi criado ainda.'} />

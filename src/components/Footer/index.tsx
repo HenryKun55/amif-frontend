@@ -31,7 +31,7 @@ export const Footer = () => {
           <Link to={Routes.Mission}>
             <S.NavigationText>Missões</S.NavigationText>
           </Link>
-          <Link to={Routes.Event}>
+          <Link to={Routes.Eventos}>
             <S.NavigationText>Eventos</S.NavigationText>
           </Link>
           <Link to={Routes.Associate}>

@@ -16,7 +16,7 @@ import { BsCalendarEvent } from 'react-icons/bs'
 
 export const menuItems = [
   { name: 'Início', href: Routes.Home, icon: <AiOutlineHome size={25} /> },
-  { name: 'Eventos', href: Routes.Event, icon: <BsCalendarEvent /> },
+  { name: 'Eventos', href: Routes.Eventos, icon: <BsCalendarEvent /> },
   { name: 'Missões', href: Routes.Mission, icon: <GiCrucifix /> },
   {
     name: 'Torne-se um Mantenedor',
@@ -35,31 +35,33 @@ export const Navbar = ({ onOpenMobile }: NavbarProps) => {
   )
 
   return (
-    <S.Container>
-      <S.Logo>
-        <S.Image src={Logo} alt="logo amif" />
-      </S.Logo>
-      <S.Content>
-        <S.Menu>
-          {menuItems.map((item, key) => {
-            return (
-              <li key={key}>
-                <S.Link active={isActive(item.href)} to={item.href}>
-                  {item.name}
-                </S.Link>
-              </li>
-            )
-          })}
-        </S.Menu>
-      </S.Content>
-      <S.Donate>
-        <Button variant="outlined" shape="pill">
-          Doe
-        </Button>
-      </S.Donate>
-      <S.Hamburger onClick={onOpenMobile}>
-        <GiHamburgerMenu size={40} />
-      </S.Hamburger>
-    </S.Container>
+    <S.Wrapper>
+      <S.Container>
+        <S.Logo>
+          <S.Image src={Logo} alt="logo amif" />
+        </S.Logo>
+        <S.Content>
+          <S.Menu>
+            {menuItems.map((item, key) => {
+              return (
+                <li key={key}>
+                  <S.Link active={isActive(item.href)} to={item.href}>
+                    {item.name}
+                  </S.Link>
+                </li>
+              )
+            })}
+          </S.Menu>
+        </S.Content>
+        <S.Donate>
+          <Button variant="outlined" shape="pill">
+            Doe
+          </Button>
+        </S.Donate>
+        <S.Hamburger onClick={onOpenMobile}>
+          <GiHamburgerMenu size={40} />
+        </S.Hamburger>
+      </S.Container>
+    </S.Wrapper>
   )
 }

@@ -16,7 +16,7 @@ import { AdminRoutes } from '@/routes/admin-routes'
 
 export const AdminEvents = () => {
   const [page, setPage] = useState(1)
-  const { data } = useListEventsQuery({ page })
+  const { data, isLoading } = useListEventsQuery({ page })
   const navigate = useNavigate()
 
   const columns = useMemo(
@@ -25,14 +25,17 @@ export const AdminEvents = () => {
         {
           Header: 'Título',
           accessor: 'title',
+          defaultCanSort: true,
         },
         {
           Header: 'Descrição',
           accessor: 'description',
+          defaultCanSort: true,
         },
         {
           id: 'startsAt',
           Header: 'Data',
+          defaultCanSort: true,
           accessor: (event: Event) =>
             format(new Date(event.startsAt || ''), 'dd/MM/yyyy'),
         },
@@ -84,8 +87,6 @@ export const AdminEvents = () => {
     [],
   )
 
-  console.log(data)
-
   const handleFetchData = useCallback((args: FetchDataProps<Event>) => {
     setPage(args.pageIndex + 1)
   }, [])
@@ -99,6 +100,7 @@ export const AdminEvents = () => {
         totalPages={data?.totalPages || 0}
         totalCount={data?.total || 0}
         onFetchData={handleFetchData}
+        isLoading={isLoading}
       />
     </S.Container>
   )

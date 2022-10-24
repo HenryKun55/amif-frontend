@@ -9,7 +9,6 @@ specifiers:
   '@hookform/resolvers': ^2.9.8
   '@radix-ui/react-popover': ^1.0.2
   '@reduxjs/toolkit': ^1.8.5
-  '@tanstack/react-query': ^4.3.4
   '@types/node': ^18.7.18
   '@types/react': ^18.0.17
   '@types/react-dom': ^18.0.6
@@ -52,7 +51,6 @@ dependencies:
   '@hookform/resolvers': 2.9.10_react-hook-form@7.38.0
   '@radix-ui/react-popover': 1.0.2_rj7ozvcq3uehdlnj3cbwzbi5ce
   '@reduxjs/toolkit': 1.8.6_kuo2ie247izvzll3jejufdtq3q
-  '@tanstack/react-query': 4.12.0_biqbaboplfbrettd7655fr4n2y
   axios: 0.27.2
   date-fns: 2.29.3
   react: 18.2.0
@@ -902,28 +900,6 @@ packages:
   /@remix-run/router/1.0.2:
     resolution: {integrity: sha512-GRSOFhJzjGN+d4sKHTMSvNeUPoZiDHWmRnXfzaxrqe7dE/Nzlc8BiMSJdLDESZlndM7jIUrZ/F4yWqVYlI0rwQ==}
     engines: {node: '>=14'}
-    dev: false
-
-  /@tanstack/query-core/4.12.0:
-    resolution: {integrity: sha512-KEiFPNLMFByhNL2s6RBFL6Z5cNdwwQzFpW/II3GY+rEuQ343ZEoVyQ48zlUXXkEkbamQFIFg2onM8Pxf0Yo01A==}
-    dev: false
-
-  /@tanstack/react-query/4.12.0_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-prchV1q+CJ0ZVo8Rts2cOF3azDfQizZZySmH6XXsXRcPTbir0sgb9fp0vY/5l5ZkSYjTvWt/OL8WQhAhYMSvrA==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-native: '*'
-    peerDependenciesMeta:
-      react-dom:
-        optional: true
-      react-native:
-        optional: true
-    dependencies:
-      '@tanstack/query-core': 4.12.0
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-      use-sync-external-store: 1.2.0_react@18.2.0
     dev: false
 
   /@tootallnate/once/2.0.0:
