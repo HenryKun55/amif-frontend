@@ -8,16 +8,18 @@ import { useListEventsQuery } from '@/api/events'
 import { Skeleton } from '@/components/Skeleton'
 import * as S from './styles'
 
+const PER_PAGE = 3
+
 export const EventList = () => {
   const { data, isLoading } = useListEventsQuery({
-    perPage: 5,
+    perPage: PER_PAGE,
     active: true,
   })
 
   if (isLoading) {
     return (
       <S.Container>
-        {Array.from({ length: 5 }).map((_, idx) => (
+        {Array.from({ length: PER_PAGE }).map((_, idx) => (
           <Skeleton key={idx} width={300} height={250} />
         ))}
       </S.Container>

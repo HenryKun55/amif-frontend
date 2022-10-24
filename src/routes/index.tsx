@@ -3,6 +3,7 @@ import { MainLayout } from '@/layouts/MainLayout'
 import { AdminEvents } from '@/pages/Admin/Events'
 import { AdminHome } from '@/pages/Admin/Home'
 import { SignIn } from '@/pages/Admin/SignIn'
+import { Events } from '@/pages/Events'
 import { Home } from '@/pages/Home'
 import { Playground } from '@/pages/Playground'
 import {
@@ -20,6 +21,7 @@ export const Router = () => {
         <DOMRoute path="/playground" element={<Playground />} />
         <DOMRoute path={Routes.Home} element={<MainLayout />}>
           <DOMRoute index element={<Home />} />
+          <DOMRoute path={Routes.Eventos} element={<Events />} />
         </DOMRoute>
         <DOMRoute path={AdminRoutes.Admin_SignIn} element={<SignIn />} />
         <DOMRoute path={AdminRoutes.Admin_Home} element={<AdminLayout />}>
