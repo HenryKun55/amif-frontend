@@ -1,5 +1,6 @@
 import { Navbar } from '@/components/Navbar'
 import { Mobile } from '@/components/Navbar/Mobile'
+import { ModalDonate } from '@/features/Donate/Modal'
 import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import * as S from './styles'
@@ -17,6 +18,7 @@ export const MainLayout = () => {
       <S.Content>
         <Outlet />
       </S.Content>
+      <ModalDonate />
     </S.Wrapper>
   )
 }

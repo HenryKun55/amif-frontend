@@ -1,5 +1,5 @@
 import * as S from './style'
-import Logo from '../../assets/logo.svg'
+import Logo from 'assets/logo.svg'
 import { Button } from '../Form/Button'
 import { Routes } from '@/routes/routes'
 import { useCallback } from 'react'
@@ -7,6 +7,7 @@ import { GiCrucifix, GiHamburgerMenu } from 'react-icons/gi'
 import { AiOutlineHome } from 'react-icons/ai'
 import { BiDonateHeart } from 'react-icons/bi'
 import { BsCalendarEvent } from 'react-icons/bs'
+import { useModal } from '@/context/Modal'
 
 export const menuItems = [
   { name: 'Início', href: Routes.Home, icon: <AiOutlineHome size={25} /> },
@@ -23,6 +24,7 @@ type NavbarProps = {
   onOpenMobile: () => void
 }
 export const Navbar = ({ onOpenMobile }: NavbarProps) => {
+  const { onOpen } = useModal()
   const isActive = useCallback(
     (pattern: string) => location.pathname.includes(pattern),
     [location],
@@ -47,7 +49,7 @@ export const Navbar = ({ onOpenMobile }: NavbarProps) => {
         </S.Menu>
       </S.Content>
       <S.Donate>
-        <Button variant="outlined" shape="pill">
+        <Button variant="outlined" shape="pill" onClick={() => onOpen()}>
           Doe
         </Button>
       </S.Donate>
