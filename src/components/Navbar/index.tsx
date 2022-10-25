@@ -1,5 +1,5 @@
 import * as S from './style'
-import Logo from 'assets/logo.svg'
+import Logo from '@/assets/logo.svg'
 import { Button } from '../Form/Button'
 import { Routes } from '@/routes/routes'
 import { useCallback } from 'react'

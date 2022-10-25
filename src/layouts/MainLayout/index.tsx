@@ -1,6 +1,6 @@
 import { Navbar } from '@/components/Navbar'
 import { Mobile } from '@/components/Navbar/Mobile'
-import { ModalDonate } from '@/features/Donate/Modal'
+import { ModalDonate } from '@/components/ModalDonate'
 import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import * as S from './styles'
