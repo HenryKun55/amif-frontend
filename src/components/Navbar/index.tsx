@@ -13,6 +13,7 @@ import { GiCrucifix, GiHamburgerMenu } from 'react-icons/gi'
 import { AiOutlineHome } from 'react-icons/ai'
 import { BiDonateHeart } from 'react-icons/bi'
 import { BsCalendarEvent } from 'react-icons/bs'
+import { useLocation } from 'react-router-dom'
 
 export const menuItems = [
   { name: 'Início', href: Routes.Home, icon: <AiOutlineHome size={25} /> },
@@ -29,8 +30,15 @@ type NavbarProps = {
   onOpenMobile: () => void
 }
 export const Navbar = ({ onOpenMobile }: NavbarProps) => {
+  const location = useLocation()
+
   const isActive = useCallback(
-    (pattern: string) => location.pathname.includes(pattern),
+    (pattern: string) => {
+      if (pattern !== '/') {
+        return location.pathname.includes(pattern)
+      }
+      return location.pathname === '/' && pattern === '/'
+    },
     [location],
   )
 
