@@ -3,6 +3,8 @@ import { YouTubeEmbed } from '@/components/YouTubeEmbed'
 import { Routes } from '@/routes/routes'
 import { useMemo } from 'react'
 import { Navigate, useParams } from 'react-router-dom'
+import ImageGallery, { ReactImageGalleryItem } from 'react-image-gallery'
+
 import * as S from './styles'
 
 function getIdFromYouTubeUrl(url?: string) {
@@ -17,9 +19,16 @@ export const EventsId = () => {
   const params = useParams<{ id: string }>()
   const id = params.id || ''
   const { data: event, isLoading } = useFetchEventQuery({ id })
-  console.log(event)
 
   const videoId = useMemo(() => getIdFromYouTubeUrl(event?.youtubeUrl), [event])
+
+  const images: ReactImageGalleryItem[] = useMemo(
+    () =>
+      event?.images.map(
+        image => ({ original: image.url } as ReactImageGalleryItem),
+      ) || [],
+    [event],
+  )
 
   if (isLoading) {
     return <div>Loading... </div>
@@ -31,7 +40,15 @@ export const EventsId = () => {
 
   return (
     <S.Container>
-      <S.Banner />
+      <S.Banner>
+        <ImageGallery
+          items={images}
+          showPlayButton={false}
+          showThumbnails={false}
+          showFullscreenButton={false}
+          showBullets={images.length > 1}
+        />
+      </S.Banner>
       <S.Content>
         <S.LeftContent>
           <S.Title>{event.title}</S.Title>

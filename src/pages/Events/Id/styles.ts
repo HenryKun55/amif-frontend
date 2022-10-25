@@ -1,10 +1,24 @@
-import tw, { styled } from 'twin.macro'
+import tw, { css, styled } from 'twin.macro'
 
 export const Container = styled.div([
   tw`flex flex-col items-center bg-gray-100 overflow-x-hidden`,
 ])
 
-export const Banner = styled.div([tw`w-full h-[500px] bg-black`])
+export const Banner = styled.div([
+  tw`w-full flex justify-center bg-blue-100`,
+  css`
+    .image-gallery {
+      width: max(70%, 800px);
+    }
+
+    .image-gallery-slide img {
+      width: 100%;
+      object-fit: cover;
+      overflow: hidden;
+      object-position: center center;
+    }
+  `,
+])
 
 export const Content = styled.main([
   tw`w-full max-w-container flex flex-col items-center gap-8`,

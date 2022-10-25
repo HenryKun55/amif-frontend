@@ -32,7 +32,7 @@ export const EventList = () => {
         data.data.map(event => (
           <S.CardEvent
             key={event.id}
-            event={{ ...event, startDate: event.startsAt, startHour: '10:30' }}
+            event={event}
             onSubscribe={() => console.log('Subscribe')}
           />
         ))

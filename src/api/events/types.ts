@@ -9,7 +9,7 @@ export type FetchEventResponse = Event
 
 export type ListEventsRequest = PagedRequest & {
   title?: string
-  startsAt?: string
+  startDate?: string
   active?: boolean
 }
 

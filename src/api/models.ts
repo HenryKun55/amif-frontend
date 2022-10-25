@@ -13,7 +13,8 @@ export type Event = {
   description: string
   youtubeUrl?: string
   isMain: boolean
-  startsAt: string
+  startDate: string
+  startHour: string
   images: {
     id: string
     url: string

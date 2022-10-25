@@ -4,6 +4,8 @@ import tw, { css, GlobalStyles as BaseStyles } from 'twin.macro'
 
 const customStyles = css([
   css`
+    @import '~react-image-gallery/styles/scss/image-gallery.scss';
+
     html,
     body,
     #root {

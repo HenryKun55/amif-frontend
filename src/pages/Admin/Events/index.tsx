@@ -33,11 +33,20 @@ export const AdminEvents = () => {
           defaultCanSort: true,
         },
         {
-          id: 'startsAt',
+          id: 'startDate',
           Header: 'Data',
           defaultCanSort: true,
-          accessor: (event: Event) =>
-            format(new Date(event.startsAt || ''), 'dd/MM/yyyy'),
+          accessor: (event: Event) => {
+            try {
+              const [date] = event.startDate.split('T')
+              return format(
+                new Date(`${date}T${event.startHour}:00`),
+                'dd/MM/yyyy HH:mm',
+              )
+            } catch (error) {
+              return 'Sem data'
+            }
+          },
         },
         {
           id: 'isMain',
