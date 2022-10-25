@@ -6,4 +6,5 @@ export enum Routes {
   Associate = '/associados',
   Maintainer = '/mantenedor',
   Donate = '/doe',
+  NotFound = '/404',
 }

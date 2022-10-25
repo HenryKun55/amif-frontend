@@ -1,12 +1,21 @@
 import api from '..'
-import { ListEventsRequest, ListEventsReponse } from './types'
+import {
+  ListEventsRequest,
+  ListEventsReponse,
+  FetchEventResponse,
+  FetchEventRequest,
+} from './types'
 
 const endpoints = {
+  fetchEvent: (id: string) => `events/${id}`,
   listEvents: () => 'events',
 }
 
 const eventsApi = api.injectEndpoints({
   endpoints: builder => ({
+    fetchEvent: builder.query<FetchEventResponse, FetchEventRequest>({
+      query: ({ id }) => endpoints.fetchEvent(id),
+    }),
     listEvents: builder.query<ListEventsReponse, ListEventsRequest>({
       query: params => ({
         url: endpoints.listEvents(),
@@ -24,6 +33,6 @@ const eventsApi = api.injectEndpoints({
   overrideExisting: false,
 })
 
-export const { useListEventsQuery } = eventsApi
+export const { useFetchEventQuery, useListEventsQuery } = eventsApi
 
 export default eventsApi
