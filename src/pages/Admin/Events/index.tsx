@@ -22,6 +22,7 @@ import { Order } from '@/api/types'
 import { EventSortBy } from '@/api/events/types'
 import { useDebounce } from '@/hooks/useDebounce'
 import { useForm } from 'react-hook-form'
+import { Breadcrumb } from '@/components/Breadcrumb'
 
 export const AdminEvents = () => {
   const navigate = useNavigate()
@@ -156,23 +157,26 @@ export const AdminEvents = () => {
 
   return (
     <S.Container>
-      <S.Input
-        leftIcon={<MdSearch size={18} color="gray" />}
-        shape="pill"
-        label="Pesquisar por título"
-        register={register}
-        name="search"
-        height="sm"
-      />
-      <Table<Event>
-        data={data?.data || []}
-        columns={columns}
-        pageSize={data?.perPage || 0}
-        totalPages={data?.totalPages || 0}
-        totalCount={data?.total || 0}
-        onFetchData={handleFetchData}
-        isLoading={isLoading}
-      />
+      <Breadcrumb path={['Eventos']} showButton />
+      <S.Content>
+        <S.Input
+          leftIcon={<MdSearch size={18} color="gray" />}
+          shape="pill"
+          label="Pesquisar por título"
+          register={register}
+          name="search"
+          height="sm"
+        />
+        <Table<Event>
+          data={data?.data || []}
+          columns={columns}
+          pageSize={data?.perPage || 0}
+          totalPages={data?.totalPages || 0}
+          totalCount={data?.total || 0}
+          onFetchData={handleFetchData}
+          isLoading={isLoading}
+        />
+      </S.Content>
     </S.Container>
   )
 }
