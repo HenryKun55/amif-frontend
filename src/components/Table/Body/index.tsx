@@ -1,3 +1,9 @@
+/**
+ *
+ * Table Body
+ *
+ */
+
 /* eslint-disable react/jsx-key */
 import { Row, TableBodyPropGetter, TableBodyProps } from 'react-table'
 
@@ -21,7 +27,11 @@ export const Body = <T extends object>({
         return (
           <S.Row {...row.getRowProps()}>
             {row.cells.map(cell => (
-              <S.Cell {...cell.getCellProps()}>{cell.render('Cell')}</S.Cell>
+              <S.Cell {...cell.getCellProps()}>
+                <S.Text responsive={cell.column.responsive}>
+                  <span>{cell.render('Cell')}</span>
+                </S.Text>
+              </S.Cell>
             ))}
           </S.Row>
         )

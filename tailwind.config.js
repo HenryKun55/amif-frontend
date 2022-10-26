@@ -3,6 +3,19 @@ module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
+      keyframes: {
+        loading: {
+          '0%': { backgroundColor: 'hsl(200, 20%, 80%)' },
+          '100%': { transform: 'hsl(200, 20%, 92%)' },
+        },
+      },
+      animation: {
+        loading: 'loading 1.25s linear infinite alternate',
+      },
+      maxWidth: {
+        container: '1500px',
+        content: '1366px',
+      },
       colors: {
         blue: {
           50: '#e7eff6',
@@ -54,9 +67,6 @@ module.exports = {
         2: '2 2 0%',
         '2/3': '2.5 2.5 0%',
         3: '3 3 0%',
-      },
-      maxWidth: {
-        content: '1366px',
       },
       backgroundImage: {
         world: "url('./src/assets/world.png')",

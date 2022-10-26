@@ -1,3 +1,9 @@
+/**
+ *
+ * AdminNavBar
+ *
+ */
+
 import { AdminRoutes } from '@/routes/admin-routes'
 import { useAppDispatch } from '@/store'
 import { logout } from '@/store/auth/slice'

@@ -1,66 +1,177 @@
-import { Table } from '@/components/Table'
-import { useMemo } from 'react'
+import {
+  useActivateEventMutation,
+  useDeactivateEventMutation,
+  useListEventsQuery,
+} from '@/api/events'
+import { FetchDataProps, Table } from '@/components/Table'
+import { useCallback, useMemo, useState } from 'react'
 import { Column } from 'react-table'
+import { Event } from '@/api/models'
 import * as S from './styles'
-
-type TableData = {
-  name: string
-  phoneNumber: string
-  email: string
-  lastActivity: string
-  createdIn: string
-}
+import { format } from 'date-fns'
+import {
+  MdCheckCircleOutline,
+  MdOutlineCancel,
+  MdOutlineRemoveRedEye,
+  MdSearch,
+} from 'react-icons/md'
+import { TableMenu } from '@/components/Table/Menu'
+import { useNavigate } from 'react-router-dom'
+import { AdminRoutes } from '@/routes/admin-routes'
+import { Order } from '@/api/types'
+import { EventSortBy } from '@/api/events/types'
+import { useDebounce } from '@/hooks/useDebounce'
+import { useForm } from 'react-hook-form'
 
 export const AdminEvents = () => {
+  const navigate = useNavigate()
+  const [page, setPage] = useState(1)
+  const [sortBy, setSortBy] = useState<keyof EventSortBy | undefined>(
+    'startDate',
+  )
+  const [orderBy, setOrderBy] = useState<Order>('desc')
+
+  const { register, watch } = useForm()
+  const searchDebounced = useDebounce(watch('search'), 300)
+
+  const { data, isLoading } = useListEventsQuery({
+    page,
+    orderBy,
+    sortBy,
+    title: searchDebounced,
+  })
+  const [activateEvent, { isLoading: isActivating }] =
+    useActivateEventMutation()
+  const [deactivateEvent, { isLoading: isDeactivating }] =
+    useDeactivateEventMutation()
+
+  const handleActivaDeactiveEvent = useCallback((event: Event) => {
+    if (event.isActive) {
+      deactivateEvent({ id: event.id })
+    } else {
+      activateEvent({ id: event.id })
+    }
+  }, [])
+
   const columns = useMemo(
     () =>
       [
         {
-          Header: 'Name',
-          accessor: 'name',
+          Header: 'Título',
+          accessor: 'title',
           defaultCanSort: true,
+          responsive: true,
         },
         {
-          Header: 'Phone Number',
-          accessor: 'phoneNumber',
+          Header: 'Descrição',
+          accessor: 'description',
+          responsive: true,
+        },
+        {
+          id: 'startDate',
+          Header: 'Data',
           defaultCanSort: true,
+          maxWidth: '15ch',
+          accessor: (event: Event) => {
+            try {
+              const [date] = event.startDate.split('T')
+              return format(
+                new Date(`${date}T${event.startHour}:00`),
+                'dd/MM/yyyy HH:mm',
+              )
+            } catch (error) {
+              return 'Sem data'
+            }
+          },
         },
         {
-          Header: 'Email',
-          accessor: 'email',
+          id: 'isMain',
+          Header: 'Principal',
+          maxWidth: '8ch',
+          accessor: (event: Event) =>
+            event.isMain ? (
+              <MdCheckCircleOutline size={20} color="green" />
+            ) : null,
         },
         {
-          Header: 'Last Activity',
-          accessor: 'lastActivity',
-        },
-        {
-          Header: 'Created At',
-          accessor: 'createdIn',
+          id: 'isActive',
+          Header: 'Ativo',
+          maxWidth: '8ch',
           defaultCanSort: true,
+          accessor: (event: Event) =>
+            event.isActive ? (
+              <MdCheckCircleOutline size={20} color="green" />
+            ) : (
+              <MdOutlineCancel size={20} color="red" />
+            ),
         },
-      ] as Column<TableData>[],
+        {
+          id: 'createdAt',
+          Header: 'Data de Criação',
+          maxWidth: '15ch',
+          defaultCanSort: true,
+          accessor: (event: Event) =>
+            event.createdAt
+              ? format(new Date(event.createdAt), 'dd/MM/yyyy HH:mm')
+              : '',
+        },
+        {
+          id: 'actions',
+          Header: 'Ações',
+          maxWidth: '8ch',
+          accessor: (event: Event) => (
+            <TableMenu
+              disabled={isActivating || isDeactivating}
+              actions={[
+                {
+                  title: 'Ver',
+                  icon: <MdOutlineRemoveRedEye size={20} />,
+                  onClick: () =>
+                    navigate(
+                      AdminRoutes.Admin_Eventos_Id.replace(':id', event.id),
+                    ),
+                },
+                {
+                  title: event.isActive ? 'Desativar' : 'Ativar',
+                  icon: event.isActive ? (
+                    <MdOutlineCancel size={20} color="red" />
+                  ) : (
+                    <MdCheckCircleOutline size={20} color="green" />
+                  ),
+                  onClick: () => handleActivaDeactiveEvent(event),
+                },
+              ]}
+            />
+          ),
+        },
+      ] as unknown as Column<Event>[],
     [],
   )
-  const data = [
-    ...Array.from({ length: 25 }).map((_, index) => ({
-      name: 'Jon Doe ' + (index + 1),
-      email: 'jondoe@email.com',
-      phoneNumber: '+1 255 999 9999',
-      lastActivity: 'sms 2 Weeks ago',
-      createdIn: 'Feb 17 2020',
-    })),
-  ]
+
+  const handleFetchData = useCallback((args: FetchDataProps<Event>) => {
+    setPage(args.pageIndex + 1)
+    setOrderBy(args.orderBy || 'desc')
+    setSortBy((args.sortBy || 'startDate') as keyof EventSortBy)
+  }, [])
 
   return (
     <S.Container>
-      <Table<TableData>
-        data={data}
+      <S.Input
+        leftIcon={<MdSearch size={18} color="gray" />}
+        shape="pill"
+        label="Pesquisar por título"
+        register={register}
+        name="search"
+        height="sm"
+      />
+      <Table<Event>
+        data={data?.data || []}
         columns={columns}
-        pageSize={20}
-        totalPages={25}
-        totalCount={500}
-        isSelectable
-        onFetchData={() => console.log('Fetch data')}
+        pageSize={data?.perPage || 0}
+        totalPages={data?.totalPages || 0}
+        totalCount={data?.total || 0}
+        onFetchData={handleFetchData}
+        isLoading={isLoading}
       />
     </S.Container>
   )

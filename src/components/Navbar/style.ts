@@ -1,8 +1,10 @@
 import tw, { styled } from 'twin.macro'
 import { Link as DOMLink } from 'react-router-dom'
 
-export const Container = styled.div(() => [
-  tw`w-full flex items-center text-xl text-gray-800 p-2 border-b-2 `,
+export const Wrapper = styled.div([tw`w-full flex justify-center border-b-2`])
+
+export const Container = styled.div([
+  tw`w-full max-w-container flex items-center text-xl text-gray-800 p-2`,
 ])
 
 export const Logo = styled.div([tw`w-8/12 `, tw`lg:flex lg:w-3/12 m-2`])
@@ -20,6 +22,7 @@ export const Hamburger = styled.button([tw`lg:hidden`])
 type LinkProps = {
   active: boolean
 }
+
 export const Link = styled(DOMLink, {
   shouldForwardProp: props => props !== 'active',
 })<LinkProps>(({ active }) => [

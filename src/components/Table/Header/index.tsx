@@ -1,3 +1,9 @@
+/**
+ *
+ * Table Header
+ *
+ */
+
 /* eslint-disable react/jsx-key */
 import { Fragment } from 'react'
 import {
@@ -37,6 +43,7 @@ export const Header = <T extends object>({ headerGroups }: HeaderProps<T>) => {
                     ? column.getSortByToggleProps()
                     : undefined,
                 )}
+                maxWidth={column.maxWidth}
               >
                 <Fragment>
                   {column.defaultCanSort ? (

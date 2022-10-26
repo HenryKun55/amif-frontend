@@ -1,32 +1,55 @@
 import api from '..'
-import { ListUpcomingEventsRequest, ListUpcomingEventsResponse } from './types'
+import {
+  ListEventsRequest,
+  ListEventsReponse,
+  FetchEventResponse,
+  FetchEventRequest,
+  ActivateEventRequest,
+  DeactivateEventRequest,
+} from './types'
 
 const endpoints = {
-  listUpcoming: () => 'events/upcoming',
+  fetchEvent: (id: string) => `events/${id}`,
+  listEvents: () => 'events',
+  activateEvent: (id: string) => `events/${id}/activate`,
+  deactivateEvent: (id: string) => `events/${id}/deactivate`,
 }
 
 const eventsApi = api.injectEndpoints({
   endpoints: builder => ({
-    listUpcoming: builder.query<
-      ListUpcomingEventsResponse,
-      ListUpcomingEventsRequest
-    >({
+    fetchEvent: builder.query<FetchEventResponse, FetchEventRequest>({
+      query: ({ id }) => endpoints.fetchEvent(id),
+    }),
+    listEvents: builder.query<ListEventsReponse, ListEventsRequest>({
       query: params => ({
-        url: endpoints.listUpcoming(),
+        url: endpoints.listEvents(),
         params,
       }),
-      providesTags: result =>
-        result?.data
-          ? [
-              ...result.data.map(({ id }) => ({ type: 'Events', id } as const)),
-              { type: 'Events', id: 'LIST' },
-            ]
-          : [{ type: 'Events', id: 'LIST' }],
+      providesTags: ['Events'],
+    }),
+    activateEvent: builder.mutation<void, ActivateEventRequest>({
+      query: ({ id }) => ({
+        url: endpoints.activateEvent(id),
+        method: 'PUT',
+      }),
+      invalidatesTags: ['Events'],
+    }),
+    deactivateEvent: builder.mutation<void, DeactivateEventRequest>({
+      query: ({ id }) => ({
+        url: endpoints.deactivateEvent(id),
+        method: 'PUT',
+      }),
+      invalidatesTags: ['Events'],
     }),
   }),
   overrideExisting: false,
 })
 
-export const { useListUpcomingQuery } = eventsApi
+export const {
+  useFetchEventQuery,
+  useListEventsQuery,
+  useActivateEventMutation,
+  useDeactivateEventMutation,
+} = eventsApi
 
 export default eventsApi

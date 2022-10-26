@@ -1,3 +1,4 @@
+import { Footer } from '@/components/Footer'
 import { Navbar } from '@/components/Navbar'
 import { Mobile } from '@/components/Navbar/Mobile'
 import { ModalDonate } from '@/components/ModalDonate'
@@ -18,6 +19,7 @@ export const MainLayout = () => {
       <S.Content>
         <Outlet />
       </S.Content>
+      <Footer />
       <ModalDonate />
     </S.Wrapper>
   )
