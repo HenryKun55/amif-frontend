@@ -1,6 +1,10 @@
-export type PagedRequest = {
+export type Order = 'desc' | 'asc'
+
+export type PagedRequest<T = object> = {
   page?: number
   perPage?: number
+  sortBy?: keyof T
+  orderBy?: Order
 }
 
 export type Paged<T> = {
