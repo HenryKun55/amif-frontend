@@ -4,11 +4,15 @@ import {
   ListEventsReponse,
   FetchEventResponse,
   FetchEventRequest,
+  ActivateEventRequest,
+  DeactivateEventRequest,
 } from './types'
 
 const endpoints = {
   fetchEvent: (id: string) => `events/${id}`,
   listEvents: () => 'events',
+  activateEvent: (id: string) => `events/${id}/activate`,
+  deactivateEvent: (id: string) => `events/${id}/deactivate`,
 }
 
 const eventsApi = api.injectEndpoints({
@@ -21,18 +25,31 @@ const eventsApi = api.injectEndpoints({
         url: endpoints.listEvents(),
         params,
       }),
-      providesTags: result =>
-        result?.data
-          ? [
-              ...result.data.map(({ id }) => ({ type: 'Events', id } as const)),
-              { type: 'Events', id: 'LIST' },
-            ]
-          : [{ type: 'Events', id: 'LIST' }],
+      providesTags: ['Events'],
+    }),
+    activateEvent: builder.mutation<void, ActivateEventRequest>({
+      query: ({ id }) => ({
+        url: endpoints.activateEvent(id),
+        method: 'PUT',
+      }),
+      invalidatesTags: ['Events'],
+    }),
+    deactivateEvent: builder.mutation<void, DeactivateEventRequest>({
+      query: ({ id }) => ({
+        url: endpoints.deactivateEvent(id),
+        method: 'PUT',
+      }),
+      invalidatesTags: ['Events'],
     }),
   }),
   overrideExisting: false,
 })
 
-export const { useFetchEventQuery, useListEventsQuery } = eventsApi
+export const {
+  useFetchEventQuery,
+  useListEventsQuery,
+  useActivateEventMutation,
+  useDeactivateEventMutation,
+} = eventsApi
 
 export default eventsApi

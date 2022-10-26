@@ -10,6 +10,7 @@ import {
   InputHTMLAttributes,
   ReactNode,
   useMemo,
+  useState,
 } from 'react'
 import {
   DeepMap,
@@ -28,6 +29,9 @@ export type InputFieldProps<TFormValues extends FieldValues> =
     errors?: DeepMap<FieldValues, FieldError>
     label?: ReactNode
     mask?: (value: string) => string
+    shape?: 'square' | 'pill'
+    height?: 'sm' | 'md'
+    leftIcon?: ReactNode
   }
 
 export type InputAs<TFormValues extends FieldValues> = StyledComponent<
@@ -35,18 +39,31 @@ export type InputAs<TFormValues extends FieldValues> = StyledComponent<
 >
 
 export const Input = <TFormValues extends FieldValues>({
+  leftIcon,
   name,
-  errors,
-  label,
   mask,
+  label,
+  shape,
+  errors,
+  height,
   register,
   className,
   ...props
 }: InputFieldProps<TFormValues>) => {
+  const [hasFocus, setHasFocus] = useState(false)
+
   const onChange: ChangeEventHandler<HTMLInputElement> = event => {
     if (mask) {
       event.target.value = mask(event.target.value)
     }
+  }
+
+  const onFocus = () => {
+    setHasFocus(true)
+  }
+
+  const onBlur = () => {
+    setHasFocus(false)
   }
 
   const hasError = useMemo(
@@ -66,7 +83,15 @@ export const Input = <TFormValues extends FieldValues>({
   return (
     <S.Wrapper className={className}>
       {label && <S.Label htmlFor={name}>{label}</S.Label>}
-      <S.Input error={hasError} {...props} {...register(name, { onChange })} />
+      <S.InputWrapper focus={hasFocus} shape={shape} error={hasError}>
+        {leftIcon && <S.LeftIcon>{leftIcon}</S.LeftIcon>}
+        <S.Input
+          height={height || 'md'}
+          {...props}
+          {...register(name, { onChange, onBlur })}
+          onFocusCapture={onFocus}
+        />
+      </S.InputWrapper>
       {errors && <S.Error>{getMessage()}</S.Error>}
     </S.Wrapper>
   )

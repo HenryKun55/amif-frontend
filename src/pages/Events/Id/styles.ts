@@ -9,11 +9,16 @@ export const Banner = styled.div([
   css`
     .image-gallery {
       width: max(70%, 800px);
+      overflow: hidden;
+    }
+
+    .image-gallery-swipe {
+      max-height: 500px;
     }
 
     .image-gallery-slide img {
       width: 100%;
-      object-fit: cover;
+      object-fit: contain;
       overflow: hidden;
       object-position: center center;
     }

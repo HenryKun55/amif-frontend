@@ -18,8 +18,9 @@ export const Link = styled(DOMLink, {
 })<LinkProps>(({ active }) => [
   tw`w-full flex items-center gap-3 py-2 rounded font-semibold`,
   tw`cursor-pointer transition-all ease-in-out duration-200`,
-  tw`hover:(bg-blue-100 text-blue-500 ring-1)`,
-  active && tw`bg-blue-100 text-blue-500 ring-1`,
+  tw`hover:(bg-blue-50 text-blue-500 ring-1 opacity-75)`,
+  active &&
+    tw`bg-blue-100 text-blue-500 ring-1 hover:(bg-blue-100 opacity-100)`,
 ])
 
 export const Version = styled.div([

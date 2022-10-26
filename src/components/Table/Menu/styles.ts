@@ -14,8 +14,8 @@ export const More = styled.div([
   tw`cursor-pointer hover:(bg-blue-100 text-blue-500)`,
 ])
 
-export const Action = styled.div([
-  tw`flex items-center gap-3 hover:(bg-blue-100 text-blue-500) px-4 py-1 cursor-pointer`,
+export const Action = styled.button([
+  tw`w-full flex items-center gap-3 hover:(bg-blue-100 text-blue-500) px-4 py-1 cursor-pointer`,
   css`
     color: black !important;
 
