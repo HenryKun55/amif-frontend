@@ -2,6 +2,7 @@ import { AdminLayout } from '@/layouts/AdminLayout'
 import { MainLayout } from '@/layouts/MainLayout'
 import { AdminEvents } from '@/pages/Admin/Events'
 import { AdminHome } from '@/pages/Admin/Home'
+import { AdminMissions } from '@/pages/Admin/Missions'
 import { SignIn } from '@/pages/Admin/SignIn'
 import { Events } from '@/pages/Events'
 import { EventsId } from '@/pages/Events/Id'
@@ -35,6 +36,10 @@ export const Router = () => {
           <DOMRoute
             path={AdminRoutes.Admin_Eventos}
             element={<AdminEvents />}
+          />
+          <DOMRoute
+            path={AdminRoutes.Admin_Missoes}
+            element={<AdminMissions />}
           />
         </DOMRoute>
       </DOMRoutes>
