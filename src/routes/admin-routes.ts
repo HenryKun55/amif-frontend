@@ -7,4 +7,5 @@ export enum AdminRoutes {
   Admin_Associados = '/admin/associados',
   Admin_Mantenedores = '/admin/mantenedores',
   Admin_Acessos = '/admin/acessos',
+  Admin_Eventos_Criar = '/admin/eventos/criar',
 }
