@@ -4,7 +4,6 @@ import {
   ListEventsReponse,
   FetchEventResponse,
   FetchEventRequest,
-  FetchEventMainRequest,
   ActivateEventRequest,
   DeactivateEventRequest,
 } from './types'
@@ -22,7 +21,7 @@ const eventsApi = api.injectEndpoints({
     fetchEvent: builder.query<FetchEventResponse, FetchEventRequest>({
       query: ({ id }) => endpoints.fetchEvent(id),
     }),
-    fetchEventMain: builder.query<FetchEventResponse, FetchEventMainRequest>({
+    fetchEventMain: builder.query<FetchEventResponse, void>({
       query: () => endpoints.fetchEventMain(),
     }),
     listEvents: builder.query<ListEventsReponse, ListEventsRequest>({

@@ -13,10 +13,6 @@ export type FetchEventRequest = {
   id: string
 }
 
-export type FetchEventMainRequest = {
-  id?: string
-}
-
 export type FetchEventResponse = Event
 
 export type ListEventsRequest = PagedRequest<EventSortBy> & {

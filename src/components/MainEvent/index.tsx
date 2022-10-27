@@ -12,7 +12,7 @@ import { useFetchEventMainQuery } from '@/api/events'
 export const MainEvent = () => {
   SetDefaultOptions({ locale: ptBR })
 
-  const { data: event, isLoading } = useFetchEventMainQuery({})
+  const { data: event, isLoading } = useFetchEventMainQuery()
 
   if (isLoading) {
     return <div>Carregando</div>
@@ -46,7 +46,7 @@ export const MainEvent = () => {
           bgColorIcon={tw`bg-blue-150`}
           titleColor={tw`text-gray-500`}
           title={'Data'}
-          description={date}
+          description={[date]}
         />
         <InfoCards
           icon={<TbMap2 size={30} />}
@@ -54,9 +54,10 @@ export const MainEvent = () => {
           bgColorIcon={tw`bg-blue-150`}
           titleColor={tw`text-gray-500`}
           title={'Endereço'}
-          twoLine={true}
-          description={`${address?.street}, ${address?.number}`}
-          descriptionTwo={`${address?.city} - ${address?.state}`}
+          description={[
+            `${address?.street}, ${address?.number}`,
+            `${address?.city} - ${address?.state}`,
+          ]}
         />
         <InfoCards
           icon={<BsClock size={20} />}
@@ -64,7 +65,7 @@ export const MainEvent = () => {
           bgColorIcon={tw`bg-blue-150`}
           titleColor={tw`text-gray-500`}
           title={'Horário'}
-          description={startHour}
+          description={[startHour]}
         />
         <S.SeeMore to={Routes.Eventos_Id.replace(':id', id)}>
           <InfoCards
@@ -72,7 +73,7 @@ export const MainEvent = () => {
             primaryTextColor={tw`text-blue-500`}
             bgColorIcon={tw`bg-blue-150`}
             titleColor={tw`text-gray-500`}
-            description={'Saiba Mais!'}
+            description={['Saiba Mais!']}
           />
         </S.SeeMore>
       </S.Content>

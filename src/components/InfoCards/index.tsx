@@ -7,9 +7,7 @@ type InfoCardsProps = {
   bgColorIcon: TwStyle
   titleColor: TwStyle
   title?: string
-  description: string
-  twoLine?: boolean
-  descriptionTwo?: string
+  description: string[]
 }
 
 export const InfoCards = ({
@@ -19,22 +17,15 @@ export const InfoCards = ({
   description,
   titleColor,
   title,
-  twoLine,
-  descriptionTwo,
 }: InfoCardsProps) => {
   return (
     <S.Section primaryColor={primaryColor}>
       <S.Icon secondaryColor={secondaryColor}>{icon}</S.Icon>
       <S.InfoBlock>
         <S.Description titleColor={titleColor}>{title}</S.Description>
-        {twoLine ? (
-          <div>
-            <S.SpanNoWrap>{description}</S.SpanNoWrap>
-            <S.SpanNoWrap>{descriptionTwo}</S.SpanNoWrap>
-          </div>
-        ) : (
-          <span>{description}</span>
-        )}
+        {description.map((d, key) => (
+          <S.SpanNoWrap key={key}>{d}</S.SpanNoWrap>
+        ))}
       </S.InfoBlock>
     </S.Section>
   )

@@ -38,6 +38,7 @@ export const Section = styled.div([
   tw`font-semibold text-lg gap-2.5 rounded-3xl shadow-md py-3.5 px-2.5`,
   tw`md:px-6`,
 ])
+
 export const SectionAddress = styled.div([
   tw`flex flex-1 flex-shrink-0 min-w-[250px] items-center overflow-hidden justify-start `,
   tw`text-blue-500 font-semibold text-sm gap-2.5 rounded-3xl shadow-md py-3.5 px-2.5`,
