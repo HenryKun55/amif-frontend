@@ -1,3 +1,5 @@
+import { Breadcrumb } from '@/components/Breadcrumb'
+
 export function Playground() {
-  return <div>oi</div>
+  return <Breadcrumb path={['Eventos', 'Meu Evento']} showButton />
 }
