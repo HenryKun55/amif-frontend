@@ -6,11 +6,14 @@ import {
   FetchEventRequest,
   ActivateEventRequest,
   DeactivateEventRequest,
+  CreateEventResponse,
+  CreateEventRequest,
 } from './types'
 
 const endpoints = {
   fetchEvent: (id: string) => `events/${id}`,
   listEvents: () => 'events',
+  createEvent: () => 'events',
   activateEvent: (id: string) => `events/${id}/activate`,
   deactivateEvent: (id: string) => `events/${id}/deactivate`,
 }
@@ -26,6 +29,14 @@ const eventsApi = api.injectEndpoints({
         params,
       }),
       providesTags: ['Events'],
+    }),
+    createEvent: builder.mutation<CreateEventResponse, CreateEventRequest>({
+      query: body => ({
+        url: endpoints.createEvent(),
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: ['Events'],
     }),
     activateEvent: builder.mutation<void, ActivateEventRequest>({
       query: ({ id }) => ({
@@ -48,6 +59,7 @@ const eventsApi = api.injectEndpoints({
 export const {
   useFetchEventQuery,
   useListEventsQuery,
+  useCreateEventMutation,
   useActivateEventMutation,
   useDeactivateEventMutation,
 } = eventsApi

@@ -30,3 +30,24 @@ export type ActivateEventRequest = {
 export type DeactivateEventRequest = {
   id: string
 }
+
+export type CreateEventRequest = {
+  title: string
+  description: string
+  youtubeUrl?: string
+  startDate: string
+  startHour: string
+  canSubscribe: boolean
+  address: {
+    state: string
+    district: string
+    city: string
+    street: string
+    number: string
+    zipCode: string
+  }
+}
+
+export type CreateEventResponse = {
+  id: string
+}
