@@ -67,11 +67,6 @@ export const Input = <TFormValues extends FieldValues>({
     setHasFocus(false)
   }
 
-  const hasError = useMemo(
-    () => typeof errors === 'object' && Object.keys(errors).length > 0,
-    [errors],
-  )
-
   const getMessage = () => {
     if (!errors) return
     const names = name.split('.')
@@ -89,7 +84,7 @@ export const Input = <TFormValues extends FieldValues>({
           {required && <sup>*</sup>}
         </S.Label>
       )}
-      <S.InputWrapper focus={hasFocus} shape={shape} error={hasError}>
+      <S.InputWrapper focus={hasFocus} shape={shape} error={!!getMessage()}>
         {leftIcon && <S.LeftIcon>{leftIcon}</S.LeftIcon>}
         <S.Input
           height={height || 'md'}
