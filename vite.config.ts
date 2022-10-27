@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tsconfigPaths from 'vite-tsconfig-paths'
+import { VitePluginFonts } from 'vite-plugin-fonts'
 
 export default defineConfig({
   optimizeDeps: {
@@ -14,6 +15,17 @@ export default defineConfig({
   },
   plugins: [
     tsconfigPaths(),
+    VitePluginFonts({
+      google: {
+        families: [
+          'Sora',
+          {
+            name: 'Sora',
+            styles: 'wght@300;400;500;600;700;800;900',
+          },
+        ],
+      },
+    }),
     react({
       babel: {
         plugins: [

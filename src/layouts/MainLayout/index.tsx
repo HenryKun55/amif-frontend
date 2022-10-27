@@ -18,8 +18,8 @@ export const MainLayout = () => {
       />
       <S.Content>
         <Outlet />
+        <Footer />
       </S.Content>
-      <Footer />
       <ModalDonate />
     </S.Wrapper>
   )
