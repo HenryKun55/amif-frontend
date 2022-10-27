@@ -1,4 +1,5 @@
 import api from '..'
+import axios from '../axios'
 import {
   ListEventsRequest,
   ListEventsReponse,
@@ -8,6 +9,7 @@ import {
   DeactivateEventRequest,
   CreateEventResponse,
   CreateEventRequest,
+  UploadEventImageRequest,
 } from './types'
 
 const endpoints = {
@@ -16,6 +18,7 @@ const endpoints = {
   createEvent: () => 'events',
   activateEvent: (id: string) => `events/${id}/activate`,
   deactivateEvent: (id: string) => `events/${id}/deactivate`,
+  uploadImage: (id: string) => `events/${id}/upload`,
 }
 
 const eventsApi = api.injectEndpoints({
@@ -55,6 +58,16 @@ const eventsApi = api.injectEndpoints({
   }),
   overrideExisting: false,
 })
+
+export function uploadEventImage({ id, image }: UploadEventImageRequest) {
+  const formData = new FormData()
+  formData.append('image', image)
+  return axios.post(endpoints.uploadImage(id), formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  })
+}
 
 export const {
   useFetchEventQuery,

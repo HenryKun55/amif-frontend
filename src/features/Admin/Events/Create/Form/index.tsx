@@ -8,18 +8,20 @@ import { AddressForm } from '@/components/AddressForm'
 import { Button } from '@/components/Form/Button'
 import { Checkbox } from '@/components/Form/Checkbox'
 import { Input } from '@/components/Form/Input'
-import { FocusEventHandler, useCallback } from 'react'
+import { FocusEventHandler, useCallback, useState } from 'react'
 import { useForm } from 'react-hook-form'
-
 import schema, { FormProps } from './validator'
 import * as S from './styles'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useCreateEventMutation } from '@/api/events'
+import { uploadEventImage, useCreateEventMutation } from '@/api/events'
 import { useNavigate } from 'react-router-dom'
 import { AdminRoutes } from '@/routes/admin-routes'
+import { FileField, Image } from '@/components/Form/FileField'
 
 export const CreateEventForm = () => {
   const navigate = useNavigate()
+  const [images, setImages] = useState<Image[]>([])
+  const [isUploadingImages, setIsUploadingImages] = useState(false)
   const {
     register,
     handleSubmit,
@@ -36,11 +38,31 @@ export const CreateEventForm = () => {
     event.target.showPicker()
   }
 
-  const onSubmit = useCallback((data: FormProps) => {
-    createEvent(data)
-      .unwrap()
-      .then(() => navigate(AdminRoutes.Admin_Eventos))
-  }, [])
+  const onSubmit = useCallback(
+    async (data: FormProps) => {
+      setIsUploadingImages(true)
+      let isImageCreated = false
+      try {
+        const { eventId } = await createEvent(data).unwrap()
+        isImageCreated = true
+        await Promise.all(
+          images.map(async image => {
+            if (!image.file) return
+            return uploadEventImage({ id: eventId, image: image.file })
+          }),
+        )
+      } catch (error) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        alert((error as any).message)
+      } finally {
+        if (isImageCreated) {
+          navigate(AdminRoutes.Admin_Eventos)
+        }
+        setIsUploadingImages(false)
+      }
+    },
+    [images],
+  )
 
   return (
     <S.Form onSubmit={handleSubmit(onSubmit)}>
@@ -94,9 +116,10 @@ export const CreateEventForm = () => {
       <Checkbox {...register('canSubscribe')}>
         É possível se inscrever nesse evento?
       </Checkbox>
+      <FileField onChange={setImages} />
       <hr />
       <AddressForm register={register} errors={errors} />
-      <Button type="submit" disabled={isLoading}>
+      <Button type="submit" disabled={isLoading || isUploadingImages}>
         Criar Evento
       </Button>
     </S.Form>

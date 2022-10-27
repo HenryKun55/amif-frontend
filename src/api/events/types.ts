@@ -49,5 +49,10 @@ export type CreateEventRequest = {
 }
 
 export type CreateEventResponse = {
+  eventId: string
+}
+
+export type UploadEventImageRequest = {
   id: string
+  image: File
 }
