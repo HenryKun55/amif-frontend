@@ -45,7 +45,7 @@ export const CardEvent = ({
 
   SetDefaultOptions({ locale: ptBR })
 
-  const [day, month] = format(new Date(startDate), 'ee LLL').split(' ')
+  const [day, month] = format(new Date(startDate), 'dd LLL').split(' ')
 
   const imageUrl = useMemo(() => images[0]?.url || DefaultImage, [images])
 
