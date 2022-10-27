@@ -157,7 +157,12 @@ export const AdminEvents = () => {
 
   return (
     <S.Container>
-      <Breadcrumb path={['Eventos']} showButton />
+      <Breadcrumb
+        path={['Eventos']}
+        showButton
+        buttonAsLink
+        href={AdminRoutes.Admin_Eventos_Criar}
+      />
       <S.Content>
         <S.Input
           leftIcon={<MdSearch size={18} color="gray" />}

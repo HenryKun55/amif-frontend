@@ -17,7 +17,7 @@ export const EventList = () => {
     page,
     perPage: PER_PAGE,
     active: true,
-    orderBy: 'desc',
+    orderBy: 'asc',
     sortBy: 'startDate',
   })
 
