@@ -1,7 +1,7 @@
 import tw, { styled } from 'twin.macro'
 
 export const Wrapper = styled.div([
-  tw`flex flex-col items-center pb-40 px-5 gap-10 max-w-content mx-auto xl:(flex-row)`,
+  tw`flex flex-col items-center pb-40 px-5 gap-10 max-w-content mx-auto xl:flex-row`,
 ])
 
 export const Container = styled.div([tw`flex flex-col`])
@@ -11,7 +11,7 @@ export const Image = styled.img([
 ])
 
 export const Title = styled.h1([
-  tw`font-extrabold text-center text-5xl md:text-6xl lg:(text-8xl) xl:(text-left)`,
+  tw`font-extrabold text-center text-5xl md:text-6xl lg:text-8xl xl:text-left`,
 ])
 
 type TitleEmphasisProps = {
@@ -28,7 +28,7 @@ export const Description = styled.span([
 ])
 
 export const Causes = styled.div([
-  tw`flex flex-wrap gap-5 place-items-center justify-evenly md:(flex-row)`,
+  tw`flex flex-wrap gap-5 place-items-center justify-evenly md:flex-row`,
 ])
 
 export const Cause = styled.div([
