@@ -28,24 +28,25 @@ export const Footer = () => {
           </S.Social>
         </S.Content>
         <S.Navigation>
-          <Link to={Routes.Mission}>
+          <S.NavigationLink to={Routes.Mission}>
             <S.NavigationText>Missões</S.NavigationText>
-          </Link>
-          <Link to={Routes.Eventos}>
+          </S.NavigationLink>
+          <S.NavigationLink to={Routes.Eventos}>
             <S.NavigationText>Eventos</S.NavigationText>
-          </Link>
-          <Link to={Routes.Associate}>
+          </S.NavigationLink>
+          <S.NavigationLink to={Routes.Associate}>
             <S.NavigationText>Torne-se um associado</S.NavigationText>
-          </Link>
-          <Link to={Routes.Donate}>
+          </S.NavigationLink>
+          <S.NavigationLink to={Routes.Donate}>
             <S.NavigationText>Doe</S.NavigationText>
-          </Link>
+          </S.NavigationLink>
         </S.Navigation>
       </S.Container>
       <S.Description>
-        Copyright© 2022 - CNPJ: 174192828482149/0001-01 - Rua aqui, Bairro,
-        Numero, Complemento - Caruaru PE
+        CNPJ: 174192828482149/0001-01 - Rua aqui, Bairro, Numero, Complemento -
+        Caruaru PE
       </S.Description>
+      <S.Description>Copyright© 2022</S.Description>
     </S.Wrapper>
   )
 }

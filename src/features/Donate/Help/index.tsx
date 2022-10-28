@@ -1,5 +1,3 @@
-import { Button } from '@/components/Form/Button'
-import { useModal } from '@/context/Modal'
 import help5 from 'assets/help-5.jpg'
 import { RiHomeHeartFill } from 'react-icons/ri'
 import { GiLovers } from 'react-icons/gi'
@@ -8,7 +6,6 @@ import { FaHandsHelping, FaChurch } from 'react-icons/fa'
 import * as S from './styles'
 
 export const HelpDonate = () => {
-  const { onOpen } = useModal()
   return (
     <S.Wrapper>
       <S.Container>
@@ -16,7 +13,7 @@ export const HelpDonate = () => {
           Ajude as<S.TitleEmphasis> pessoas</S.TitleEmphasis>
         </S.Title>
         <S.Title>
-          através de<S.TitleEmphasis isBeige> nós</S.TitleEmphasis>
+          através<S.TitleEmphasis isBeige> de nós</S.TitleEmphasis>
         </S.Title>
         <S.Description>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla blandit
@@ -50,11 +47,6 @@ export const HelpDonate = () => {
             <S.CauseText>Cristo</S.CauseText>
           </S.Cause>
         </S.Causes>
-        {/* <S.ButtonContainer> */}
-        <Button fullWidth size="lg" onClick={() => onOpen()}>
-          Doe agora!
-        </Button>
-        {/* </S.ButtonContainer> */}
       </S.Container>
       <S.Image src={help5} />
     </S.Wrapper>
