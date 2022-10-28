@@ -1,6 +1,6 @@
 import tw, { styled } from 'twin.macro'
 
-export const Wrapper = styled.div([tw`flex flex-col`])
+export const Wrapper = styled.div([tw`w-full flex flex-col`])
 
 export const Label = styled.label([tw`text-sm capitalize font-semibold pb-2`])
 

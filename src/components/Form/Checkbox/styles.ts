@@ -1,14 +1,14 @@
 import tw, { styled } from 'twin.macro'
 
-interface CheckboxProps {
-  error?: boolean
-}
-
 export const Container = styled.div([tw``])
 
-export const Wrapper = styled.div([tw`flex gap-4`])
+export const Wrapper = styled.div([tw`flex items-center gap-4`])
 
-export const Label = styled.label([tw`text-xs font-medium -mt-1`])
+export const Label = styled.label([tw`font-medium cursor-pointer`])
+
+type CheckboxProps = {
+  error?: boolean
+}
 
 export const Checkbox = styled.input<CheckboxProps>([tw``])
 

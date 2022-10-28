@@ -14,6 +14,8 @@ export const EventList = () => {
   const { data, isLoading } = useListEventsQuery({
     perPage: PER_PAGE,
     active: true,
+    orderBy: 'asc',
+    sortBy: 'startDate',
   })
 
   if (isLoading) {

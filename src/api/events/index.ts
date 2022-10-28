@@ -1,4 +1,5 @@
 import api from '..'
+import axios from '../axios'
 import {
   ListEventsRequest,
   ListEventsReponse,
@@ -6,14 +7,19 @@ import {
   FetchEventRequest,
   ActivateEventRequest,
   DeactivateEventRequest,
+  CreateEventResponse,
+  CreateEventRequest,
+  UploadEventImageRequest,
 } from './types'
 
 const endpoints = {
   fetchEvent: (id: string) => `events/${id}`,
   fetchEventMain: () => '/events/main',
   listEvents: () => 'events',
+  createEvent: () => 'events',
   activateEvent: (id: string) => `events/${id}/activate`,
   deactivateEvent: (id: string) => `events/${id}/deactivate`,
+  uploadImage: (id: string) => `events/${id}/upload`,
 }
 
 const eventsApi = api.injectEndpoints({
@@ -30,6 +36,14 @@ const eventsApi = api.injectEndpoints({
         params,
       }),
       providesTags: ['Events'],
+    }),
+    createEvent: builder.mutation<CreateEventResponse, CreateEventRequest>({
+      query: body => ({
+        url: endpoints.createEvent(),
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: ['Events'],
     }),
     activateEvent: builder.mutation<void, ActivateEventRequest>({
       query: ({ id }) => ({
@@ -49,10 +63,21 @@ const eventsApi = api.injectEndpoints({
   overrideExisting: false,
 })
 
+export function uploadEventImage({ id, image }: UploadEventImageRequest) {
+  const formData = new FormData()
+  formData.append('image', image)
+  return axios.post(endpoints.uploadImage(id), formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  })
+}
+
 export const {
   useFetchEventQuery,
   useListEventsQuery,
   useFetchEventMainQuery,
+  useCreateEventMutation,
   useActivateEventMutation,
   useDeactivateEventMutation,
 } = eventsApi

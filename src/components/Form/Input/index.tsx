@@ -48,6 +48,7 @@ export const Input = <TFormValues extends FieldValues>({
   height,
   register,
   className,
+  required,
   ...props
 }: InputFieldProps<TFormValues>) => {
   const [hasFocus, setHasFocus] = useState(false)
@@ -66,11 +67,6 @@ export const Input = <TFormValues extends FieldValues>({
     setHasFocus(false)
   }
 
-  const hasError = useMemo(
-    () => typeof errors === 'object' && Object.keys(errors).length > 0,
-    [errors],
-  )
-
   const getMessage = () => {
     if (!errors) return
     const names = name.split('.')
@@ -82,8 +78,13 @@ export const Input = <TFormValues extends FieldValues>({
 
   return (
     <S.Wrapper className={className}>
-      {label && <S.Label htmlFor={name}>{label}</S.Label>}
-      <S.InputWrapper focus={hasFocus} shape={shape} error={hasError}>
+      {label && (
+        <S.Label htmlFor={name}>
+          {label}
+          {required && <sup>*</sup>}
+        </S.Label>
+      )}
+      <S.InputWrapper focus={hasFocus} shape={shape} error={!!getMessage()}>
         {leftIcon && <S.LeftIcon>{leftIcon}</S.LeftIcon>}
         <S.Input
           height={height || 'md'}
