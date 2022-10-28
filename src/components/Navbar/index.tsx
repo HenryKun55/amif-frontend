@@ -5,7 +5,7 @@
  */
 
 import * as S from './style'
-import Logo from '../../assets/logo.svg'
+import Logo from '@/assets/logo.svg'
 import { Button } from '../Form/Button'
 import { Routes } from '@/routes/routes'
 import { useCallback } from 'react'
@@ -13,6 +13,7 @@ import { GiCrucifix, GiHamburgerMenu } from 'react-icons/gi'
 import { AiOutlineHome } from 'react-icons/ai'
 import { BiDonateHeart } from 'react-icons/bi'
 import { BsCalendarEvent } from 'react-icons/bs'
+import { useModal } from '@/context/Modal'
 import { useLocation } from 'react-router-dom'
 
 export const menuItems = [
@@ -30,6 +31,7 @@ type NavbarProps = {
   onOpenMobile: () => void
 }
 export const Navbar = ({ onOpenMobile }: NavbarProps) => {
+  const { onOpen } = useModal()
   const location = useLocation()
 
   const isActive = useCallback(
@@ -62,7 +64,7 @@ export const Navbar = ({ onOpenMobile }: NavbarProps) => {
           </S.Menu>
         </S.Content>
         <S.Donate>
-          <Button variant="outlined" shape="pill">
+          <Button variant="outlined" shape="pill" onClick={() => onOpen()}>
             Doe
           </Button>
         </S.Donate>

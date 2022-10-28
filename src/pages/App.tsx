@@ -1,13 +1,16 @@
+import { ModalProvider } from 'context/Modal/index.provider'
 import { Provider } from 'react-redux'
-import { GlobalStyles } from '../styles/global'
 import store from '@/store'
 import { Router } from '@/routes'
+import { GlobalStyles } from '@/styles/global'
 
 export const App = () => {
   return (
-    <Provider store={store}>
-      <GlobalStyles />
-      <Router />
-    </Provider>
+    <ModalProvider>
+      <Provider store={store}>
+        <GlobalStyles />
+        <Router />
+      </Provider>
+    </ModalProvider>
   )
 }

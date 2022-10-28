@@ -5,6 +5,7 @@ import { AdminEventsCreate } from '@/pages/Admin/Events/Create'
 import { AdminHome } from '@/pages/Admin/Home'
 import { AdminMissions } from '@/pages/Admin/Missions'
 import { SignIn } from '@/pages/Admin/SignIn'
+import { Donate } from '@/pages/Donate'
 import { Events } from '@/pages/Events'
 import { EventsId } from '@/pages/Events/Id'
 import { Home } from '@/pages/Home'
@@ -26,6 +27,7 @@ export const Router = () => {
         <DOMRoute path={Routes.Home} element={<MainLayout />}>
           <DOMRoute path="*" element={<NotFound />} />
           <DOMRoute index element={<Home />} />
+          <DOMRoute path={Routes.Donate} element={<Donate />} />
           <DOMRoute path={Routes.Eventos} element={<Events />} />
           <DOMRoute path={Routes.Eventos_Id} element={<EventsId />} />
         </DOMRoute>

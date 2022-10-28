@@ -13,8 +13,8 @@ export const Button = styled.button<ButtonProps>(
       tw`disabled:(bg-white border-blue-300 text-blue-300)`,
     ],
     size === 'sm' && tw`px-4 py-1`,
-    size === 'md' && tw`px-8 py-2`,
-    size === 'lg' && tw`px-10 py-3`,
+    size === 'md' && tw`px-8 py-2 text-xl`,
+    size === 'lg' && tw`px-10 py-3 text-2xl`,
     shape === 'pill' && tw`rounded-full`,
   ],
 )

@@ -1,6 +1,7 @@
 import { Footer } from '@/components/Footer'
 import { Navbar } from '@/components/Navbar'
 import { Mobile } from '@/components/Navbar/Mobile'
+import { ModalDonate } from '@/components/ModalDonate'
 import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import * as S from './styles'
@@ -19,6 +20,7 @@ export const MainLayout = () => {
         <Outlet />
         <Footer />
       </S.Content>
+      <ModalDonate />
     </S.Wrapper>
   )
 }
