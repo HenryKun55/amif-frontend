@@ -14,6 +14,7 @@ import {
 
 const endpoints = {
   fetchEvent: (id: string) => `events/${id}`,
+  fetchEventMain: () => '/events/main',
   listEvents: () => 'events',
   createEvent: () => 'events',
   activateEvent: (id: string) => `events/${id}/activate`,
@@ -25,6 +26,9 @@ const eventsApi = api.injectEndpoints({
   endpoints: builder => ({
     fetchEvent: builder.query<FetchEventResponse, FetchEventRequest>({
       query: ({ id }) => endpoints.fetchEvent(id),
+    }),
+    fetchEventMain: builder.query<FetchEventResponse, void>({
+      query: () => endpoints.fetchEventMain(),
     }),
     listEvents: builder.query<ListEventsReponse, ListEventsRequest>({
       query: params => ({
@@ -72,6 +76,7 @@ export function uploadEventImage({ id, image }: UploadEventImageRequest) {
 export const {
   useFetchEventQuery,
   useListEventsQuery,
+  useFetchEventMainQuery,
   useCreateEventMutation,
   useActivateEventMutation,
   useDeactivateEventMutation,
