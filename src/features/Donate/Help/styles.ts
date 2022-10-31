@@ -1,17 +1,17 @@
 import tw, { styled } from 'twin.macro'
 
 export const Wrapper = styled.div([
-  tw`flex items-center pb-40 gap-10 max-w-container mx-auto`,
+  tw`flex flex-col items-center pb-40 px-5 gap-10 max-w-content mx-auto xl:flex-row`,
 ])
 
 export const Container = styled.div([tw`flex flex-col`])
 
 export const Image = styled.img([
-  tw`w-[800px] h-[800px] rounded-md brightness-125 shadow-xl`,
+  tw`w-[400px] h-[400px] rounded-md brightness-125 shadow-xl sm:(w-[600px] h-[600px]) lg:(w-[700px] h-[700px]) xl:(w-[700px] h-[700px])`,
 ])
 
 export const Title = styled.h1([
-  tw`font-extrabold text-5xl md:(text-7xl) lg:(text-8xl)`,
+  tw`font-extrabold text-center text-5xl md:text-6xl lg:text-8xl xl:text-left`,
 ])
 
 type TitleEmphasisProps = {
@@ -19,19 +19,21 @@ type TitleEmphasisProps = {
 }
 
 export const TitleEmphasis = styled.h2<TitleEmphasisProps>(({ isBeige }) => [
-  tw`font-extrabold text-5xl text-blue-400 md:(text-7xl) lg:(text-8xl)`,
+  tw`font-extrabold inline text-blue-400 text-5xl md:text-6xl lg:text-8xl`,
   isBeige && tw`text-green-600`,
 ])
 
 export const Description = styled.span([
-  tw`font-semibold text-lg pt-4 md:(text-2xl)`,
+  tw`font-semibold text-lg text-center py-10 md:text-2xl xl:text-left`,
 ])
 
 export const Causes = styled.div([
-  tw`flex gap-5 py-7 place-items-center justify-evenly`,
+  tw`flex flex-wrap gap-5 place-items-center justify-evenly md:flex-row`,
 ])
 
-export const Cause = styled.div([tw`flex flex-col gap-3 place-items-center`])
+export const Cause = styled.div([
+  tw`flex w-2/5 flex-col gap-3 place-items-center md:w-max`,
+])
 
 export type BackgroundColorProps = {
   isBrown?: boolean

@@ -7,10 +7,12 @@ export const MainDonate = () => {
     <S.Wrapper>
       <S.Image src={help1} />
       <S.Container>
-        <S.Title>Ajude</S.Title>
-        <S.TitleSub>
-          nessa <S.TitleSubEmphasis>obra</S.TitleSubEmphasis>
-        </S.TitleSub>
+        <S.TitleContainer>
+          <S.Title>Ajude</S.Title>
+          <S.TitleSub>
+            nessa <S.TitleSubEmphasis>obra</S.TitleSubEmphasis>
+          </S.TitleSub>
+        </S.TitleContainer>
         <S.Description>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla blandit
           mauris bibendum, tincidunt mauris a, pretium nunc. Curabitur quam
