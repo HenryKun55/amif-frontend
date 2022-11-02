@@ -1,16 +1,16 @@
 import tw, { css, styled } from 'twin.macro'
 
 export const Container = styled.div([
-  tw`flex max-w-content items-center justify-center flex-col gap-16 relative h-full p-5 mb-48 mt-12`,
-  tw`2xl:mb-24`,
+  tw`flex max-w-container items-center justify-center flex-col`,
+  tw`2xl:mb-24 gap-16 relative h-full p-5 mb-48 mt-12`,
 ])
 
 export const Content = styled.div([
-  tw`flex flex-col gap-10 items-center`,
+  tw`flex flex-1 flex-col gap-10 items-center`,
   tw`md:flex-row`,
 ])
 
-export const Section = styled.div([tw`flex flex-col gap-4 w-8/12`])
+export const Section = styled.div([tw`flex flex-col gap-4 w-full`])
 
 export const Title = styled.h2([
   tw`flex gap-2.5 font-bold`,
@@ -46,21 +46,21 @@ export const Description = styled.p<DescriptionProps>(({ top }) => [
   top && tw`pt-[clamp(20px, 2.343vw, 32px)]`,
 ])
 
-export const ImageContainer = styled.div([tw`relative`, tw`md:w-4/12`])
+export const ImageContainer = styled.div([tw`relative`])
 
 export const Image = styled.img([
   tw`w-72 h-[350px] -rotate-6 rounded-2xl object-cover absolute shadow-2xl`,
 ])
 
 export const ContentAbout = styled.div([
-  tw`flex w-full h-[35vw] gap-10 relative mb-48`,
-  tw`md:mb-0`,
+  tw`flex w-full h-[35vw] gap-10 relative mb-48 md:mb-0`,
 ])
 
 export const BgImage = styled.div(tw`w-72 h-[350px] rounded-2xl bg-blue-300  `)
 
 export const BgSquare = styled.div(
-  tw`w-[clamp(50px, 42.167vw, 576px)] h-[clamp(176px, 35.139vw, 480px)] flex-shrink-0 bg-blue-300`,
+  tw`w-[clamp(50px, 42.167vw, 576px)] h-[clamp(176px, 35.139vw, 480px)]`,
+  tw`flex-shrink-0 bg-blue-300`,
 )
 
 export const ImageTwo = styled.img(
@@ -68,7 +68,8 @@ export const ImageTwo = styled.img(
 )
 
 export const ContentRight = styled.div([
-  tw`relative flex w-full h-[clamp(300px, 43.192vw, 590px)] justify-center items-center gap-10 mt-8 `,
+  tw`relative flex w-full h-[clamp(300px, 43.192vw, 590px)]`,
+  tw`justify-center items-center gap-10 mt-8 lg:justify-end`,
 ])
 
 export const ContentAboutProject = styled.div(

@@ -30,17 +30,20 @@ export const EventList = () => {
 
   return (
     <S.Container>
-      {data?.data && data.data.length > 0 ? (
-        data.data.map(event => (
-          <S.CardEvent
-            key={event.id}
-            event={event}
-            onSubscribe={() => console.log('Subscribe')}
-          />
-        ))
-      ) : (
-        <div>Nenhum evento disponível</div>
-      )}
+      <S.Title>Eventos em destaque</S.Title>
+      <S.CardList>
+        {data?.data && data.data.length > 0 ? (
+          data.data.map(event => (
+            <S.CardEvent
+              key={event.id}
+              event={event}
+              onSubscribe={() => console.log('Subscribe')}
+            />
+          ))
+        ) : (
+          <div>Nenhum evento disponível</div>
+        )}
+      </S.CardList>
     </S.Container>
   )
 }
