@@ -35,10 +35,9 @@ export const About = () => {
         <S.ImageTwo src={ImageTwo} />
         <S.ContentRight>
           <S.ContentAboutProject>
-            <S.Title>
-              Sobre o <S.TitleSubEmphasis>Projeto</S.TitleSubEmphasis>
-            </S.Title>
-            <S.Description>
+            <S.Title>Sobre o</S.Title>
+            <S.TitleSubEmphasisBig>Projeto</S.TitleSubEmphasisBig>
+            <S.Description top>
               Ao contrário da crença popular, o Lorem Ipsum não é simplesmente
               texto aleatório. Tem raízes numa peça de literatura clássica em
               Latim, de 45 AC, tornando-o com mais de 2000 anos. Richard

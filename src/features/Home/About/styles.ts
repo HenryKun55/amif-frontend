@@ -1,7 +1,8 @@
 import tw, { css, styled } from 'twin.macro'
 
 export const Container = styled.div([
-  tw`flex max-w-content items-center justify-center flex-col gap-16 relative h-full p-5 mb-48`,
+  tw`flex max-w-content items-center justify-center flex-col gap-16 relative h-full p-5 mb-48 mt-12`,
+  tw`2xl:mb-24`,
 ])
 
 export const Content = styled.div([
@@ -18,18 +19,31 @@ export const Title = styled.h2([
   `,
 ])
 
-export const TitleSubEmphasis = styled.h3([
+export const TitleSubEmphasis = styled.span([
   tw`font-bold text-yellow-500`,
   css`
     font-size: clamp(25px, 3.514vw, 48px);
   `,
 ])
 
-export const Description = styled.p([
+export const TitleSubEmphasisBig = styled.span([
+  tw`font-bold text-yellow-500`,
+  css`
+    font-size: clamp(40px, 5.857vw, 80px);
+    line-height: clamp(25px, 3.148vw, 43px);
+  `,
+])
+
+type DescriptionProps = {
+  top?: boolean
+}
+
+export const Description = styled.p<DescriptionProps>(({ top }) => [
   tw`w-full`,
   css`
     font-size: clamp(12px, 1.171vw, 16px);
   `,
+  top && tw`pt-[clamp(20px, 2.343vw, 32px)]`,
 ])
 
 export const ImageContainer = styled.div([tw`relative`, tw`md:w-4/12`])
@@ -40,6 +54,7 @@ export const Image = styled.img([
 
 export const ContentAbout = styled.div([
   tw`flex w-full h-[35vw] gap-10 relative mb-48`,
+  tw`md:mb-0`,
 ])
 
 export const BgImage = styled.div(tw`w-72 h-[350px] rounded-2xl bg-blue-300  `)
@@ -57,8 +72,9 @@ export const ContentRight = styled.div([
 ])
 
 export const ContentAboutProject = styled.div(
-  tw`absolute w-[clamp(370px, 29.283vw,400px)] right-[0] top-40`,
+  tw`absolute w-[clamp(370px, 29.283vw, 400px)] right-[0] top-40 flex flex-col`,
+  tw`shadow-2xl bg-white z-10 p-6`,
   tw`sm:top-5`,
   tw`md:top-10`,
-  tw`lg:relative lg:top-0 flex flex-col lg:w-[clamp(100px, 36.603vw,500px)] lg:h-[clamp(300px, 29.283vw,400px)] shadow-2xl bg-white z-10 p-6 `,
+  tw`lg:(relative top-0 w-[clamp(100px, 36.603vw, 500px)])`,
 )
