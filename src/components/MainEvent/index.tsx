@@ -44,15 +44,15 @@ export const MainEvent = () => {
           icon={<BsCalendarEvent size={20} />}
           primaryTextColor={tw`text-blue-500`}
           bgColorIcon={tw`bg-blue-150`}
-          titleColor={tw`text-gray-500`}
+          titleColor={tw`text-blue-300`}
           title={'Data'}
           description={[date]}
         />
         <InfoCards
           icon={<TbMap2 size={30} />}
-          primaryTextColor={tw`text-blue-500`}
-          bgColorIcon={tw`bg-blue-150`}
-          titleColor={tw`text-gray-500`}
+          primaryTextColor={tw`text-brown-500`}
+          bgColorIcon={tw`bg-brown-150`}
+          titleColor={tw`text-brown-400`}
           title={'Endereço'}
           description={[
             `${address?.street}, ${address?.number}`,
@@ -61,17 +61,17 @@ export const MainEvent = () => {
         />
         <InfoCards
           icon={<BsClock size={20} />}
-          primaryTextColor={tw`text-blue-500`}
-          bgColorIcon={tw`bg-blue-150`}
-          titleColor={tw`text-gray-500`}
+          primaryTextColor={tw`text-green-500`}
+          bgColorIcon={tw`bg-green-200`}
+          titleColor={tw`text-green-300`}
           title={'Horário'}
           description={[startHour]}
         />
         <S.SeeMore to={Routes.Eventos_Id.replace(':id', id)}>
           <InfoCards
             icon={<BsBoxArrowUpRight size={20} />}
-            primaryTextColor={tw`text-blue-500`}
-            bgColorIcon={tw`bg-blue-150`}
+            primaryTextColor={tw`text-yellow-500`}
+            bgColorIcon={tw`bg-yellow-150`}
             titleColor={tw`text-gray-500`}
             description={['Saiba Mais!']}
           />

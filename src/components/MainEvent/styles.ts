@@ -3,7 +3,7 @@ import tw, { css, styled } from 'twin.macro'
 import { Button as ButtonForm } from '../Form/Button'
 
 export const Container = styled.div([
-  tw`flex flex-col max-w-container mt-2.5 `,
+  tw`w-full flex flex-col max-w-container mt-2.5 `,
   tw`2xl:mx-auto`,
 ])
 
