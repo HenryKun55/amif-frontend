@@ -15,7 +15,7 @@ export const MainEvent = () => {
   const { data: event, isLoading } = useFetchEventMainQuery()
 
   if (isLoading) {
-    return <div>Carregando</div>
+    return <div>Carregando...</div>
   }
   if (!event) {
     return <div>Evento não existe!</div>
