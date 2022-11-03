@@ -2,16 +2,12 @@ import * as S from './styles'
 import { BsBoxArrowUpRight, BsCalendarEvent, BsClock } from 'react-icons/bs'
 import { TbMap2 } from 'react-icons/tb'
 import { format } from 'date-fns'
-import { ptBR } from 'date-fns/locale'
-import SetDefaultOptions from 'date-fns/setDefaultOptions'
 import { InfoCards } from '../InfoCards'
 import tw from 'twin.macro'
 import { Routes } from '@/routes/routes'
 import { useFetchEventMainQuery } from '@/api/events'
 
 export const MainEvent = () => {
-  SetDefaultOptions({ locale: ptBR })
-
   const { data: event, isLoading } = useFetchEventMainQuery()
 
   if (isLoading) {

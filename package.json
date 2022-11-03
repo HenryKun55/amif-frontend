@@ -31,6 +31,7 @@
     "@radix-ui/react-popover": "^1.0.2",
     "@radix-ui/react-tooltip": "^1.0.2",
     "@reduxjs/toolkit": "^1.8.5",
+    "@tailwindcss/line-clamp": "^0.4.2",
     "axios": "^0.27.2",
     "date-fns": "^2.29.3",
     "react": "^18.2.0",
