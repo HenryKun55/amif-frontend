@@ -13,7 +13,6 @@ import { GiCrucifix, GiHamburgerMenu } from 'react-icons/gi'
 import { AiOutlineHome } from 'react-icons/ai'
 import { BiDonateHeart } from 'react-icons/bi'
 import { BsCalendarEvent } from 'react-icons/bs'
-import { useModal } from '@/context/Modal'
 import { useLocation } from 'react-router-dom'
 
 export const menuItems = [
@@ -21,8 +20,8 @@ export const menuItems = [
   { name: 'Eventos', href: Routes.Eventos, icon: <BsCalendarEvent /> },
   { name: 'Missões', href: Routes.Mission, icon: <GiCrucifix /> },
   {
-    name: 'Torne-se um Mantenedor',
-    href: Routes.Maintainer,
+    name: 'Torne-se um Associado',
+    href: Routes.Associate,
     icon: <BiDonateHeart />,
   },
 ]
@@ -30,8 +29,8 @@ export const menuItems = [
 type NavbarProps = {
   onOpenMobile: () => void
 }
+
 export const Navbar = ({ onOpenMobile }: NavbarProps) => {
-  const { onOpen } = useModal()
   const location = useLocation()
 
   const isActive = useCallback(
@@ -52,19 +51,17 @@ export const Navbar = ({ onOpenMobile }: NavbarProps) => {
         </S.Logo>
         <S.Content>
           <S.Menu>
-            {menuItems.map((item, key) => {
-              return (
-                <li key={key}>
-                  <S.Link active={isActive(item.href)} to={item.href}>
-                    {item.name}
-                  </S.Link>
-                </li>
-              )
-            })}
+            {menuItems.map((item, key) => (
+              <li key={key}>
+                <S.Link active={isActive(item.href)} to={item.href}>
+                  {item.name}
+                </S.Link>
+              </li>
+            ))}
           </S.Menu>
         </S.Content>
-        <S.Donate>
-          <Button variant="outlined" shape="pill" onClick={() => onOpen()}>
+        <S.Donate to={Routes.Donate}>
+          <Button variant="outlined" shape="pill">
             Doe
           </Button>
         </S.Donate>

@@ -1,8 +1,9 @@
+import { ReactNode } from 'react'
 import { TwStyle } from 'twin.macro'
 import * as S from './styles'
 
 type InfoCardsProps = {
-  icon: any
+  icon: ReactNode
   primaryTextColor: TwStyle
   bgColorIcon: TwStyle
   titleColor: TwStyle

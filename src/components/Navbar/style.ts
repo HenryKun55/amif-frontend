@@ -13,7 +13,7 @@ export const Image = styled.img([tw`w-28`])
 
 export const Content = styled.div([tw`hidden`, tw`lg:flex w-6/12`])
 
-export const Donate = styled.div([tw`flex w-3/12 justify-end mr-3.5`])
+export const Donate = styled(DOMLink)([tw`flex w-3/12 justify-end mr-3.5`])
 
 export const Menu = styled.ul([tw`flex justify-between w-full items-center `])
 

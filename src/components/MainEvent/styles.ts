@@ -7,13 +7,13 @@ export const Container = styled.div([
 ])
 
 export const BannerContainer = styled.div([
-  tw`w-full flex flex-col-reverse px-2.5`,
+  tw`w-full flex flex-col-reverse px-4`,
   tw`sm:flex-row`,
 ])
 
 export const BannerContent = styled.div([
   tw`flex flex-col w-full items-center justify-center gap-4 p-4 rounded-b-3xl`,
-  tw`bg-gradient-to-tl from-blue-250 to-blue-500 text-blue-50`,
+  tw`bg-gradient-to-tl from-blue-100 to-blue-500 text-blue-50`,
   tw`sm:rounded-b-none sm:rounded-l-3xl sm:gap-9`,
   tw`md:w-4/12`,
   tw`lg:w-3/12`,
@@ -34,7 +34,7 @@ export const Content = styled.div([
 
 export const Section = styled.div([
   tw`flex flex-1 flex-shrink-0 min-w-[250px] items-center justify-start text-blue-500 `,
-  tw`font-semibold text-lg gap-2.5 rounded-3xl shadow-md py-3.5 px-2.5`,
+  tw`font-semibold text-lg gap-2.5 rounded-3xl shadow-md py-3.5 px-4`,
   tw`md:px-6`,
 ])
 

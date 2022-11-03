@@ -1,7 +1,6 @@
 import * as S from './styles'
 import logo from 'assets/logo.svg'
 import { Routes } from '@/routes/routes'
-import { Link } from 'react-router-dom'
 
 export const Footer = () => {
   return (
@@ -35,7 +34,7 @@ export const Footer = () => {
             <S.NavigationText>Eventos</S.NavigationText>
           </S.NavigationLink>
           <S.NavigationLink to={Routes.Associate}>
-            <S.NavigationText>Torne-se um associado</S.NavigationText>
+            <S.NavigationText>Torne-se um Associado</S.NavigationText>
           </S.NavigationLink>
           <S.NavigationLink to={Routes.Donate}>
             <S.NavigationText>Doe</S.NavigationText>
