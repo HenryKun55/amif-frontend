@@ -20,11 +20,11 @@ export const EventList = () => {
 
   if (isLoading) {
     return (
-      <S.Container>
+      <S.CardList>
         {Array.from({ length: PER_PAGE }).map((_, idx) => (
           <Skeleton key={idx} width={300} height={250} />
         ))}
-      </S.Container>
+      </S.CardList>
     )
   }
 
