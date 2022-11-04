@@ -24,5 +24,5 @@ export const Date = styled.span([
 export const Title = styled.h1([tw`text-3xl font-bold pt-6 line-clamp-3`])
 
 export const Location = styled.span([
-  tw`inline-block text-sm pt-4 text-gray-500`,
+  tw`inline-block text-sm pt-4 text-gray-500 line-clamp-1`,
 ])

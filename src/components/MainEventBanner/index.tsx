@@ -6,7 +6,11 @@ export const MainEventBanner = () => {
   const { data: event, isLoading } = useFetchEventMainQuery()
 
   if (isLoading) {
-    return <div>Carregando...</div>
+    return (
+      <S.LoadingContainer>
+        <S.Loading />
+      </S.LoadingContainer>
+    )
   }
 
   if (!event) {

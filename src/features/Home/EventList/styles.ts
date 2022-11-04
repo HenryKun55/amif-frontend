@@ -11,6 +11,7 @@ export const Title = styled.h2([
 
 export const CardList = styled.div([
   tw`w-full flex gap-4 overflow-x-auto px-4 py-4 max-w-container mx-auto`,
+  tw`xl:justify-between`,
 ])
 
 export const CardEvent = styled(CardEventComponent)([tw`flex-shrink-0`])

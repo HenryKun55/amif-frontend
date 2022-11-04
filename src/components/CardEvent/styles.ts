@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 import DefaultImage from '../../assets/default-image.svg'
 
 export const Container = styled(Link)([
-  tw`flex flex-col w-[300px] h-[250px] rounded-xl border border-white shadow-lg bg-white`,
-  tw`cursor-pointer transition-all ease-in-out duration-100`,
-  tw`hover:(border-blue-100 ring-1)`,
+  tw`flex flex-col w-[325px] h-[280px] rounded-xl border border-gray-200 bg-white`,
+  tw`cursor-pointer transition-all ease-in-out duration-300`,
+  tw`hover:(shadow-lg -translate-y-1)`,
 ])
 
 type BannerProps = {

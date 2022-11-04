@@ -5,5 +5,6 @@ export const Container = styled.div([
 ])
 
 export const EventList = styled.div([
-  tw`w-full h-full max-w-container flex flex-wrap gap-4 justify-center mb-8`,
+  tw`w-full h-full max-w-container px-4 my-8`,
+  tw`flex flex-wrap gap-4 justify-center`,
 ])
