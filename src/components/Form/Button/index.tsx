@@ -15,6 +15,6 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   shape?: 'square' | 'pill'
 }
 
-export const Button = ({ ...props }: ButtonProps) => {
-  return <S.Button {...props} />
+export const Button = ({ type = 'button', ...props }: ButtonProps) => {
+  return <S.Button type={type} {...props} />
 }

@@ -11,11 +11,11 @@ const schema: z.ZodType<Request> = z.lazy(() =>
   z.object({
     name: z
       .string({ required_error: 'Campo obrigatório' })
-      .min(2, 'Minimo de duas letras'),
+      .min(2, 'Mínimo de duas letras'),
     value: z.string({ required_error: 'Campo obrigatório' }).refine(arg => {
       const value = removeMaskCurrency(arg)
       return value >= 10
-    }, 'Valor minimo é 10'),
+    }, 'Valor mínimo é 10'),
   }),
 )
 
