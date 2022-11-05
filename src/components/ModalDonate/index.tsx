@@ -6,6 +6,7 @@ import * as S from './styles'
 import pix from '../../assets/icone-pix.svg'
 import { useMemo, useState } from 'react'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
+import { MercadoPago } from './MercadoPago'
 
 type Options = 'mp' | 'pix' | 'deposito'
 
@@ -38,7 +39,7 @@ export const ModalDonate = () => {
   const content = useMemo(() => {
     switch (active) {
       case 'mp':
-        return <div>mercado pago</div>
+        return <MercadoPago />
       case 'pix':
         return <div>pix</div>
       case 'deposito':
