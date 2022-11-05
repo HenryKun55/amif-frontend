@@ -4,16 +4,18 @@
  *
  */
 
-import * as S from './style'
-import Logo from '@/assets/logo.svg'
-import { Button } from '../Form/Button'
-import { Routes } from '@/routes/routes'
 import { useCallback } from 'react'
-import { GiCrucifix, GiHamburgerMenu } from 'react-icons/gi'
 import { AiOutlineHome } from 'react-icons/ai'
 import { BiDonateHeart } from 'react-icons/bi'
 import { BsCalendarEvent } from 'react-icons/bs'
+import { GiCrucifix, GiHamburgerMenu } from 'react-icons/gi'
 import { useLocation } from 'react-router-dom'
+
+import Logo from '@/assets/logo.svg'
+import { Routes } from '@/routes/routes'
+
+import { Button } from '../Form/Button'
+import * as S from './style'
 
 export const menuItems = [
   { name: 'Início', href: Routes.Home, icon: <AiOutlineHome size={25} /> },

@@ -1,10 +1,11 @@
+import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
+
 import { useListEventsQuery } from '@/api/events'
 import { CardEvent } from '@/components/CardEvent'
 import { Skeleton } from '@/components/Skeleton'
 import { Pagination } from '@/components/Table/Pagination'
 import { Routes } from '@/routes/routes'
-import { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
 
 import * as S from './styles'
 

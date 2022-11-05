@@ -1,6 +1,8 @@
-import * as S from './styles'
 import logo from 'assets/logo.svg'
+
 import { Routes } from '@/routes/routes'
+
+import * as S from './styles'
 
 export const Footer = () => {
   return (

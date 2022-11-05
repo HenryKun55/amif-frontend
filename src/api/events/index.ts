@@ -1,14 +1,14 @@
 import api from '..'
 import axios from '../axios'
 import {
-  ListEventsRequest,
-  ListEventsReponse,
-  FetchEventResponse,
-  FetchEventRequest,
   ActivateEventRequest,
-  DeactivateEventRequest,
-  CreateEventResponse,
   CreateEventRequest,
+  CreateEventResponse,
+  DeactivateEventRequest,
+  FetchEventRequest,
+  FetchEventResponse,
+  ListEventsReponse,
+  ListEventsRequest,
   UploadEventImageRequest,
 } from './types'
 

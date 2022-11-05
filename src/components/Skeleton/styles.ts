@@ -1,4 +1,5 @@
 import tw, { css, styled, TwStyle } from 'twin.macro'
+
 import { SkeletonProps } from '.'
 
 const containerModifiers: { [key: string]: TwStyle } = {

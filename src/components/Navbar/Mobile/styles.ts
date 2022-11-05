@@ -1,5 +1,5 @@
-import tw, { styled } from 'twin.macro'
 import { Link as DOMLink } from 'react-router-dom'
+import tw, { styled } from 'twin.macro'
 
 type ContainerProps = {
   isExpanded: boolean

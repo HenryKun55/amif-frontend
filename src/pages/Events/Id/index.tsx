@@ -1,9 +1,10 @@
+import { useMemo } from 'react'
+import ImageGallery, { ReactImageGalleryItem } from 'react-image-gallery'
+import { Navigate, useParams } from 'react-router-dom'
+
 import { useFetchEventQuery } from '@/api/events'
 import { YouTubeEmbed } from '@/components/YouTubeEmbed'
 import { Routes } from '@/routes/routes'
-import { useMemo } from 'react'
-import { Navigate, useParams } from 'react-router-dom'
-import ImageGallery, { ReactImageGalleryItem } from 'react-image-gallery'
 
 import * as S from './styles'
 

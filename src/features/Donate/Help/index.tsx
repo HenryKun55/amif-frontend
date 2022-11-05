@@ -1,7 +1,7 @@
 import help5 from 'assets/help-5.jpg'
-import { RiHomeHeartFill } from 'react-icons/ri'
+import { FaChurch,FaHandsHelping } from 'react-icons/fa'
 import { GiLovers } from 'react-icons/gi'
-import { FaHandsHelping, FaChurch } from 'react-icons/fa'
+import { RiHomeHeartFill } from 'react-icons/ri'
 
 import * as S from './styles'
 

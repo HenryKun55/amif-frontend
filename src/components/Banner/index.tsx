@@ -1,10 +1,12 @@
-import { Routes } from '@/routes/routes'
+import format from 'date-fns/format'
+import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
+
+import type { Event } from '@/api/models'
+import { Routes } from '@/routes/routes'
+
 import { Button } from '../Form/Button'
 import * as S from './styles'
-import type { Event } from '@/api/models'
-import { useMemo } from 'react'
-import format from 'date-fns/format'
 
 export type BannerProps = {
   event: Event

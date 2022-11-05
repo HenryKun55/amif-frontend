@@ -1,6 +1,6 @@
-import tw, { styled } from 'twin.macro'
 import { BsFacebook, BsInstagram } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
+import tw, { styled } from 'twin.macro'
 
 export const Wrapper = styled.footer([
   tw`flex flex-col items-center min-h-[300px] p-10 bg-blue-50`,

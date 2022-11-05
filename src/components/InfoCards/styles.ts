@@ -1,4 +1,4 @@
-import tw, { styled, css, TwStyle } from 'twin.macro'
+import tw, { css, styled, TwStyle } from 'twin.macro'
 
 type ColorProps = {
   primaryColor?: TwStyle

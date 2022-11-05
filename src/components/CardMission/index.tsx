@@ -1,10 +1,11 @@
 import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
-import * as S from './styles'
 import SetDefaultOptions from 'date-fns/setDefaultOptions'
-import { Button } from '../Form/Button'
-import { HiOutlineLocationMarker } from 'react-icons/hi'
 import { BsClock } from 'react-icons/bs'
+import { HiOutlineLocationMarker } from 'react-icons/hi'
+
+import { Button } from '../Form/Button'
+import * as S from './styles'
 
 type CardMissionProps = {
   mission: {

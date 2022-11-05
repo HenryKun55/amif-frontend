@@ -1,8 +1,9 @@
 import CountUp from 'react-countup'
 import { FaChild } from 'react-icons/fa'
 import { GiHeavyArrow } from 'react-icons/gi'
-import VisibilitySensor from 'react-visibility-sensor'
 import { MdFamilyRestroom, MdVolunteerActivism } from 'react-icons/md'
+import VisibilitySensor from 'react-visibility-sensor'
+
 import * as S from './styles'
 
 export const AttendDonate = () => {

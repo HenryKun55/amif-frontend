@@ -1,4 +1,5 @@
 import tw, { styled } from 'twin.macro'
+
 import { Skeleton as SkeletonComponent } from '@/components/Skeleton'
 
 export const Container = styled.div([tw`flex flex-col gap-4`])

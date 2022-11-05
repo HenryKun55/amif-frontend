@@ -1,5 +1,5 @@
-import { Paged, PagedRequest } from '../types'
 import { Event } from '../models'
+import { Paged, PagedRequest } from '../types'
 
 export interface EventSortBy {
   id: string

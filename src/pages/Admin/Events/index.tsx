@@ -1,28 +1,30 @@
-import {
-  useActivateEventMutation,
-  useDeactivateEventMutation,
-  useListEventsQuery,
-} from '@/api/events'
-import { FetchDataProps, Table } from '@/components/Table'
-import { useCallback, useMemo, useState } from 'react'
-import { Column } from 'react-table'
-import { Event } from '@/api/models'
-import * as S from './styles'
 import { format } from 'date-fns'
+import { useCallback, useMemo, useState } from 'react'
+import { useForm } from 'react-hook-form'
 import {
   MdCheckCircleOutline,
   MdOutlineCancel,
   MdOutlineRemoveRedEye,
   MdSearch,
 } from 'react-icons/md'
-import { TableMenu } from '@/components/Table/Menu'
 import { useNavigate } from 'react-router-dom'
-import { AdminRoutes } from '@/routes/admin-routes'
-import { Order } from '@/api/types'
+import { Column } from 'react-table'
+
+import {
+  useActivateEventMutation,
+  useDeactivateEventMutation,
+  useListEventsQuery,
+} from '@/api/events'
 import { EventSortBy } from '@/api/events/types'
-import { useDebounce } from '@/hooks/useDebounce'
-import { useForm } from 'react-hook-form'
+import { Event } from '@/api/models'
+import { Order } from '@/api/types'
 import { Breadcrumb } from '@/components/Breadcrumb'
+import { FetchDataProps, Table } from '@/components/Table'
+import { TableMenu } from '@/components/Table/Menu'
+import { useDebounce } from '@/hooks/useDebounce'
+import { AdminRoutes } from '@/routes/admin-routes'
+
+import * as S from './styles'
 
 export const AdminEvents = () => {
   const navigate = useNavigate()

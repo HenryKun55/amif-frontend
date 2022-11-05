@@ -4,11 +4,13 @@
  *
  */
 
-import { menuItems } from '..'
-import { IoMdArrowRoundForward } from 'react-icons/io'
-import * as S from './styles'
 import { useCallback, useRef } from 'react'
+import { IoMdArrowRoundForward } from 'react-icons/io'
+
 import useOutsideAlerter from '@/hooks/useOutsideAlerter'
+
+import { menuItems } from '..'
+import * as S from './styles'
 
 type MobileProps = {
   onClose: () => void

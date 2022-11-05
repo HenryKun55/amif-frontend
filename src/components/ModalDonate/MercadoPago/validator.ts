@@ -1,5 +1,6 @@
-import { removeMaskCurrency } from '@/utils/mask'
 import { z } from 'zod'
+
+import { removeMaskCurrency } from '@/utils/mask'
 
 type Request = {
   name: string

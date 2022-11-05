@@ -5,6 +5,7 @@
  */
 
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md'
+
 import { LEFT_DOTS, RIGHT_DOTS, usePagination } from '@/hooks/usePagination'
 
 import * as S from './styles'

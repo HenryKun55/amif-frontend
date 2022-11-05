@@ -1,5 +1,6 @@
-import tw, { styled, css } from 'twin.macro'
 import { Link } from 'react-router-dom'
+import tw, { css,styled } from 'twin.macro'
+
 import DefaultImage from '../../assets/default-image.svg'
 
 export const Container = styled(Link)([

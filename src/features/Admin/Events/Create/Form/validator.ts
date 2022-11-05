@@ -1,7 +1,8 @@
+import { z } from 'zod'
+
 import { CreateEventRequest } from '@/api/events/types'
 import { validateTime } from '@/utils/datetime'
 import { addressSchema, requiredString, requiredTodayDate } from '@/utils/zod'
-import { z } from 'zod'
 
 const schema: z.ZodType<CreateEventRequest> = z.lazy(() =>
   z.object({

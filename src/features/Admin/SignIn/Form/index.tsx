@@ -1,12 +1,13 @@
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useCallback, useMemo } from 'react'
+import { useForm } from 'react-hook-form'
+import { useLocation, useNavigate } from 'react-router-dom'
+
 import { useSignInMutation } from '@/api/auth'
 import { Button } from '@/components/Form/Button'
 import { Input } from '@/components/Form/Input'
 import { AdminRoutes } from '@/routes/admin-routes'
 import { hasKey } from '@/utils/guards'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useCallback, useMemo } from 'react'
-import { useForm } from 'react-hook-form'
-import { useLocation, useNavigate } from 'react-router-dom'
 
 import * as S from './styles'
 import schema, { FormProps } from './validator'

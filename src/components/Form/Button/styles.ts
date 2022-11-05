@@ -1,4 +1,5 @@
 import tw, { styled } from 'twin.macro'
+
 import { ButtonProps } from '.'
 
 export const Button = styled.button<ButtonProps>(

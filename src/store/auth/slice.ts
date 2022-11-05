@@ -1,5 +1,6 @@
-import { User } from '@/api/models'
 import { createSlice } from '@reduxjs/toolkit'
+
+import { User } from '@/api/models'
 
 import { TOKEN_KEY } from '../../api'
 import authApi from '../../api/auth'

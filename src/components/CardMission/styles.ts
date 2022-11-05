@@ -1,4 +1,4 @@
-import tw, { styled, css } from 'twin.macro'
+import tw, { css,styled } from 'twin.macro'
 
 export const Container = styled.div([
   tw`flex flex-col w-[300px] h-[270px] rounded-3xl shadow-xl`,

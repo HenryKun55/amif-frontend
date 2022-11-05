@@ -1,10 +1,12 @@
+import { useSelector } from 'react-redux'
+import { Navigate, Outlet, useLocation } from 'react-router-dom'
+
 import { useFetchProfileQuery } from '@/api/auth'
 import { AdminNavBar } from '@/components/AdminNavBar'
 import { SideBar } from '@/components/SideBar'
 import { AdminRoutes } from '@/routes/admin-routes'
 import { selectAuthIsAuthenticated } from '@/store/auth/selector'
-import { useSelector } from 'react-redux'
-import { Navigate, Outlet, useLocation } from 'react-router-dom'
+
 import * as S from './styles'
 
 export const AdminLayout = () => {

@@ -6,14 +6,16 @@
 
 import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
-import * as S from './styles'
 import SetDefaultOptions from 'date-fns/setDefaultOptions'
-import { Button } from '../Form/Button'
-import { HiOutlineLocationMarker } from 'react-icons/hi'
-import { BsClock } from 'react-icons/bs'
 import { MouseEventHandler, useMemo } from 'react'
-import DefaultImage from '../../assets/default-image.svg'
+import { BsClock } from 'react-icons/bs'
+import { HiOutlineLocationMarker } from 'react-icons/hi'
+
 import { Routes } from '@/routes/routes'
+
+import DefaultImage from '../../assets/default-image.svg'
+import { Button } from '../Form/Button'
+import * as S from './styles'
 
 type CardEventProps = {
   event: {

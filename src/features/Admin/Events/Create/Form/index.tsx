@@ -4,19 +4,21 @@
  *
  */
 
+import { zodResolver } from '@hookform/resolvers/zod'
+import { FocusEventHandler, useCallback, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+
+import { uploadEventImage, useCreateEventMutation } from '@/api/events'
 import { AddressForm } from '@/components/AddressForm'
 import { Button } from '@/components/Form/Button'
 import { Checkbox } from '@/components/Form/Checkbox'
-import { Input } from '@/components/Form/Input'
-import { FocusEventHandler, useCallback, useState } from 'react'
-import { useForm } from 'react-hook-form'
-import schema, { FormProps } from './validator'
-import * as S from './styles'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { uploadEventImage, useCreateEventMutation } from '@/api/events'
-import { useNavigate } from 'react-router-dom'
-import { AdminRoutes } from '@/routes/admin-routes'
 import { FileField, Image } from '@/components/Form/FileField'
+import { Input } from '@/components/Form/Input'
+import { AdminRoutes } from '@/routes/admin-routes'
+
+import * as S from './styles'
+import schema, { FormProps } from './validator'
 
 export const CreateEventForm = () => {
   const navigate = useNavigate()

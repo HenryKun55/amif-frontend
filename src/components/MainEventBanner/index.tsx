@@ -1,4 +1,5 @@
 import { useFetchEventMainQuery } from '@/api/events'
+
 import { Banner } from '../Banner'
 import * as S from './styles'
 

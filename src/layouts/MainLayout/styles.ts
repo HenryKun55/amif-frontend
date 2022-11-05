@@ -1,5 +1,6 @@
-import { Button } from '@/components/Form/Button'
 import tw, { styled } from 'twin.macro'
+
+import { Button } from '@/components/Form/Button'
 
 export const Wrapper = styled.div([
   tw`relative w-screen max-h-screen h-screen flex flex-col overflow-hidden`,

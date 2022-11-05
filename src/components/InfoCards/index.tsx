@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
 import { TwStyle } from 'twin.macro'
+
 import * as S from './styles'
 
 type InfoCardsProps = {

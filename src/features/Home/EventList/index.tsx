@@ -6,6 +6,7 @@
 
 import { useListEventsQuery } from '@/api/events'
 import { Skeleton } from '@/components/Skeleton'
+
 import * as S from './styles'
 
 const PER_PAGE = 4

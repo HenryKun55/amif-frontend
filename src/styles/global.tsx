@@ -1,5 +1,5 @@
-import { Fragment } from 'react'
 import { Global } from '@emotion/react'
+import { Fragment } from 'react'
 import tw, { css, GlobalStyles as BaseStyles } from 'twin.macro'
 
 const customStyles = css([

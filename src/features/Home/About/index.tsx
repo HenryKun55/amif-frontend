@@ -1,6 +1,6 @@
-import * as S from './styles'
-import ImageOne from '../../../assets/help-4.jpg'
 import ImageTwo from '../../../assets/donate-default.jpg'
+import ImageOne from '../../../assets/help-4.jpg'
+import * as S from './styles'
 
 export const About = () => {
   return (

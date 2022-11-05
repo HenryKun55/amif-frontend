@@ -1,11 +1,13 @@
-import * as S from './styles'
+import { format } from 'date-fns'
 import { BsBoxArrowUpRight, BsCalendarEvent, BsClock } from 'react-icons/bs'
 import { TbMap2 } from 'react-icons/tb'
-import { format } from 'date-fns'
-import { InfoCards } from '../InfoCards'
 import tw from 'twin.macro'
-import { Routes } from '@/routes/routes'
+
 import { useFetchEventMainQuery } from '@/api/events'
+import { Routes } from '@/routes/routes'
+
+import { InfoCards } from '../InfoCards'
+import * as S from './styles'
 
 export const MainEvent = () => {
   const { data: event, isLoading } = useFetchEventMainQuery()

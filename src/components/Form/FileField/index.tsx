@@ -4,6 +4,7 @@
  *
  */
 
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 import {
   ChangeEventHandler,
   DragEventHandler,
@@ -12,7 +13,7 @@ import {
   useState,
 } from 'react'
 import { MdDelete, MdUploadFile } from 'react-icons/md'
-import { useAutoAnimate } from '@formkit/auto-animate/react'
+
 import * as S from './styles'
 
 export type Image = {

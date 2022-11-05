@@ -1,12 +1,14 @@
-import { useModal } from '@/context/Modal'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
+import { useMemo, useState } from 'react'
 import { AiOutlineCreditCard } from 'react-icons/ai'
 import { BsBank2 } from 'react-icons/bs'
 import ReactModal from 'react-modal'
-import * as S from './styles'
-import pix from '../../assets/icone-pix.svg'
-import { useMemo, useState } from 'react'
-import { useAutoAnimate } from '@formkit/auto-animate/react'
+
+import pix from '@/assets/icone-pix.svg'
+import { useModal } from '@/context/Modal'
+
 import { MercadoPago } from './MercadoPago'
+import * as S from './styles'
 
 type Options = 'mp' | 'pix' | 'deposito'
 

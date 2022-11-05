@@ -1,5 +1,6 @@
-import { CardEvent as CardEventComponent } from '@/components/CardEvent'
 import tw, { styled } from 'twin.macro'
+
+import { CardEvent as CardEventComponent } from '@/components/CardEvent'
 
 export const Container = styled.div([
   tw`w-full flex flex-col gap-4 justify-center py-4`,

@@ -4,18 +4,19 @@
  *
  */
 
+import { useCallback } from 'react'
+import { GiCrucifix } from 'react-icons/gi'
 import {
   MdBookmark,
   MdManageAccounts,
   MdOutlineAccountTree,
   MdSupervisorAccount,
 } from 'react-icons/md'
-import { GiCrucifix } from 'react-icons/gi'
+import { useLocation } from 'react-router-dom'
+
+import { AdminRoutes } from '@/routes/admin-routes'
 
 import * as S from './styles'
-import { AdminRoutes } from '@/routes/admin-routes'
-import { useLocation } from 'react-router-dom'
-import { useCallback } from 'react'
 
 export const SideBar = () => {
   const location = useLocation()

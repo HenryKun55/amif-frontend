@@ -1,3 +1,9 @@
+import {
+  BrowserRouter,
+  Route as DOMRoute,
+  Routes as DOMRoutes,
+} from 'react-router-dom'
+
 import { AdminLayout } from '@/layouts/AdminLayout'
 import { MainLayout } from '@/layouts/MainLayout'
 import { AdminEvents } from '@/pages/Admin/Events'
@@ -11,11 +17,7 @@ import { EventsId } from '@/pages/Events/Id'
 import { Home } from '@/pages/Home'
 import { NotFound } from '@/pages/NotFound'
 import { Playground } from '@/pages/Playground'
-import {
-  BrowserRouter,
-  Routes as DOMRoutes,
-  Route as DOMRoute,
-} from 'react-router-dom'
+
 import { AdminRoutes } from './admin-routes'
 import { Routes } from './routes'
 

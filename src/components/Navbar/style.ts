@@ -1,5 +1,5 @@
-import tw, { styled } from 'twin.macro'
 import { Link as DOMLink } from 'react-router-dom'
+import tw, { styled } from 'twin.macro'
 
 export const Wrapper = styled.div([tw`w-full flex justify-center border-b-2`])
 

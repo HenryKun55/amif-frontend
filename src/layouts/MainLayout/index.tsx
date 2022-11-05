@@ -1,12 +1,14 @@
+import { useState } from 'react'
+import { BiDonateHeart } from 'react-icons/bi'
+import { Outlet } from 'react-router-dom'
+
 import { Footer } from '@/components/Footer'
+import { ModalDonate } from '@/components/ModalDonate'
 import { Navbar } from '@/components/Navbar'
 import { Mobile } from '@/components/Navbar/Mobile'
-import { ModalDonate } from '@/components/ModalDonate'
-import { useState } from 'react'
-import { Outlet } from 'react-router-dom'
-import * as S from './styles'
-import { BiDonateHeart } from 'react-icons/bi'
 import { useModal } from '@/context/Modal'
+
+import * as S from './styles'
 
 export const MainLayout = () => {
   const { onOpen } = useModal()

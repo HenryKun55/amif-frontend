@@ -1,5 +1,6 @@
-import { Input as InputComponent } from '@/components/Form/Input'
 import tw, { styled } from 'twin.macro'
+
+import { Input as InputComponent } from '@/components/Form/Input'
 
 export const Container = styled.div([
   tw`w-full h-full flex flex-col gap-4 overflow-auto`,
