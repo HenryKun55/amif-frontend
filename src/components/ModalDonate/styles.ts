@@ -1,5 +1,23 @@
 import tw, { styled } from 'twin.macro'
 
+export const reactModalStyles = {
+  overlay: { zIndex: 50 },
+
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    width: '500px',
+    height: '500px',
+    boxShadow: '0px 0px 20px 0px rgba(50, 50, 50, 0.75)',
+    borderRadius: '0.25rem',
+    padding: 0,
+  },
+}
+
 export const MenuTab = styled.div(tw`flex w-full bg-blue-450`)
 
 export const Tabs = styled.ul(tw`flex w-full justify-center`)

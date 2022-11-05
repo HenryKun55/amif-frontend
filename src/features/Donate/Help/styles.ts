@@ -18,7 +18,7 @@ type TitleEmphasisProps = {
   isBeige?: boolean
 }
 
-export const TitleEmphasis = styled.h2<TitleEmphasisProps>(({ isBeige }) => [
+export const TitleEmphasis = styled.span<TitleEmphasisProps>(({ isBeige }) => [
   tw`font-extrabold inline text-blue-400 text-5xl md:text-6xl lg:text-8xl`,
   isBeige && tw`text-green-600`,
 ])

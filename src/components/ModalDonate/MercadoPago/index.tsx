@@ -1,10 +1,11 @@
 import { Button } from '@/components/Form/Button'
 import { Input } from '@/components/Form/Input'
-import { maskCurrency } from '@/utils/mask'
+import { maskCurrency, removeMaskCurrency } from '@/utils/mask'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import schema, { FormProps } from './validator'
 import * as S from './styles'
+import { useCreateDonationLinkMutation } from '@/api/donation'
 
 const defaultOptions = ['30', '50', '80', '100']
 
@@ -18,12 +19,19 @@ export const MercadoPago = () => {
     resolver: zodResolver(schema),
   })
 
+  const [createDonationLink, { isLoading }] = useCreateDonationLinkMutation()
+
   const handleOption = (value: string) => {
     setValue('value', maskCurrency(value + '00'))
   }
 
   const onSubmit = (data: FormProps) => {
-    console.log(data)
+    createDonationLink({
+      name: data.name,
+      value: removeMaskCurrency(data.value),
+    })
+      .unwrap()
+      .then(({ url }) => window.open(url, '_blank'))
   }
 
   return (
@@ -64,7 +72,9 @@ export const MercadoPago = () => {
         />
       </S.OtherValueContainer>
 
-      <Button type="submit">Doar</Button>
+      <Button type="submit" disabled={isLoading}>
+        Doar
+      </Button>
     </S.Container>
   )
 }

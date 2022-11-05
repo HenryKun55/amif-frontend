@@ -13,23 +13,6 @@ type Options = 'mp' | 'pix' | 'deposito'
 export const ModalDonate = () => {
   const { open, onClose } = useModal()
   const [contentAnimated] = useAutoAnimate<HTMLDivElement>()
-  const customStyles = {
-    overlay: { zIndex: 50 },
-
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      width: '500px',
-      height: '500px',
-      boxShadow: '0px 0px 20px 0px rgba(50, 50, 50, 0.75)',
-      borderRadius: '0.25rem',
-      padding: 0,
-    },
-  }
   const [active, setActive] = useState<Options>('mp')
 
   const handleActiveMenu = (item: Options) => {
@@ -48,7 +31,11 @@ export const ModalDonate = () => {
   }, [active])
 
   return (
-    <ReactModal style={customStyles} isOpen={open} onRequestClose={onClose}>
+    <ReactModal
+      style={S.reactModalStyles}
+      isOpen={open}
+      onRequestClose={onClose}
+    >
       <S.MenuTab>
         <S.Tabs>
           <S.Item
