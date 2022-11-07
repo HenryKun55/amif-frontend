@@ -35,4 +35,4 @@ export const Input = styled.input<InputProps>(({ height }) => [
 
 export const LeftIcon = styled.div([tw``])
 
-export const Error = styled.span([tw`text-red-500 text-xs pt-0.5`])
+export const Error = styled.span([tw`inline-block text-red-500 text-xs pt-2`])
