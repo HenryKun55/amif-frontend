@@ -24,6 +24,8 @@ export const CreateEventForm = () => {
   const navigate = useNavigate()
   const [images, setImages] = useState<Image[]>([])
   const [isUploadingImages, setIsUploadingImages] = useState(false)
+  const [createEvent, { isLoading }] = useCreateEventMutation()
+
   const {
     register,
     handleSubmit,
@@ -34,7 +36,6 @@ export const CreateEventForm = () => {
       canSubscribe: true,
     },
   })
-  const [createEvent, { isLoading }] = useCreateEventMutation()
 
   const showPicker: FocusEventHandler<HTMLInputElement> = event => {
     event.target.showPicker()
@@ -43,10 +44,10 @@ export const CreateEventForm = () => {
   const onSubmit = useCallback(
     async (data: FormProps) => {
       setIsUploadingImages(true)
-      let isImageCreated = false
+      let isEventCreated = false
       try {
         const { eventId } = await createEvent(data).unwrap()
-        isImageCreated = true
+        isEventCreated = true
         await Promise.all(
           images.map(async image => {
             if (!image.file) return
@@ -54,10 +55,10 @@ export const CreateEventForm = () => {
           }),
         )
       } catch (error) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        alert((error as any).message)
+        const err = error as { message: string }
+        alert(err.message)
       } finally {
-        if (isImageCreated) {
+        if (isEventCreated) {
           navigate(AdminRoutes.Admin_Eventos)
         }
         setIsUploadingImages(false)
