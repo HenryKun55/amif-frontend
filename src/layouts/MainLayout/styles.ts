@@ -8,10 +8,14 @@ export const Wrapper = styled.div([
 
 export const Content = styled.div([tw`w-full h-full overflow-y-auto`])
 
-export const Donate = styled.div([tw`absolute w-min z-20 bottom-10 right-10`])
+export const Donate = styled.div([
+  tw`absolute w-min z-20 bottom-10 right-5`,
+  tw`sm:right-10`,
+])
 
 export const DonateButton = styled(Button)([
-  tw`relative w-28 h-28 flex flex-col items-center justify-center shadow shadow-lg`,
+  tw`relative w-20 h-20 flex flex-col items-center justify-center shadow shadow-lg`,
+  tw`md:(w-24 h-24) lg:(w-28 h-28)`,
   tw`hover:ring-2`,
 ])
 

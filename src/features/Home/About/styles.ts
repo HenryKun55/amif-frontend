@@ -53,7 +53,7 @@ export const Image = styled.img([
 ])
 
 export const ContentAbout = styled.div([
-  tw`flex w-full h-[35vw] gap-10 relative mb-48 md:mb-0`,
+  tw`flex w-full h-[clamp(300px, 35vw, 590px)] gap-10 relative mb-48 md:mb-0`,
 ])
 
 export const BgImage = styled.div(tw`w-72 h-[350px] rounded-2xl bg-blue-300  `)
@@ -78,4 +78,39 @@ export const ContentAboutProject = styled.div(
   tw`sm:top-5`,
   tw`md:top-10`,
   tw`lg:(relative top-0 w-[clamp(100px, 36.603vw, 500px)])`,
+)
+export const ContentStaff = styled.div(
+  tw`w-full flex justify-center items-center`,
+)
+
+export const Staff = styled.h1(
+  tw`  italic font-semibold p-10`,
+  css`
+    font-size: clamp(36px, 5.271vw, 72px);
+    ::before {
+      content: '“';
+      font-size: 8rem;
+      color: rgb(185 147 37);
+      position: absolute;
+      top: -17px;
+      left: 0;
+    }
+
+    ::after {
+      content: '”';
+      font-size: 8rem;
+      color: rgb(185 147 37);
+      position: absolute;
+    }
+  `,
+)
+
+export const List = styled.ul(tw`flex flex-col  list-disc px-5`)
+
+export const ItemList = styled.li(tw`mt-4`)
+
+export const DescriptionContainer = styled.div(tw`flex flex-col w-full`)
+
+export const ContainerPosition = styled.div(
+  tw`flex w-full gap-10 mt-48 flex-wrap justify-center items-center`,
 )
