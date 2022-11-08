@@ -32,6 +32,7 @@ export const FileField = ({ initialState = [], onChange }: FileFieldProps) => {
   const [parent] = useAutoAnimate<HTMLDivElement>()
   const [images, setImages] = useState<Image[]>(initialState)
   const [highlight, setHighlight] = useState(false)
+  const [hoverImage, setHoverImage] = useState('')
 
   const addFiles = (fileList: FileList | null) => {
     if (!fileList) return
@@ -40,12 +41,13 @@ export const FileField = ({ initialState = [], onChange }: FileFieldProps) => {
       return { id: file.name + file.size, url, file }
     })
     setImages(_images => {
+      const imageList = [..._images]
       newImages.forEach(newImage => {
         if (!_images.some(i => i.id === newImage.id)) {
-          _images.push(newImage)
+          imageList.push(newImage)
         }
       })
-      return [..._images]
+      return imageList
     })
     if (inputRef.current) {
       inputRef.current.value = ''
@@ -87,14 +89,20 @@ export const FileField = ({ initialState = [], onChange }: FileFieldProps) => {
   return (
     <S.Container ref={parent}>
       {images.map(image => (
-        <S.ImageWrapper key={image.id}>
+        <S.ImageWrapper
+          key={image.id}
+          onMouseOver={() => setHoverImage(image.url)}
+          onMouseLeave={() => setHoverImage('')}
+        >
           <S.Image src={image.url} />
-          <S.RemoveButton
-            type="button"
-            onClick={() => handleRemoveImage(image)}
-          >
-            <MdDelete size={20} />
-          </S.RemoveButton>
+          {image.url === hoverImage && (
+            <S.RemoveButton
+              type="button"
+              onClick={() => handleRemoveImage(image)}
+            >
+              <MdDelete size={40} />
+            </S.RemoveButton>
+          )}
         </S.ImageWrapper>
       ))}
       <S.Input ref={inputRef} type="file" multiple onChange={handleChange} />
