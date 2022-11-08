@@ -5,11 +5,13 @@
  */
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useCallback, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 
 import {
   uploadEventImage,
+  useActivateEventMutation,
+  useDeactivateEventMutation,
   useDeleteEventImageMutation,
   useUpdateEventMutation,
 } from '@/api/events'
@@ -34,6 +36,10 @@ export const UpdateEventForm = ({ event }: UpdateEventForm) => {
   const [deleteEventImage, { isLoading: isDeletingImage }] =
     useDeleteEventImageMutation()
   const [updateEvent, { isLoading }] = useUpdateEventMutation()
+  const [activateEvent, { isLoading: isActivating }] =
+    useActivateEventMutation()
+  const [deactivateEvent, { isLoading: isDeactivating }] =
+    useDeactivateEventMutation()
 
   const formMethods = useForm<FormProps>({
     resolver: zodResolver(schema),
@@ -53,9 +59,27 @@ export const UpdateEventForm = ({ event }: UpdateEventForm) => {
     formState: { errors },
   } = formMethods
 
+  const isActionsDisabled = useMemo(
+    () =>
+      isLoading ||
+      isUploadingImages ||
+      isDeletingImage ||
+      isActivating ||
+      isDeactivating,
+    [isLoading, isUploadingImages, isDeletingImage],
+  )
+
   const showPicker = (event: any) => {
     event.target.showPicker()
   }
+
+  const handleToggleActive = useCallback(() => {
+    if (event.isActive) {
+      deactivateEvent({ id: event.id })
+    } else {
+      activateEvent({ id: event.id })
+    }
+  }, [event, activateEvent, deactivateEvent])
 
   const uploadImages = useCallback(async (images: Image[]) => {
     try {
@@ -161,12 +185,23 @@ export const UpdateEventForm = ({ event }: UpdateEventForm) => {
         <FileField initialState={event.images} onChange={setImages} />
         <hr />
         <AddressForm />
-        <Button
-          type="submit"
-          disabled={isLoading || isUploadingImages || isDeletingImage}
-        >
-          Salvar
-        </Button>
+        <S.Actions>
+          <S.LeftActions>
+            <Button
+              disabled={isActionsDisabled}
+              onClick={handleToggleActive}
+              size="sm"
+            >
+              {event.isActive ? 'Desativar' : 'Ativar'}
+            </Button>
+            <Button disabled={isActionsDisabled} variant="outlined" size="sm">
+              Torne esse o evento principal
+            </Button>
+          </S.LeftActions>
+          <Button type="submit" disabled={isActionsDisabled} size="sm">
+            Salvar
+          </Button>
+        </S.Actions>
       </S.Form>
     </FormProvider>
   )

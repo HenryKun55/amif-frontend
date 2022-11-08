@@ -31,6 +31,7 @@ const eventsApi = api.injectEndpoints({
   endpoints: builder => ({
     fetchEvent: builder.query<FetchEventResponse, FetchEventRequest>({
       query: ({ id }) => endpoints.fetchEvent(id),
+      providesTags: [{ type: 'Events', id: 'Id' }],
     }),
     fetchEventMain: builder.query<FetchEventResponse, void>({
       query: () => endpoints.fetchEventMain(),
@@ -63,21 +64,21 @@ const eventsApi = api.injectEndpoints({
         url: endpoints.activateEvent(id),
         method: 'PUT',
       }),
-      invalidatesTags: ['Events'],
+      invalidatesTags: ['Events', { type: 'Events', id: 'Id' }],
     }),
     deactivateEvent: builder.mutation<void, DeactivateEventRequest>({
       query: ({ id }) => ({
         url: endpoints.deactivateEvent(id),
         method: 'PUT',
       }),
-      invalidatesTags: ['Events'],
+      invalidatesTags: ['Events', { type: 'Events', id: 'Id' }],
     }),
     deleteEventImage: builder.mutation<void, DeleteEventImageRequest>({
       query: ({ eventId, imageId }) => ({
         url: endpoints.deleteImage(eventId, imageId),
         method: 'DELETE',
       }),
-      invalidatesTags: ['Events'],
+      invalidatesTags: ['Events', { type: 'Events', id: 'Id' }],
     }),
   }),
   overrideExisting: false,
