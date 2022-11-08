@@ -1,35 +1,43 @@
 /**
  *
- * Create Event Form
+ * Update Event Form
  *
  */
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FocusEventHandler, useCallback, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
 
 import { uploadEventImage, useCreateEventMutation } from '@/api/events'
+import { Event } from '@/api/models'
 import { AddressForm } from '@/components/AddressForm'
 import { Button } from '@/components/Form/Button'
 import { Checkbox } from '@/components/Form/Checkbox'
 import { FileField, Image } from '@/components/Form/FileField'
 import { Input } from '@/components/Form/Input'
-import { AdminRoutes } from '@/routes/admin-routes'
 
 import * as S from './styles'
 import schema, { FormProps } from './validator'
 
-export const CreateEventForm = () => {
-  const navigate = useNavigate()
+export type UpdateEventForm = {
+  event: Event
+}
+
+export const UpdateEventForm = ({ event }: UpdateEventForm) => {
   const [images, setImages] = useState<Image[]>([])
   const [isUploadingImages, setIsUploadingImages] = useState(false)
-  const [createEvent, { isLoading }] = useCreateEventMutation()
+  const isLoading = false
 
   const formMethods = useForm<FormProps>({
     resolver: zodResolver(schema),
     defaultValues: {
-      canSubscribe: true,
+      title: event.title,
+      description: event.description,
+      canSubscribe: event.canSubscribe,
+      youtubeUrl: event.youtubeUrl,
+      startDate: event.startDate.split('T')[0],
+      startHour: event.startHour,
+      address: { ...event.address },
     },
   })
   const {
@@ -44,26 +52,27 @@ export const CreateEventForm = () => {
 
   const onSubmit = useCallback(
     async (data: FormProps) => {
-      setIsUploadingImages(true)
-      let isEventCreated = false
-      try {
-        const { eventId } = await createEvent(data).unwrap()
-        isEventCreated = true
-        await Promise.all(
-          images.map(async image => {
-            if (!image.file) return
-            return uploadEventImage({ id: eventId, image: image.file })
-          }),
-        )
-      } catch (error) {
-        const err = error as { message: string }
-        alert(err.message)
-      } finally {
-        if (isEventCreated) {
-          navigate(AdminRoutes.Admin_Eventos)
-        }
-        setIsUploadingImages(false)
-      }
+      console.log(data)
+      // setIsUploadingImages(true)
+      // let isEventCreated = false
+      // try {
+      //   const { eventId } = await createEvent(data).unwrap()
+      //   isEventCreated = true
+      //   await Promise.all(
+      //     images.map(async image => {
+      //       if (!image.file) return
+      //       return uploadEventImage({ id: eventId, image: image.file })
+      //     }),
+      //   )
+      // } catch (error) {
+      //   const err = error as { message: string }
+      //   alert(err.message)
+      // } finally {
+      //   if (isEventCreated) {
+      //     navigate(AdminRoutes.Admin_Eventos)
+      //   }
+      //   setIsUploadingImages(false)
+      // }
     },
     [images],
   )
@@ -123,11 +132,11 @@ export const CreateEventForm = () => {
         <Checkbox {...register('canSubscribe')}>
           É possível se inscrever nesse evento?
         </Checkbox>
-        <FileField onChange={setImages} />
+        <FileField initialState={event.images} onChange={setImages} />
         <hr />
         <AddressForm />
         <Button type="submit" disabled={isLoading || isUploadingImages}>
-          Criar Evento
+          Salvar
         </Button>
       </S.Form>
     </FormProvider>
