@@ -5,7 +5,7 @@
  */
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { FocusEventHandler, useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 

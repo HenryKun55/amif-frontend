@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useFormContext } from 'react-hook-form'
 
 import { useFetchCepQuery } from '@/api/viacep'

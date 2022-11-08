@@ -5,16 +5,21 @@
  */
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { FocusEventHandler, useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 
-import { uploadEventImage, useCreateEventMutation } from '@/api/events'
+import {
+  uploadEventImage,
+  useDeleteEventImageMutation,
+  useUpdateEventMutation,
+} from '@/api/events'
 import { Event } from '@/api/models'
 import { AddressForm } from '@/components/AddressForm'
 import { Button } from '@/components/Form/Button'
 import { Checkbox } from '@/components/Form/Checkbox'
 import { FileField, Image } from '@/components/Form/FileField'
 import { Input } from '@/components/Form/Input'
+import { getDiffImages } from '@/utils/image'
 
 import * as S from './styles'
 import schema, { FormProps } from './validator'
@@ -26,7 +31,9 @@ export type UpdateEventForm = {
 export const UpdateEventForm = ({ event }: UpdateEventForm) => {
   const [images, setImages] = useState<Image[]>([])
   const [isUploadingImages, setIsUploadingImages] = useState(false)
-  const isLoading = false
+  const [deleteEventImage, { isLoading: isDeletingImage }] =
+    useDeleteEventImageMutation()
+  const [updateEvent, { isLoading }] = useUpdateEventMutation()
 
   const formMethods = useForm<FormProps>({
     resolver: zodResolver(schema),
@@ -50,31 +57,50 @@ export const UpdateEventForm = ({ event }: UpdateEventForm) => {
     event.target.showPicker()
   }
 
+  const uploadImages = useCallback(async (images: Image[]) => {
+    try {
+      await Promise.all(
+        images.map(async image => {
+          if (!image.file) return
+          return uploadEventImage({ id: event.id, image: image.file })
+        }),
+      )
+    } catch (error) {
+      alert('Ocorreu um erro ao tentar fazer o upload de algumas imagens')
+    }
+  }, [])
+
+  const deleteImages = useCallback(async (images: Image[]) => {
+    try {
+      await Promise.all(
+        images.map(async image => {
+          return deleteEventImage({
+            eventId: event.id,
+            imageId: image.id,
+          }).unwrap()
+        }),
+      )
+    } catch (error) {
+      alert('Ocorreu um erro ao tentar deletar algumas imagens')
+    }
+  }, [])
+
   const onSubmit = useCallback(
     async (data: FormProps) => {
-      console.log(data)
-      // setIsUploadingImages(true)
-      // let isEventCreated = false
-      // try {
-      //   const { eventId } = await createEvent(data).unwrap()
-      //   isEventCreated = true
-      //   await Promise.all(
-      //     images.map(async image => {
-      //       if (!image.file) return
-      //       return uploadEventImage({ id: eventId, image: image.file })
-      //     }),
-      //   )
-      // } catch (error) {
-      //   const err = error as { message: string }
-      //   alert(err.message)
-      // } finally {
-      //   if (isEventCreated) {
-      //     navigate(AdminRoutes.Admin_Eventos)
-      //   }
-      //   setIsUploadingImages(false)
-      // }
+      setIsUploadingImages(true)
+      try {
+        await updateEvent({ id: event.id, ...data }).unwrap()
+        const { toDelete, toUpload } = getDiffImages(images, event.images)
+        await uploadImages(toUpload)
+        await deleteImages(toDelete)
+      } catch (error) {
+        const err = error as { message: string }
+        alert(err.message)
+      } finally {
+        setIsUploadingImages(false)
+      }
     },
-    [images],
+    [images, uploadImages, deleteImages],
   )
 
   return (
@@ -135,7 +161,10 @@ export const UpdateEventForm = ({ event }: UpdateEventForm) => {
         <FileField initialState={event.images} onChange={setImages} />
         <hr />
         <AddressForm />
-        <Button type="submit" disabled={isLoading || isUploadingImages}>
+        <Button
+          type="submit"
+          disabled={isLoading || isUploadingImages || isDeletingImage}
+        >
           Salvar
         </Button>
       </S.Form>
