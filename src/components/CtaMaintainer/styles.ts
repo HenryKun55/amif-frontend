@@ -1,7 +1,7 @@
 import tw, { styled } from 'twin.macro'
 
 export const Wrapper = styled.div([
-  tw`flex gap-5 flex-wrap items-center justify-center max-w-content p-12 mx-10 rounded-3xl bg-gradient-to-r from-blue-250 to-blue-400 cursor-pointer xl:(w-full mx-auto)`,
+  tw` flex gap-5 flex-wrap items-center justify-center p-12 mx-10 rounded-3xl bg-gradient-to-r from-blue-250 to-blue-400 cursor-pointer`,
 ])
 
 export const Container = styled.div([

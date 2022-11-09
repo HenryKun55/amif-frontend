@@ -1,7 +1,9 @@
 import tw, { styled } from 'twin.macro'
 
+export const WrapperMain = styled.div(tw`flex flex-col 2xl:mx-auto pb-20 px-10`)
+
 export const Wrapper = styled.div([
-  tw`flex flex-col gap-10 max-w-content pb-20 px-10 justify-center items-center lg:flex-col xl:(flex-row items-start) 2xl:mx-auto`,
+  tw`flex flex-col gap-10 justify-center items-center lg:flex-col xl:(flex-row items-start) `,
 ])
 
 export const Container = styled.div([
@@ -32,6 +34,4 @@ export const TitleSubEmphasis = styled.span<TitleSubEmphasisProps>(
   ({ isBrown }) => [tw`text-yellow-500`, isBrown && tw`text-brown-500`],
 )
 
-export const Description = styled.span([
-  tw`font-semibold text-lg mt-4 md:text-2xl`,
-])
+export const Description = styled.span([tw`font-semibold text-lg mt-4`])
