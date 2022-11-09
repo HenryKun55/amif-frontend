@@ -5,8 +5,8 @@
  */
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { FocusEventHandler, useCallback, useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useCallback, useState } from 'react'
+import { FormProvider, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
 import { uploadEventImage, useCreateEventMutation } from '@/api/events'
@@ -26,18 +26,19 @@ export const CreateEventForm = () => {
   const [isUploadingImages, setIsUploadingImages] = useState(false)
   const [createEvent, { isLoading }] = useCreateEventMutation()
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormProps>({
+  const formMethods = useForm<FormProps>({
     resolver: zodResolver(schema),
     defaultValues: {
       canSubscribe: true,
     },
   })
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = formMethods
 
-  const showPicker: FocusEventHandler<HTMLInputElement> = event => {
+  const showPicker = (event: any) => {
     event.target.showPicker()
   }
 
@@ -68,63 +69,67 @@ export const CreateEventForm = () => {
   )
 
   return (
-    <S.Form onSubmit={handleSubmit(onSubmit)}>
-      <S.Row>
+    <FormProvider {...formMethods}>
+      <S.Form onSubmit={handleSubmit(onSubmit)}>
+        <S.Row>
+          <Input
+            required
+            name="title"
+            label="Título"
+            placeholder="Informe o título do evento"
+            register={register}
+            errors={errors}
+          />
+          <Input
+            required
+            name="description"
+            label="Descrição"
+            placeholder="Informe a descrição do evento"
+            register={register}
+            errors={errors}
+          />
+        </S.Row>
         <Input
-          required
-          name="title"
-          label="Título"
-          placeholder="Informe o título do evento"
+          name="youtubeUrl"
+          label="Vídeo do YouTube (URL)"
+          placeholder="Informe a URL do vídeo do youtube"
           register={register}
           errors={errors}
         />
-        <Input
-          required
-          name="description"
-          label="Descrição"
-          placeholder="Informe a descrição do evento"
-          register={register}
-          errors={errors}
-        />
-      </S.Row>
-      <Input
-        name="youtubeUrl"
-        label="Vídeo do YouTube (URL)"
-        placeholder="Informe a URL do vídeo do youtube"
-        register={register}
-        errors={errors}
-      />
-      <S.Row>
-        <Input
-          required
-          name="startDate"
-          label="Data do Evento"
-          placeholder="Informe a data do evento"
-          register={register}
-          errors={errors}
-          type="date"
-          onFocus={showPicker}
-        />
-        <Input
-          required
-          name="startHour"
-          label="Hora do Evento"
-          placeholder="Informe a hora do evento"
-          register={register}
-          errors={errors}
-          type="time"
-          onFocus={showPicker}
-        />
-      </S.Row>
-      <Checkbox {...register('canSubscribe')}>
-        É possível se inscrever nesse evento?
-      </Checkbox>
-      <FileField onChange={setImages} />
-      <hr />
-      <AddressForm register={register} errors={errors} />
-      <Button type="submit" disabled={isLoading || isUploadingImages}>
-        Criar Evento
-      </Button>
-    </S.Form>
+        <S.Row>
+          <Input
+            required
+            name="startDate"
+            label="Data do Evento"
+            placeholder="Informe a data do evento"
+            register={register}
+            errors={errors}
+            type="date"
+            onFocus={showPicker}
+            onClick={showPicker}
+          />
+          <Input
+            required
+            name="startHour"
+            label="Hora do Evento"
+            placeholder="Informe a hora do evento"
+            register={register}
+            errors={errors}
+            type="time"
+            onFocus={showPicker}
+            onClick={showPicker}
+          />
+        </S.Row>
+        <Checkbox {...register('canSubscribe')}>
+          É possível se inscrever nesse evento?
+        </Checkbox>
+        <FileField onChange={setImages} />
+        <hr />
+        <AddressForm />
+        <Button type="submit" disabled={isLoading || isUploadingImages}>
+          Criar Evento
+        </Button>
+      </S.Form>
+    </FormProvider>
   )
 }

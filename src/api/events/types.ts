@@ -56,3 +56,30 @@ export type UploadEventImageRequest = {
   id: string
   image: File
 }
+
+export type UpdateEventRequest = {
+  id: string
+  title: string
+  description: string
+  youtubeUrl?: string
+  startDate: string
+  startHour: string
+  canSubscribe: boolean
+  address: {
+    state: string
+    district: string
+    city: string
+    street: string
+    number: string
+    zipCode: string
+  }
+}
+
+export type DeleteEventImageRequest = {
+  eventId: string
+  imageId: string
+}
+
+export type MakeEventMainRequest = {
+  eventId: string
+}

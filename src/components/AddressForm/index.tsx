@@ -1,21 +1,48 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import {
-  DeepMap,
-  FieldError,
-  FieldValues,
-  UseFormRegister,
-} from 'react-hook-form'
+import { useEffect } from 'react'
+import { useFormContext } from 'react-hook-form'
+
+import { useFetchCepQuery } from '@/api/viacep'
 
 import { Input } from '../Form/Input'
 import * as S from './styles'
 
 export type AddressForm = {
-  register: UseFormRegister<any>
-  errors?: DeepMap<FieldValues, FieldError>
   className?: string
 }
 
-export const AddressForm = ({ register, errors, className }: AddressForm) => {
+export const AddressForm = ({ className }: AddressForm) => {
+  const {
+    watch,
+    reset,
+    register,
+    setError,
+    formState: { errors },
+  } = useFormContext()
+  const zipCode = watch('address.zipCode')
+  const { data } = useFetchCepQuery(
+    { cep: zipCode },
+    { skip: !zipCode || zipCode.length < 8 },
+  )
+
+  useEffect(() => {
+    if (!data) return
+    if (data.erro) {
+      setError('address.zipCode', { type: 'value', message: 'CEP inválido' })
+      return
+    }
+    reset({
+      ...watch(),
+      address: {
+        ...watch('address'),
+        zipCode: data.cep.split('-').join(''),
+        district: data.bairro,
+        street: data.logradouro,
+        city: data.localidade,
+        state: data.uf,
+      },
+    })
+  }, [data])
+
   return (
     <S.Container className={className}>
       <S.Row>

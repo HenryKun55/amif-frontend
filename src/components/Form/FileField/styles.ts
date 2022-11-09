@@ -24,8 +24,9 @@ export const ImageWrapper = styled.div([
 ])
 
 export const RemoveButton = styled.button([
-  tw`absolute top-0 right-0 bg-white p-0.5`,
-  tw`text-red-500 border border-black`,
+  tw`absolute top-0 left-0 w-full h-full bg-black`,
+  tw`flex items-center justify-center`,
+  tw`text-gray-500 opacity-75`,
 ])
 
 export const Image = styled.img([tw`object-contain`])
