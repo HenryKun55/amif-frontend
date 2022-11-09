@@ -3,12 +3,13 @@ import { useDispatch } from 'react-redux'
 
 import api from '@/api'
 
+import apiErrorMiddleware from './middleware/apiErrorMiddleware'
 import { rootReducer } from './reducers'
 
 const store = configureStore({
   reducer: rootReducer,
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(api.middleware),
+    getDefaultMiddleware().concat(api.middleware).concat(apiErrorMiddleware),
 })
 
 export type AppDispatch = typeof store.dispatch

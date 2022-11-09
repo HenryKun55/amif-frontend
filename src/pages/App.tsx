@@ -2,6 +2,7 @@ import { ModalProvider } from 'context/Modal/index.provider'
 import { ptBR } from 'date-fns/locale'
 import SetDefaultOptions from 'date-fns/setDefaultOptions'
 import { Provider } from 'react-redux'
+import { ToastContainer } from 'react-toastify'
 
 import { Router } from '@/routes'
 import store from '@/store'
@@ -15,6 +16,7 @@ export const App = () => {
       <Provider store={store}>
         <GlobalStyles />
         <Router />
+        <ToastContainer />
       </Provider>
     </ModalProvider>
   )
