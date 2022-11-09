@@ -10,8 +10,6 @@ import { FormProvider, useForm } from 'react-hook-form'
 
 import {
   uploadEventImage,
-  useActivateEventMutation,
-  useDeactivateEventMutation,
   useDeleteEventImageMutation,
   useUpdateEventMutation,
 } from '@/api/events'
@@ -28,18 +26,23 @@ import schema, { FormProps } from './validator'
 
 export type UpdateEventForm = {
   event: Event
+  isLoading: boolean
+  onMakeMain: () => void
+  onToggleActive: () => void
 }
 
-export const UpdateEventForm = ({ event }: UpdateEventForm) => {
+export const UpdateEventForm = ({
+  event,
+  isLoading,
+  onMakeMain,
+  onToggleActive,
+}: UpdateEventForm) => {
   const [images, setImages] = useState<Image[]>([])
   const [isUploadingImages, setIsUploadingImages] = useState(false)
+
   const [deleteEventImage, { isLoading: isDeletingImage }] =
     useDeleteEventImageMutation()
-  const [updateEvent, { isLoading }] = useUpdateEventMutation()
-  const [activateEvent, { isLoading: isActivating }] =
-    useActivateEventMutation()
-  const [deactivateEvent, { isLoading: isDeactivating }] =
-    useDeactivateEventMutation()
+  const [updateEvent, { isLoading: isUpdating }] = useUpdateEventMutation()
 
   const formMethods = useForm<FormProps>({
     resolver: zodResolver(schema),
@@ -60,26 +63,13 @@ export const UpdateEventForm = ({ event }: UpdateEventForm) => {
   } = formMethods
 
   const isActionsDisabled = useMemo(
-    () =>
-      isLoading ||
-      isUploadingImages ||
-      isDeletingImage ||
-      isActivating ||
-      isDeactivating,
-    [isLoading, isUploadingImages, isDeletingImage],
+    () => isLoading || isUpdating || isUploadingImages || isDeletingImage,
+    [isUpdating, isUploadingImages, isDeletingImage, isLoading],
   )
 
   const showPicker = (event: any) => {
     event.target.showPicker()
   }
-
-  const handleToggleActive = useCallback(() => {
-    if (event.isActive) {
-      deactivateEvent({ id: event.id })
-    } else {
-      activateEvent({ id: event.id })
-    }
-  }, [event, activateEvent, deactivateEvent])
 
   const uploadImages = useCallback(async (images: Image[]) => {
     try {
@@ -189,14 +179,21 @@ export const UpdateEventForm = ({ event }: UpdateEventForm) => {
           <S.LeftActions>
             <Button
               disabled={isActionsDisabled}
-              onClick={handleToggleActive}
+              onClick={onToggleActive}
               size="sm"
             >
               {event.isActive ? 'Desativar' : 'Ativar'}
             </Button>
-            <Button disabled={isActionsDisabled} variant="outlined" size="sm">
-              Torne esse o evento principal
-            </Button>
+            {!event.isMain && (
+              <Button
+                disabled={isActionsDisabled}
+                variant="outlined"
+                size="sm"
+                onClick={onMakeMain}
+              >
+                Torne esse o evento principal
+              </Button>
+            )}
           </S.LeftActions>
           <Button type="submit" disabled={isActionsDisabled} size="sm">
             Salvar

@@ -10,6 +10,7 @@ import {
   FetchEventResponse,
   ListEventsReponse,
   ListEventsRequest,
+  MakeEventMainRequest,
   UpdateEventRequest,
   UploadEventImageRequest,
 } from './types'
@@ -20,6 +21,7 @@ const endpoints = {
   listEvents: () => 'events',
   createEvent: () => 'events',
   updateEvent: (id: string) => `events/${id}`,
+  makeEventMain: (id: string) => `events/${id}/make-main`,
   activateEvent: (id: string) => `events/${id}/activate`,
   deactivateEvent: (id: string) => `events/${id}/deactivate`,
   uploadImage: (id: string) => `events/${id}/upload`,
@@ -58,6 +60,13 @@ const eventsApi = api.injectEndpoints({
         body,
       }),
       invalidatesTags: ['Events'],
+    }),
+    makeEventMain: builder.mutation<void, MakeEventMainRequest>({
+      query: ({ eventId }) => ({
+        url: endpoints.makeEventMain(eventId),
+        method: 'PUT',
+      }),
+      invalidatesTags: ['Events', { type: 'Events', id: 'Id' }],
     }),
     activateEvent: builder.mutation<void, ActivateEventRequest>({
       query: ({ id }) => ({
@@ -100,6 +109,7 @@ export const {
   useFetchEventMainQuery,
   useCreateEventMutation,
   useUpdateEventMutation,
+  useMakeEventMainMutation,
   useActivateEventMutation,
   useDeactivateEventMutation,
   useDeleteEventImageMutation,

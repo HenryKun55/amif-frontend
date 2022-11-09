@@ -79,3 +79,7 @@ export type DeleteEventImageRequest = {
   eventId: string
   imageId: string
 }
+
+export type MakeEventMainRequest = {
+  eventId: string
+}
