@@ -1,5 +1,5 @@
 import help5 from 'assets/help-5.jpg'
-import { FaChurch,FaHandsHelping } from 'react-icons/fa'
+import { FaChurch, FaHandsHelping } from 'react-icons/fa'
 import { GiLovers } from 'react-icons/gi'
 import { RiHomeHeartFill } from 'react-icons/ri'
 
@@ -16,10 +16,16 @@ export const HelpDonate = () => {
           através<S.TitleEmphasis isBeige> de nós</S.TitleEmphasis>
         </S.Title>
         <S.Description>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla blandit
-          mauris bibendum, tincidunt mauris a, pretium nunc. Curabitur quam
-          neque, egestas at maximus fringilla, rhoncus non neque. Curabitur quam
-          neque, egestas at maximus fringilla, rhoncus non neque.
+          Continuaremos a avançar na Africa, e no interior de Pernambuco, da
+          Mata ao Sertão, apoiando igrejas em sua missão de evangelizar a
+          quantos ainda não tenham sido alcançados pela boa nova da salvação em
+          Cristo Jesus.
+          <br />À medida que o universo de associados cresça e, com ele, os
+          recursos e a mão de obra disponível, poderemos avançar mais na
+          promoção do Reino de Deus. Para isso, contamos com sua contínua oração
+          a nosso favor. Também convidamos a todos os servos de Deus que sentem
+          ardor evangelístico e missionário a se associar conosco, dando-nos as
+          mãos nesta gloriosa missão.
         </S.Description>
         <S.Causes>
           <S.Cause>

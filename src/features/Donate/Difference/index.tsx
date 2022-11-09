@@ -34,14 +34,17 @@ export const DifferenceDonate = () => {
           <S.TitleEmphasis isBrown>a diferença</S.TitleEmphasis>
         </S.Title>
         <S.Description>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla blandit
-          mauris bibendum, tincidunt mauris a, pretium nunc. Curabitur quam
-          neque, egestas at maximus fringilla, rhoncus non neque.
+          A AMIF, em parceria com igrejas e outras instituições cristãs, realiza
+          trabalhos de evangelismo e ação social no contexto urbano, como em
+          João Pessoa-PB, onde fez doação de alimentos e material de limpeza à
+          casa de amparo a mulheres em risco social denominada “Mulheres Além
+          das Placas – MAP”.
         </S.Description>
         <S.Description>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla blandit
-          mauris bibendum, tincidunt mauris a, pretium nunc. Curabitur quam
-          neque, egestas at maximus fringilla, rhoncus non neque.
+          Em Catende-PE, em parceira com a igreja AD Jardim São Luís, a AMIF
+          realizou evangelismo pessoal e infantil no bairro carente de Canaã,
+          com doação de cestas básicas para famílias locais. Outros lugares de
+          ação: Catende, Cachoeirinha, Lajedo, Cumaru e São Caetano (PE).
         </S.Description>
       </S.Container>
     </S.Wrapper>

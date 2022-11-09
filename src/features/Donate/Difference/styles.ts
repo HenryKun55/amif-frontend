@@ -1,7 +1,7 @@
 import tw, { styled } from 'twin.macro'
 
 export const Wrapper = styled.div([
-  tw`flex flex-col max-w-content gap-10 py-20 mx-auto xl:flex-row`,
+  tw`flex flex-col max-w-content gap-10 py-20 mx-8 xl:flex-row`,
 ])
 
 export const ImagesCol = styled.div([tw`flex flex-1 flex-col gap-10`])
@@ -51,5 +51,5 @@ export const TitleEmphasis = styled.span<TitleEmphasisProps>(({ isBrown }) => [
 ])
 
 export const Description = styled.span([
-  tw`font-semibold text-lg mt-4 md:text-2xl`,
+  tw`font-semibold text-lg mt-4 md:text-xl`,
 ])

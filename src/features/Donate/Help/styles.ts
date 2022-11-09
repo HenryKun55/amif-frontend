@@ -24,7 +24,7 @@ export const TitleEmphasis = styled.span<TitleEmphasisProps>(({ isBeige }) => [
 ])
 
 export const Description = styled.span([
-  tw`font-semibold text-lg text-center py-10 md:text-2xl xl:text-left`,
+  tw`font-semibold text-lg text-center py-10 md:text-xl xl:text-left`,
 ])
 
 export const Causes = styled.div([
