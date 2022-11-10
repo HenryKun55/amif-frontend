@@ -5,7 +5,7 @@ export const Container = styled.div([
 ])
 
 export const Banner = styled.div([
-  tw`w-full flex justify-center bg-blue-100`,
+  tw`w-full flex justify-center bg-black`,
   css`
     .image-gallery {
       width: max(70%, 800px);

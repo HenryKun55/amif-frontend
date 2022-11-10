@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react'
+import { MdInfo } from 'react-icons/md'
 import { Navigate, useParams } from 'react-router-dom'
 
 import {
@@ -56,6 +57,14 @@ export const AdminEventsId = () => {
     <S.Container>
       <Breadcrumb path={['Eventos', event?.title || 'Atualizar']} />
       {isLoading && <div>Carregando...</div>}
+      {!!event?.isMain && (
+        <S.MainEventWrapper>
+          <S.MainEventText>
+            <MdInfo size={20} />
+            Esse evento foi definido como evento principal
+          </S.MainEventText>
+        </S.MainEventWrapper>
+      )}
       {event && (
         <UpdateEventForm
           event={event}
