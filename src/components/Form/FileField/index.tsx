@@ -115,7 +115,7 @@ export const FileField = ({ initialState = [], onChange }: FileFieldProps) => {
         onDragLeave={handleDragLeave}
       >
         <MdUploadFile size={30} />
-        <S.Text>Adicionar Images</S.Text>
+        <S.Text>Adicionar Imagens</S.Text>
       </S.Button>
     </S.Container>
   )
