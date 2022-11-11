@@ -1,7 +1,7 @@
+import help5 from '@/assets/embarque-Mocambique.png'
 import help2 from '@/assets/help-2.jpg'
 import help3 from '@/assets/help-3.jpg'
 import help4 from '@/assets/help-4.jpg'
-import help5 from '@/assets/help-5.jpg'
 
 import * as S from './styles'
 
