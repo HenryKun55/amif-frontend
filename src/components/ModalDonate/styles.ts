@@ -15,6 +15,7 @@ export const reactModalStyles = {
     boxShadow: '0px 0px 20px 0px rgba(50, 50, 50, 0.75)',
     borderRadius: '0.25rem',
     padding: 0,
+    overflow: 'hidden',
   },
 }
 

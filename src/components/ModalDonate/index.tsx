@@ -7,7 +7,9 @@ import ReactModal from 'react-modal'
 import pix from '@/assets/icone-pix.svg'
 import { useModal } from '@/context/Modal'
 
+import { Deposit } from './Deposit'
 import { MercadoPago } from './MercadoPago'
+import { Pix } from './Pix'
 import * as S from './styles'
 
 type Options = 'mp' | 'pix' | 'deposito'
@@ -26,9 +28,9 @@ export const ModalDonate = () => {
       case 'mp':
         return <MercadoPago />
       case 'pix':
-        return <div>pix</div>
+        return <Pix />
       case 'deposito':
-        return <div>Deposito</div>
+        return <Deposit />
     }
   }, [active])
 

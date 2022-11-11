@@ -1,4 +1,4 @@
-import help5 from 'assets/help-5.jpg'
+import help5 from 'assets/africa01.jpg'
 import { FaChurch, FaHandsHelping } from 'react-icons/fa'
 import { GiLovers } from 'react-icons/gi'
 import { RiHomeHeartFill } from 'react-icons/ri'
