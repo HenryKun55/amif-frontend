@@ -45,3 +45,25 @@ export type Event = {
     zipCode?: string
   }
 }
+
+export type Mission = {
+  id: string
+  title: string
+  description: string
+  youtubeUrl?: string
+  startsAt: string
+  imagesUrls: string[]
+  createdAt?: string
+  creator?: {
+    id?: string
+    username?: string
+  }
+  address?: {
+    state?: string
+    district?: string
+    city?: string
+    street?: string
+    number?: string
+    zipCode?: string
+  }
+}

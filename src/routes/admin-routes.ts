@@ -3,10 +3,11 @@ export enum AdminRoutes {
   Admin_Home = '/admin',
   Admin_Eventos = '/admin/eventos',
   Admin_Eventos_Id = '/admin/eventos/:id',
+  Admin_Eventos_Criar = '/admin/eventos/criar',
   Admin_Missoes = '/admin/missoes',
+  Admin_Missoes_Criar = '/admin/missoes/criar',
   Admin_Associados = '/admin/associados',
   Admin_Mantenedores = '/admin/mantenedores',
   Admin_Acessos = '/admin/acessos',
-  Admin_Eventos_Criar = '/admin/eventos/criar',
   NotFound = '/admin/404',
 }
