@@ -84,7 +84,7 @@ export const AdminMissions = () => {
                   icon: <MdOutlineRemoveRedEye size={20} />,
                   onClick: () =>
                     navigate(
-                      AdminRoutes.Admin_Eventos_Id.replace(':id', mission.id),
+                      AdminRoutes.Admin_Missoes_Id.replace(':id', mission.id),
                     ),
                 },
               ]}

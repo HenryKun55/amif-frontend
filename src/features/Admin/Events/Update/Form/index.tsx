@@ -24,7 +24,7 @@ import { getDiffImages } from '@/utils/image'
 import * as S from './styles'
 import schema, { FormProps } from './validator'
 
-export type UpdateEventForm = {
+export type UpdateEventFormProps = {
   event: Event
   isLoading: boolean
   onMakeMain: () => void
@@ -36,7 +36,7 @@ export const UpdateEventForm = ({
   isLoading,
   onMakeMain,
   onToggleActive,
-}: UpdateEventForm) => {
+}: UpdateEventFormProps) => {
   const [images, setImages] = useState<Image[]>([])
   const [isUploadingImages, setIsUploadingImages] = useState(false)
 

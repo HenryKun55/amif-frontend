@@ -9,6 +9,12 @@ export type MissionSortBy = {
   active: boolean
 }
 
+export type FetchMissionRequest = {
+  id: string
+}
+
+export type FetchMissionResponse = Mission
+
 export type ListMissionsRequest = PagedRequest<MissionSortBy> & {
   title?: string
   startDate?: string
@@ -36,7 +42,28 @@ export type CreateMissionResponse = {
   missionId: string
 }
 
+export type UpdateMissionRequest = {
+  id: string
+  title: string
+  description: string
+  youtubeUrl?: string
+  startsAt: string
+  address: {
+    state: string
+    district: string
+    city: string
+    street: string
+    number: string
+    zipCode: string
+  }
+}
+
 export type UploadMissionImageRequest = {
   id: string
   image: File
+}
+
+export type DeleteMissionImageRequest = {
+  missionId: string
+  imageId: string
 }

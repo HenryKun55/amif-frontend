@@ -52,7 +52,10 @@ export type Mission = {
   description: string
   youtubeUrl?: string
   startsAt: string
-  imagesUrls: string[]
+  images: {
+    id: string
+    url: string
+  }[]
   createdAt?: string
   creator?: {
     id?: string
