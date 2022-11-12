@@ -1,8 +1,17 @@
 import api from '..'
-import { ListMissionsRequest, ListMissionsResponse } from './types'
+import axios from '../axios'
+import {
+  CreateMissionRequest,
+  CreateMissionResponse,
+  ListMissionsRequest,
+  ListMissionsResponse,
+  UploadMissionImageRequest,
+} from './types'
 
 const endpoints = {
   listMissions: () => 'missions',
+  createMission: () => 'missions',
+  uploadImage: (id: string) => `missions/${id}/upload`,
 }
 
 const eventsApi = api.injectEndpoints({
@@ -14,10 +23,31 @@ const eventsApi = api.injectEndpoints({
       }),
       providesTags: ['Missions'],
     }),
+    createMission: builder.mutation<
+      CreateMissionResponse,
+      CreateMissionRequest
+    >({
+      query: body => ({
+        url: endpoints.createMission(),
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: ['Missions'],
+    }),
   }),
   overrideExisting: false,
 })
 
-export const { useListMissionsQuery } = eventsApi
+export function uploadMissionImage({ id, image }: UploadMissionImageRequest) {
+  const formData = new FormData()
+  formData.append('image', image)
+  return axios.post(endpoints.uploadImage(id), formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  })
+}
+
+export const { useListMissionsQuery, useCreateMissionMutation } = eventsApi
 
 export default eventsApi
