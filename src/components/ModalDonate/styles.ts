@@ -1,16 +1,15 @@
 import tw, { styled } from 'twin.macro'
 
-export const reactModalStyles = {
+export const reactModalStyles: ReactModal.Styles = {
   overlay: { zIndex: 50 },
 
   content: {
     top: '50%',
     left: '50%',
-    right: 'auto',
     bottom: 'auto',
-    marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
-    width: '500px',
+    width: '95%',
+    maxWidth: '500px',
     height: '500px',
     boxShadow: '0px 0px 20px 0px rgba(50, 50, 50, 0.75)',
     borderRadius: '0.25rem',
@@ -19,9 +18,13 @@ export const reactModalStyles = {
   },
 }
 
-export const MenuTab = styled.div(tw`flex w-full bg-blue-450`)
+export const MenuTab = styled.div(
+  tw`flex w-full bg-blue-450 overflow-x-auto scrollbar-hide`,
+)
 
-export const Tabs = styled.ul(tw`flex w-full justify-center`)
+export const Tabs = styled.ul(
+  tw`flex w-full justify-center min-w-[500px] overflow-x-auto`,
+)
 
 type ItemProps = {
   active: boolean
