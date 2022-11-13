@@ -7,7 +7,7 @@ export const Container = styled.div([
   tw`w-full max-w-container flex items-center text-xl text-gray-800 p-2`,
 ])
 
-export const Logo = styled.div([tw`w-8/12 `, tw`lg:flex lg:w-3/12 m-2`])
+export const Logo = styled(DOMLink)([tw`w-8/12 `, tw`lg:flex lg:w-3/12 m-2`])
 
 export const Image = styled.img([tw`w-28`])
 
