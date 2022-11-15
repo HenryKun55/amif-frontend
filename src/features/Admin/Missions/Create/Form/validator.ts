@@ -12,7 +12,8 @@ const schema: z.ZodType<CreateMissionRequest> = z.lazy(() =>
       .url('Informe uma URL válida')
       .optional()
       .or(z.literal('')),
-    startsAt: requiredString,
+    startDate: requiredString,
+    startHour: requiredString,
     address: addressSchema,
   }),
 )

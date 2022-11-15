@@ -51,7 +51,8 @@ export type Mission = {
   title: string
   description: string
   youtubeUrl?: string
-  startsAt: string
+  startDate: string
+  startHour: string
   images: {
     id: string
     url: string

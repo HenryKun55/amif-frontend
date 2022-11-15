@@ -20,7 +20,7 @@ import * as S from './styles'
 export const AdminMissions = () => {
   const [page, setPage] = useState(1)
   const [sortBy, setSortBy] = useState<keyof MissionSortBy | undefined>(
-    'startsAt',
+    'startDate',
   )
   const [orderBy, setOrderBy] = useState<Order>('desc')
 
@@ -56,7 +56,11 @@ export const AdminMissions = () => {
           maxWidth: '15ch',
           accessor: (mission: Mission) => {
             try {
-              return format(new Date(mission.startsAt), 'dd/MM/yyyy HH:mm')
+              const [date] = mission.startDate.split('T')
+              return format(
+                new Date(`${date}T${mission.startHour}:00`),
+                'dd/MM/yyyy HH:mm',
+              )
             } catch (error) {
               return 'Sem data'
             }

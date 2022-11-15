@@ -5,7 +5,6 @@
  */
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { format } from 'date-fns'
 import { useCallback, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
@@ -43,9 +42,8 @@ export const UpdateMissionForm = ({ mission }: UpdateMissionFormProps) => {
       title: mission.title,
       description: mission.description,
       youtubeUrl: mission.youtubeUrl,
-      startsAt: format(new Date(mission.startsAt), 'yyyy-MM-dd HH:mm')
-        .split(' ')
-        .join('T'),
+      startDate: mission.startDate.split('T')[0],
+      startHour: mission.startHour,
       address: { ...mission.address },
     },
   })
@@ -126,22 +124,33 @@ export const UpdateMissionForm = ({ mission }: UpdateMissionFormProps) => {
             errors={errors}
           />
         </S.Row>
+        <Input
+          name="youtubeUrl"
+          label="Vídeo do YouTube (URL)"
+          placeholder="Informe a URL do vídeo do youtube"
+          register={register}
+          errors={errors}
+        />
         <S.Row>
           <Input
-            name="youtubeUrl"
-            label="Vídeo do YouTube (URL)"
-            placeholder="Informe a URL do vídeo do youtube"
-            register={register}
-            errors={errors}
-          />
-          <Input
             required
-            name="startsAt"
+            name="startDate"
             label="Data da Missão"
             placeholder="Informe a data da missão"
             register={register}
             errors={errors}
-            type="datetime-local"
+            type="date"
+            onFocus={showPicker}
+            onClick={showPicker}
+          />
+          <Input
+            required
+            name="startHour"
+            label="Hora da Missão"
+            placeholder="Informe a hora da missão"
+            register={register}
+            errors={errors}
+            type="time"
             onFocus={showPicker}
             onClick={showPicker}
           />

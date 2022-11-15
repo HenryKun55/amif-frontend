@@ -4,7 +4,7 @@ import { Paged, PagedRequest } from '../types'
 export type MissionSortBy = {
   id: string
   title: string
-  startsAt: string
+  startDate: string
   createdAt: string
   active: boolean
 }
@@ -27,7 +27,8 @@ export type CreateMissionRequest = {
   title: string
   description: string
   youtubeUrl?: string
-  startsAt: string
+  startDate: string
+  startHour: string
   address: {
     state: string
     district: string
@@ -47,7 +48,8 @@ export type UpdateMissionRequest = {
   title: string
   description: string
   youtubeUrl?: string
-  startsAt: string
+  startDate: string
+  startHour: string
   address: {
     state: string
     district: string
