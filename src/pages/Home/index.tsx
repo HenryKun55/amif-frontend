@@ -7,7 +7,6 @@ import * as S from './styles'
 export const Home = () => {
   return (
     <S.Container>
-      {/* <MainEvent /> */}
       <MainEventBanner />
       <EventList />
       <About />

@@ -1,6 +1,6 @@
 /**
  *
- * Create Event Form
+ * Create Mission Form
  *
  */
 
@@ -8,11 +8,11 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useCallback, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
-import { uploadEventImage, useCreateEventMutation } from '@/api/events'
+import { uploadMissionImage, useCreateMissionMutation } from '@/api/missions'
 import { AddressForm } from '@/components/AddressForm'
 import { Button } from '@/components/Form/Button'
-import { Checkbox } from '@/components/Form/Checkbox'
 import { FileField, Image } from '@/components/Form/FileField'
 import { Input } from '@/components/Form/Input'
 import { AdminRoutes } from '@/routes/admin-routes'
@@ -20,17 +20,14 @@ import { AdminRoutes } from '@/routes/admin-routes'
 import * as S from './styles'
 import schema, { FormProps } from './validator'
 
-export const CreateEventForm = () => {
+export const CreateMissionForm = () => {
   const navigate = useNavigate()
   const [images, setImages] = useState<Image[]>([])
   const [isUploadingImages, setIsUploadingImages] = useState(false)
-  const [createEvent, { isLoading }] = useCreateEventMutation()
+  const [createMission, { isLoading }] = useCreateMissionMutation()
 
   const formMethods = useForm<FormProps>({
     resolver: zodResolver(schema),
-    defaultValues: {
-      canSubscribe: true,
-    },
   })
   const {
     register,
@@ -45,22 +42,22 @@ export const CreateEventForm = () => {
   const onSubmit = useCallback(
     async (data: FormProps) => {
       setIsUploadingImages(true)
-      let isEventCreated = false
+      let isMissionCreated = false
       try {
-        const { eventId } = await createEvent(data).unwrap()
-        isEventCreated = true
+        const { missionId } = await createMission(data).unwrap()
+        isMissionCreated = true
         await Promise.all(
           images.map(async image => {
             if (!image.file) return
-            return uploadEventImage({ id: eventId, image: image.file })
+            return uploadMissionImage({ id: missionId, image: image.file })
           }),
         )
       } catch (error) {
         const err = error as { message: string }
-        alert(err.message)
+        toast.error(err.message)
       } finally {
-        if (isEventCreated) {
-          navigate(AdminRoutes.Admin_Eventos)
+        if (isMissionCreated) {
+          navigate(AdminRoutes.Admin_Missoes)
         }
         setIsUploadingImages(false)
       }
@@ -76,7 +73,7 @@ export const CreateEventForm = () => {
             required
             name="title"
             label="Título"
-            placeholder="Informe o título do evento"
+            placeholder="Informe o título da missão"
             register={register}
             errors={errors}
           />
@@ -84,7 +81,7 @@ export const CreateEventForm = () => {
             required
             name="description"
             label="Descrição"
-            placeholder="Informe a descrição do evento"
+            placeholder="Informe a descrição da missão"
             register={register}
             errors={errors}
           />
@@ -100,8 +97,8 @@ export const CreateEventForm = () => {
           <Input
             required
             name="startDate"
-            label="Data do Evento"
-            placeholder="Informe a data do evento"
+            label="Data da Missão"
+            placeholder="Informe a data da missão"
             register={register}
             errors={errors}
             type="date"
@@ -111,8 +108,8 @@ export const CreateEventForm = () => {
           <Input
             required
             name="startHour"
-            label="Hora do Evento"
-            placeholder="Informe a hora do evento"
+            label="Hora da Missão"
+            placeholder="Informe a hora da missão"
             register={register}
             errors={errors}
             type="time"
@@ -120,15 +117,12 @@ export const CreateEventForm = () => {
             onClick={showPicker}
           />
         </S.Row>
-        <Checkbox {...register('canSubscribe')}>
-          É possível se inscrever nesse evento?
-        </Checkbox>
         <hr />
         <FileField onChange={setImages} />
         <hr />
         <AddressForm />
         <Button type="submit" disabled={isLoading || isUploadingImages}>
-          Criar Evento
+          Criar Missão
         </Button>
       </S.Form>
     </FormProvider>

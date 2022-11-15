@@ -1,22 +1,22 @@
 /**
  *
- * Update Event Form
+ * Update Mission Form
  *
  */
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
 
 import {
-  uploadEventImage,
-  useDeleteEventImageMutation,
-  useUpdateEventMutation,
-} from '@/api/events'
-import { Event } from '@/api/models'
+  uploadMissionImage,
+  useDeleteMissionImageMutation,
+  useUpdateMissionMutation,
+} from '@/api/missions'
+import { Mission } from '@/api/models'
 import { AddressForm } from '@/components/AddressForm'
 import { Button } from '@/components/Form/Button'
-import { Checkbox } from '@/components/Form/Checkbox'
 import { FileField, Image } from '@/components/Form/FileField'
 import { Input } from '@/components/Form/Input'
 import { getDiffImages } from '@/utils/image'
@@ -24,36 +24,27 @@ import { getDiffImages } from '@/utils/image'
 import * as S from './styles'
 import schema, { FormProps } from './validator'
 
-export type UpdateEventFormProps = {
-  event: Event
-  isLoading: boolean
-  onMakeMain: () => void
-  onToggleActive: () => void
+export type UpdateMissionFormProps = {
+  mission: Mission
 }
 
-export const UpdateEventForm = ({
-  event,
-  isLoading,
-  onMakeMain,
-  onToggleActive,
-}: UpdateEventFormProps) => {
+export const UpdateMissionForm = ({ mission }: UpdateMissionFormProps) => {
   const [images, setImages] = useState<Image[]>([])
   const [isUploadingImages, setIsUploadingImages] = useState(false)
 
-  const [deleteEventImage, { isLoading: isDeletingImage }] =
-    useDeleteEventImageMutation()
-  const [updateEvent, { isLoading: isUpdating }] = useUpdateEventMutation()
+  const [deleteMissionImage, { isLoading: isDeletingImage }] =
+    useDeleteMissionImageMutation()
+  const [updateMission, { isLoading }] = useUpdateMissionMutation()
 
   const formMethods = useForm<FormProps>({
     resolver: zodResolver(schema),
     defaultValues: {
-      title: event.title,
-      description: event.description,
-      canSubscribe: event.canSubscribe,
-      youtubeUrl: event.youtubeUrl,
-      startDate: event.startDate.split('T')[0],
-      startHour: event.startHour,
-      address: { ...event.address },
+      title: mission.title,
+      description: mission.description,
+      youtubeUrl: mission.youtubeUrl,
+      startDate: mission.startDate.split('T')[0],
+      startHour: mission.startHour,
+      address: { ...mission.address },
     },
   })
   const {
@@ -61,11 +52,6 @@ export const UpdateEventForm = ({
     handleSubmit,
     formState: { errors },
   } = formMethods
-
-  const isActionsDisabled = useMemo(
-    () => isLoading || isUpdating || isUploadingImages || isDeletingImage,
-    [isUpdating, isUploadingImages, isDeletingImage, isLoading],
-  )
 
   const showPicker = (event: any) => {
     event.target.showPicker()
@@ -76,11 +62,11 @@ export const UpdateEventForm = ({
       await Promise.all(
         images.map(async image => {
           if (!image.file) return
-          return uploadEventImage({ id: event.id, image: image.file })
+          return uploadMissionImage({ id: mission.id, image: image.file })
         }),
       )
     } catch (error) {
-      alert('Ocorreu um erro ao tentar fazer o upload de algumas imagens')
+      toast.error('Ocorreu um erro ao tentar fazer o upload de algumas imagens')
     }
   }, [])
 
@@ -88,14 +74,14 @@ export const UpdateEventForm = ({
     try {
       await Promise.all(
         images.map(async image => {
-          return deleteEventImage({
-            eventId: event.id,
+          return deleteMissionImage({
+            missionId: mission.id,
             imageId: image.id,
           }).unwrap()
         }),
       )
     } catch (error) {
-      alert('Ocorreu um erro ao tentar deletar algumas imagens')
+      toast.error('Ocorreu um erro ao tentar deletar algumas imagens')
     }
   }, [])
 
@@ -103,8 +89,8 @@ export const UpdateEventForm = ({
     async (data: FormProps) => {
       setIsUploadingImages(true)
       try {
-        await updateEvent({ id: event.id, ...data }).unwrap()
-        const { toDelete, toUpload } = getDiffImages(images, event.images)
+        await updateMission({ id: mission.id, ...data }).unwrap()
+        const { toDelete, toUpload } = getDiffImages(images, mission.images)
         await uploadImages(toUpload)
         await deleteImages(toDelete)
       } catch (error) {
@@ -125,7 +111,7 @@ export const UpdateEventForm = ({
             required
             name="title"
             label="Título"
-            placeholder="Informe o título do evento"
+            placeholder="Informe o título da missão"
             register={register}
             errors={errors}
           />
@@ -133,7 +119,7 @@ export const UpdateEventForm = ({
             required
             name="description"
             label="Descrição"
-            placeholder="Informe a descrição do evento"
+            placeholder="Informe a descrição da missão"
             register={register}
             errors={errors}
           />
@@ -149,8 +135,8 @@ export const UpdateEventForm = ({
           <Input
             required
             name="startDate"
-            label="Data do Evento"
-            placeholder="Informe a data do evento"
+            label="Data da Missão"
+            placeholder="Informe a data da missão"
             register={register}
             errors={errors}
             type="date"
@@ -160,8 +146,8 @@ export const UpdateEventForm = ({
           <Input
             required
             name="startHour"
-            label="Hora do Evento"
-            placeholder="Informe a hora do evento"
+            label="Hora da Missão"
+            placeholder="Informe a hora da missão"
             register={register}
             errors={errors}
             type="time"
@@ -169,36 +155,16 @@ export const UpdateEventForm = ({
             onClick={showPicker}
           />
         </S.Row>
-        <Checkbox {...register('canSubscribe')}>
-          É possível se inscrever nesse evento?
-        </Checkbox>
-        <FileField initialState={event.images} onChange={setImages} />
+        <hr />
+        <FileField initialState={mission.images} onChange={setImages} />
         <hr />
         <AddressForm />
-        <S.Actions>
-          <S.LeftActions>
-            <Button
-              disabled={isActionsDisabled}
-              onClick={onToggleActive}
-              size="sm"
-            >
-              {event.isActive ? 'Desativar' : 'Ativar'}
-            </Button>
-            {!event.isMain && (
-              <Button
-                disabled={isActionsDisabled}
-                variant="outlined"
-                size="sm"
-                onClick={onMakeMain}
-              >
-                Torne esse o evento principal
-              </Button>
-            )}
-          </S.LeftActions>
-          <Button type="submit" disabled={isActionsDisabled} size="sm">
-            Salvar
-          </Button>
-        </S.Actions>
+        <Button
+          type="submit"
+          disabled={isLoading || isUploadingImages || isDeletingImage}
+        >
+          Salvar
+        </Button>
       </S.Form>
     </FormProvider>
   )
