@@ -10,7 +10,7 @@ export const Content = styled.div([tw`w-full h-full overflow-y-auto`])
 
 export const Donate = styled.div([
   tw`absolute w-min z-20 bottom-14 right-5`,
-  tw`sm:right-10 bottom-10`,
+  tw`sm:right-10 bottom-16`,
 ])
 
 export const DonateButton = styled(Button)([

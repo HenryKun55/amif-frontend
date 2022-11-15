@@ -32,21 +32,21 @@ export const MainLayout = () => {
       <S.Content ref={contentRef}>
         <Outlet />
         <Footer />
-        <S.Donate>
-          <S.DonateButton
-            size="lg"
-            shape="pill"
-            onMouseOver={() => setTooltipVisible(true)}
-            onMouseLeave={() => setTooltipVisible(false)}
-            onClick={onOpen}
-          >
-            <BiDonateHeart size={50} />
-            <S.Tooltip visible={tooltipVisible}>
-              <S.TooltipContent>Faça uma doação</S.TooltipContent>
-            </S.Tooltip>
-          </S.DonateButton>
-        </S.Donate>
       </S.Content>
+      <S.Donate>
+        <S.DonateButton
+          size="lg"
+          shape="pill"
+          onMouseOver={() => setTooltipVisible(true)}
+          onMouseLeave={() => setTooltipVisible(false)}
+          onClick={onOpen}
+        >
+          <BiDonateHeart size={50} />
+          <S.Tooltip visible={tooltipVisible}>
+            <S.TooltipContent>Faça uma doação</S.TooltipContent>
+          </S.Tooltip>
+        </S.DonateButton>
+      </S.Donate>
       <ModalDonate />
     </S.Wrapper>
   )
