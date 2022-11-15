@@ -48,7 +48,7 @@ export const Navbar = ({ onOpenMobile }: NavbarProps) => {
   return (
     <S.Wrapper>
       <S.Container>
-        <S.Logo>
+        <S.Logo to={Routes.Home}>
           <S.Image src={Logo} alt="logo amif" />
         </S.Logo>
         <S.Content>

@@ -46,6 +46,7 @@
     "react-table": "^7.8.0",
     "react-toastify": "^9.1.1",
     "react-visibility-sensor": "^5.1.1",
+    "tailwind-scrollbar-hide": "^1.1.7",
     "vite-plugin-windicss": "^1.8.8",
     "vite-tsconfig-paths": "^3.5.0",
     "zod": "^3.19.1"
@@ -68,6 +69,7 @@
     "eslint": "^8.23.1",
     "eslint-plugin-react": "^7.31.8",
     "eslint-plugin-simple-import-sort": "^8.0.0",
+    "eslint-plugin-unused-imports": "^2.0.0",
     "husky": "^8.0.1",
     "jsdom": "^20.0.0",
     "lint-staged": "^13.0.3",

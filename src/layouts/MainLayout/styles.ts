@@ -14,7 +14,7 @@ export const Donate = styled.div([
 ])
 
 export const DonateButton = styled(Button)([
-  tw`relative w-20 h-20 flex flex-col items-center justify-center shadow shadow-lg`,
+  tw`relative w-20 h-20 flex flex-col items-center justify-center shadow-lg`,
   tw`md:(w-24 h-24) lg:(w-28 h-28)`,
   tw`hover:ring-2`,
 ])
