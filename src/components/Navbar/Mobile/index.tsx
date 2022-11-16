@@ -6,6 +6,7 @@
 
 import { useCallback, useRef } from 'react'
 import { IoMdArrowRoundForward } from 'react-icons/io'
+import { useLocation } from 'react-router-dom'
 
 import useOutsideAlerter from '@/hooks/useOutsideAlerter'
 
@@ -17,6 +18,7 @@ type MobileProps = {
   isExpanded: boolean
 }
 export const Mobile = ({ onClose, isExpanded }: MobileProps) => {
+  const location = useLocation()
   const containerRef = useRef<HTMLDivElement>(null)
 
   useOutsideAlerter(containerRef, () => {
@@ -24,7 +26,7 @@ export const Mobile = ({ onClose, isExpanded }: MobileProps) => {
   })
 
   const isActive = useCallback(
-    (pattern: string) => location.pathname.includes(pattern),
+    (pattern: string) => location.pathname.split('/')[0] === pattern,
     [location],
   )
 
@@ -36,7 +38,12 @@ export const Mobile = ({ onClose, isExpanded }: MobileProps) => {
         </S.Back>
         {menuItems.map((item, key) => {
           return (
-            <S.Link active={isActive(item.href)} to={item.href} key={key}>
+            <S.Link
+              active={isActive(item.href)}
+              to={item.href}
+              key={key}
+              onClick={onClose}
+            >
               <S.Item>
                 {item.icon}
                 <span>{item.name}</span>
