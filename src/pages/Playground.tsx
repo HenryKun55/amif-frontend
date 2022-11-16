@@ -1,26 +1,42 @@
-import { useState } from 'react'
-import tw, { styled } from 'twin.macro'
+import tw, { css, styled } from 'twin.macro'
 
-import { Button } from '@/components/Form/Button'
-import { ModalConfirmAction } from '@/components/ModalConfirmAction'
+import { useResize } from '@/hooks/useResize'
 
-const Container = styled.div([tw`w-full max-w-container mx-auto p-4`])
+const Container = styled.div([tw`w-full h-full flex`])
+
+const Content = styled.div([
+  tw`flex-1 h-full bg-blue-200 p-4 text-xl font-bold`,
+])
+
+const SideBar = styled.div<{ width: number }>(({ width }) => [
+  tw`h-full relative bg-red-200 border-r border-black`,
+  css`
+    width: ${width}px;
+  `,
+])
+
+const ResizeStick = styled.div([
+  tw`absolute top-0 right-0 w-2 h-full bg-transparent`,
+  css`
+    cursor: col-resize;
+  `,
+])
 
 export function Playground() {
-  const [isOpen, setIsOpen] = useState(true)
+  const { width, handleMouseDown } = useResize({
+    initialWidth: 250,
+    minWidth: 150,
+    maxWidth: 800,
+  })
 
   return (
     <Container>
-      <ModalConfirmAction
-        title="Você deseja tornar esse evento como principal? Você só pode ter um evento definido como principal"
-        isOpen={isOpen}
-        onCancel={() => setIsOpen(false)}
-        onConfirm={() => {
-          console.log('Confirmando')
-          setIsOpen(false)
-        }}
-      />
-      <Button onClick={() => setIsOpen(true)}>Abrir modal</Button>
+      <SideBar width={width}>
+        <ResizeStick onMouseDown={handleMouseDown} />
+      </SideBar>
+      <Content>
+        <h1>Hello, world!</h1>
+      </Content>
     </Container>
   )
 }
