@@ -36,7 +36,12 @@ export const Navbar = ({ onOpenMobile }: NavbarProps) => {
   const location = useLocation()
 
   const isActive = useCallback(
-    (pattern: string) => location.pathname.split('/')[0] === pattern,
+    (pattern: string) => {
+      if (pattern !== '/') {
+        return location.pathname.includes(pattern)
+      }
+      return location.pathname === '/' && pattern === '/'
+    },
     [location],
   )
 
