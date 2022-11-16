@@ -62,3 +62,5 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
       - name: Deploy to S3
         run: pnpm run deploy
+      - name: Cleaning CloudFront pnpm-cach
+        run: aws cloudfront create-invalidation --distribution-id=${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/index.html" "/assets/*"
