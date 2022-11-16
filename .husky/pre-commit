@@ -1,6 +1,6 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-yarn tsc
-yarn tsc -b --clean
+pnpm tsc
+pnpm tsc -b --clean
 npx --no-install lint-staged
