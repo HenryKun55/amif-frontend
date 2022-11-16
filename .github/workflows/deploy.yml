@@ -9,6 +9,9 @@ on:
   pull_request:
     branches: ['development']
 
+env:
+  VITE_API_URL: https://amif-api.lotuscode.com.br/v1/api
+
 jobs:
   test:
     runs-on: ubuntu-latest
