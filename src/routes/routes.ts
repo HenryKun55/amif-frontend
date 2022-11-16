@@ -2,9 +2,9 @@ export enum Routes {
   Home = '/',
   Eventos = '/eventos',
   Eventos_Id = '/eventos/:id',
-  Mission = '/missoes',
-  Associate = '/associados',
-  Maintainer = '/mantenedor',
-  Donate = '/doe',
+  Missoes = '/missoes',
+  Associados = '/associados',
+  Mantenedor = '/mantenedor',
+  Doe = '/doe',
   NotFound = '/404',
 }
