@@ -47,11 +47,13 @@ export const EventList = () => {
 
   if (isLoading) {
     return (
-      <S.EventList>
-        {Array.from({ length: PER_PAGE }).map((_, idx) => (
-          <Skeleton key={idx} width={300} height={250} />
-        ))}
-      </S.EventList>
+      <S.Container>
+        <S.EventList>
+          {Array.from({ length: PER_PAGE }).map((_, idx) => (
+            <Skeleton key={idx} width={300} height={250} />
+          ))}
+        </S.EventList>
+      </S.Container>
     )
   }
 
