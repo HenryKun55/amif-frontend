@@ -1,53 +1,33 @@
-import { format } from 'date-fns'
-import { ptBR } from 'date-fns/locale'
-import SetDefaultOptions from 'date-fns/setDefaultOptions'
-import { BsClock } from 'react-icons/bs'
-import { HiOutlineLocationMarker } from 'react-icons/hi'
+import { useMemo } from 'react'
 
-import { Button } from '../Form/Button'
+import { Mission } from '@/api/models'
+import { Routes } from '@/routes/routes'
+
+import DefaultImage from '../../assets/default-image.svg'
 import * as S from './styles'
 
 type CardMissionProps = {
-  mission: {
-    title: string
-    images: {
-      id: string
-      url: string
-    }[]
-    description: string
-    address?: {
-      state?: string
-      city?: string
-    }
-  }
+  mission: Mission
+  className?: string
 }
 
-export const CardMission = ({ mission }: CardMissionProps) => {
-  const { description, title, images, address } = mission
-
-  const textLimit = (text: string) => {
-    return `${text.substr(0, 80)}...`
-  }
-
-  SetDefaultOptions({ locale: ptBR })
+export const CardMission = ({ mission, className }: CardMissionProps) => {
+  const imageUrl = useMemo(
+    () => mission.images[0]?.url || DefaultImage,
+    [mission.images],
+  )
 
   return (
-    <S.Container>
-      <S.Banner background={images[0].url}>
-        <S.Left>
-          <S.Location>
-            <S.Span>
-              <HiOutlineLocationMarker />
-              {address?.city}, {address?.state}
-            </S.Span>
-          </S.Location>
-        </S.Left>
-      </S.Banner>
+    <S.Container
+      className={className}
+      to={Routes.Missoes_Id.replace(':id', mission.id)}
+    >
+      <S.Header>
+        <S.Image src={imageUrl} />
+      </S.Header>
       <S.Content>
-        <S.Title>{title}</S.Title>
-        <S.Section>
-          <S.Span>{textLimit(description)}</S.Span>
-        </S.Section>
+        <S.Title>{mission.title}</S.Title>
+        <S.Description>{mission.description}</S.Description>
       </S.Content>
     </S.Container>
   )
