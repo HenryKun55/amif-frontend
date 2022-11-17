@@ -13,10 +13,16 @@ export const modalContextDefaultValues: ModalContext = {
   onClose: () => {},
 }
 
-export const MainContext = createContext<ModalContext>(
-  modalContextDefaultValues,
-)
+const makeContext = createContext<ModalContext>(modalContextDefaultValues)
 
-export function useModal() {
-  return useContext(MainContext)
+export const DonateContext = makeContext
+
+export const SubscribeContext = makeContext
+
+export function useModalDonate() {
+  return useContext(DonateContext)
+}
+
+export function useModalSubscribe() {
+  return useContext(SubscribeContext)
 }

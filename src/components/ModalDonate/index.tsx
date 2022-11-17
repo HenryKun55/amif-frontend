@@ -5,7 +5,7 @@ import { BsBank2 } from 'react-icons/bs'
 import ReactModal from 'react-modal'
 
 import pix from '@/assets/icone-pix.svg'
-import { useModal } from '@/context/Modal'
+import { useModalDonate } from '@/context/Modal'
 
 import { Deposit } from './Deposit'
 import { MercadoPago } from './MercadoPago'
@@ -15,7 +15,7 @@ import * as S from './styles'
 type Options = 'mp' | 'pix' | 'deposito'
 
 export const ModalDonate = () => {
-  const { open, onClose } = useModal()
+  const { open, onClose } = useModalDonate()
   const [contentAnimated] = useAutoAnimate<HTMLDivElement>()
   const [active, setActive] = useState<Options>('mp')
 

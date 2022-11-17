@@ -1,10 +1,10 @@
-import { useModal } from '@/context/Modal'
+import { useModalDonate } from '@/context/Modal'
 
 import { Button } from '../Form/Button'
 import * as S from './styles'
 
 export const CtaDonate = () => {
-  const { onOpen } = useModal()
+  const { onOpen } = useModalDonate()
   return (
     <S.Wrapper onClick={() => onOpen()}>
       <S.Container>

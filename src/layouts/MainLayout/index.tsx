@@ -4,14 +4,16 @@ import { Outlet, useLocation } from 'react-router-dom'
 
 import { Footer } from '@/components/Footer'
 import { ModalDonate } from '@/components/ModalDonate'
+import { ModalSubscribe } from '@/components/ModalSubscribe'
 import { Navbar } from '@/components/Navbar'
 import { Mobile } from '@/components/Navbar/Mobile'
-import { useModal } from '@/context/Modal'
+import { useModalDonate, useModalSubscribe } from '@/context/Modal'
 
 import * as S from './styles'
 
 export const MainLayout = () => {
-  const { onOpen } = useModal()
+  const { onOpen } = useModalDonate()
+  const { onOpen: onOpenSubscribe } = useModalSubscribe()
   const { pathname } = useLocation()
   const contentRef = useRef<HTMLDivElement>(null)
   const [isMenuExpand, setIsMenuExpand] = useState(false)
@@ -30,6 +32,7 @@ export const MainLayout = () => {
         isExpanded={isMenuExpand}
       />
       <S.Content ref={contentRef}>
+        <button onClick={onOpenSubscribe}>subscribe modal</button>
         <Outlet />
         <Footer />
       </S.Content>
@@ -48,6 +51,7 @@ export const MainLayout = () => {
         </S.DonateButton>
       </S.Donate>
       <ModalDonate />
+      <ModalSubscribe />
     </S.Wrapper>
   )
 }

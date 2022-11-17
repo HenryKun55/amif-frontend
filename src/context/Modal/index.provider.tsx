@@ -1,27 +1,17 @@
-import { ReactNode, useState } from 'react'
+import { ReactNode } from 'react'
 
-import { MainContext } from '.'
+import { DonateProvider } from '@/context/Modal/donate.provider'
+
+import { SubscribeProvider } from './subscribe.provider'
 
 type ModalProviderProps = {
   children: ReactNode
 }
 
-export function ModalProvider({ children }: ModalProviderProps) {
-  const [open, setOpen] = useState(false)
-
-  const onOpen = () => {
-    setOpen(true)
-  }
-
-  const onClose = () => {
-    setOpen(false)
-  }
-
-  const value = {
-    open,
-    onOpen,
-    onClose,
-  }
-
-  return <MainContext.Provider value={value}>{children}</MainContext.Provider>
+export const ModalProvider = ({ children }: ModalProviderProps) => {
+  return (
+    <SubscribeProvider>
+      <DonateProvider>{children}</DonateProvider>
+    </SubscribeProvider>
+  )
 }
