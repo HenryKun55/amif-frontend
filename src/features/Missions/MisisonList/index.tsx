@@ -4,6 +4,8 @@
  *
  */
 
+import { Fragment } from 'react'
+
 import { useListMissionsQuery } from '@/api/missions'
 import { Pagination } from '@/components/Table/Pagination'
 import { usePagePagination } from '@/hooks/usePagePagination'
@@ -33,24 +35,32 @@ export const MissionList = () => {
 
   return (
     <S.Container>
-      {isLoading && <div>Carregando...</div>}
-      <S.CardsContainer>
-        {data?.data.map(mission => (
-          <S.CardMission key={mission.id} mission={mission} />
-        ))}
-      </S.CardsContainer>
+      {isLoading && (
+        <S.CardsContainer withPaddingBottom>
+          {Array.from({ length: PER_PAGE }).map((_, idx) => (
+            <S.Skeleton key={idx} />
+          ))}
+        </S.CardsContainer>
+      )}
       {!isLoading && (
-        <S.PaginationWrapper>
-          <Pagination
-            siblingCount={1}
-            currentPage={page}
-            totalCount={data?.total || 0}
-            pageSize={PER_PAGE}
-            next="Próximo"
-            previous="Anterior"
-            onPageChange={handlePageChange}
-          />
-        </S.PaginationWrapper>
+        <Fragment>
+          <S.CardsContainer>
+            {data?.data?.map(mission => (
+              <S.CardMission key={mission.id} mission={mission} />
+            ))}
+          </S.CardsContainer>
+          <S.PaginationWrapper>
+            <Pagination
+              siblingCount={1}
+              currentPage={page}
+              totalCount={data?.total || 0}
+              pageSize={PER_PAGE}
+              next="Próximo"
+              previous="Anterior"
+              onPageChange={handlePageChange}
+            />
+          </S.PaginationWrapper>
+        </Fragment>
       )}
     </S.Container>
   )

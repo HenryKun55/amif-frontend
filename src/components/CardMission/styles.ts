@@ -8,9 +8,9 @@ export const Container = styled(Link)([
   tw`hover:(shadow-lg -translate-y-1)`,
 ])
 
-export const Header = styled.div([tw`w-full h-[175px] max-h-[66%]`])
+export const Header = styled.div([tw`w-full h-[175px] max-h-[66%] rounded-t`])
 
-export const Image = styled.img([tw`w-full h-full object-cover`])
+export const Image = styled.img([tw`w-full h-full object-cover rounded-t`])
 
 export const Content = styled.div([tw`flex flex-col bg-white p-2`])
 
