@@ -11,6 +11,7 @@ import { MouseEventHandler, useMemo } from 'react'
 import { BsClock } from 'react-icons/bs'
 import { HiOutlineLocationMarker } from 'react-icons/hi'
 
+import { Event } from '@/api/models'
 import { Routes } from '@/routes/routes'
 
 import DefaultImage from '../../assets/default-image.svg'
@@ -18,21 +19,7 @@ import { Button } from '../Form/Button'
 import * as S from './styles'
 
 type CardEventProps = {
-  event: {
-    id: string
-    startDate: string
-    startHour: string
-    canSubscribe: boolean
-    title: string
-    images: {
-      id: string
-      url: string
-    }[]
-    address?: {
-      state?: string
-      city?: string
-    }
-  }
+  event: Event
   className?: string
   onSubscribe?: () => void
 }
