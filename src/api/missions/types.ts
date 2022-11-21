@@ -26,7 +26,7 @@ export type ListMissionsResponse = Paged<Mission>
 export type CreateMissionRequest = {
   title: string
   description: string
-  youtubeUrl?: string
+  youtubeUrl?: string | null
   startDate: string
   startHour: string
   address: {
@@ -68,4 +68,8 @@ export type UploadMissionImageRequest = {
 export type DeleteMissionImageRequest = {
   missionId: string
   imageId: string
+}
+
+export type DeleteMissionRequest = {
+  id: string
 }
