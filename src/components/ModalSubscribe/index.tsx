@@ -1,17 +1,20 @@
+import { useMemo } from 'react'
 import ReactModal from 'react-modal'
 
-import { useModalSubscribe } from '@/context/Modal'
+import { useModal } from '@/context/Modal'
 
 import * as S from './styles'
 
 export const ModalSubscribe = () => {
-  const { open, onClose } = useModalSubscribe()
+  const { open, onClose } = useModal()
+
+  const type = useMemo(() => 'subscribe', [])
 
   return (
     <ReactModal
       style={S.reactModalStyles}
-      isOpen={open}
-      onRequestClose={onClose}
+      isOpen={open(type)}
+      onRequestClose={() => onClose(type)}
     >
       opa
     </ReactModal>

@@ -1,29 +1,49 @@
 import { ReactNode, useState } from 'react'
 
-import { DonateContext } from '.'
+import { Context, ModalOpenProps } from '.'
 
-type DonateProviderProps = {
+type ModalProviderProps = {
   children: ReactNode
 }
 
-export function DonateProvider({ children }: DonateProviderProps) {
-  const [open, setOpen] = useState(false)
+const defaultOpenValues: ModalOpenProps[] = [
+  {
+    type: 'donate',
+  },
+  {
+    type: 'subscribe',
+  },
+]
 
-  const onOpen = () => {
-    setOpen(true)
+export function ModalProvider({ children }: ModalProviderProps) {
+  const [open, setOpen] = useState<ModalOpenProps[]>(defaultOpenValues)
+
+  const handleMode = (type: string, mode: boolean) => {
+    setOpen(options =>
+      options.map(option => {
+        if (option.type === type)
+          return {
+            type,
+            open: mode,
+          }
+        return option
+      }),
+    )
   }
 
-  const onClose = () => {
-    setOpen(false)
+  const onOpen = (type: string) => {
+    handleMode(type, true)
+  }
+
+  const onClose = (type: string) => {
+    handleMode(type, false)
   }
 
   const value = {
-    open,
+    open: (type: string) => !!open?.find(o => o.open && o.type === type),
     onOpen,
     onClose,
   }
 
-  return (
-    <DonateContext.Provider value={value}>{children}</DonateContext.Provider>
-  )
+  return <Context.Provider value={value}>{children}</Context.Provider>
 }

@@ -1,28 +1,27 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { createContext, useContext } from 'react'
 
+export type ModalOpenProps = {
+  type: string
+  open?: boolean
+}
+
 type ModalContext = {
-  open: boolean
-  onOpen: () => void
-  onClose: () => void
+  open: (type: string) => boolean
+  onOpen: (type: string) => void
+  onClose: (type: string) => void
 }
 
 export const modalContextDefaultValues: ModalContext = {
-  open: false,
+  open: () => false,
   onOpen: () => {},
   onClose: () => {},
 }
 
 const makeContext = createContext<ModalContext>(modalContextDefaultValues)
 
-export const DonateContext = makeContext
+export const Context = makeContext
 
-export const SubscribeContext = makeContext
-
-export function useModalDonate() {
-  return useContext(DonateContext)
-}
-
-export function useModalSubscribe() {
-  return useContext(SubscribeContext)
+export function useModal() {
+  return useContext(makeContext)
 }

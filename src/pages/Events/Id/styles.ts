@@ -38,7 +38,9 @@ export const TitleContainer = styled.div([
 
 export const Title = styled.h1([tw`text-4xl font-bold`])
 
-export const Info = styled.div([tw`flex gap-2 justify-start items-center`])
+export const Info = styled.div([
+  tw`w-full flex gap-2 justify-start items-center`,
+])
 
 export type InfoTextProps = {
   highlight?: boolean
@@ -49,10 +51,16 @@ export const InfoText = styled.span<InfoTextProps>(({ highlight }) => [
   highlight && tw`text-blue-400 cursor-pointer`,
 ])
 
+export const DescriptionContainer = styled.div([
+  tw`w-full py-6 flex flex-col justify-between md:flex-row`,
+])
+
+export const DescriptionContent = styled.div([tw`flex gap-4 flex-col`])
+
 export const DescriptionTitle = styled.h2([
   tw`text-2xl pt-5 text-gray-700 font-bold`,
 ])
 
-export const Description = styled.p([tw`text-xl lg:max-w-xl`])
+export const DescriptionText = styled.p([tw`text-xl lg:max-w-xl`])
 
 export const Button = styled(ButtonComponent)([tw`z-50 mb-5`])

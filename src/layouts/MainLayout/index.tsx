@@ -7,13 +7,12 @@ import { ModalDonate } from '@/components/ModalDonate'
 import { ModalSubscribe } from '@/components/ModalSubscribe'
 import { Navbar } from '@/components/Navbar'
 import { Mobile } from '@/components/Navbar/Mobile'
-import { useModalDonate, useModalSubscribe } from '@/context/Modal'
+import { useModal } from '@/context/Modal'
 
 import * as S from './styles'
 
 export const MainLayout = () => {
-  const { onOpen } = useModalDonate()
-  const { onOpen: onOpenSubscribe } = useModalSubscribe()
+  const { onOpen } = useModal()
   const { pathname } = useLocation()
   const contentRef = useRef<HTMLDivElement>(null)
   const [isMenuExpand, setIsMenuExpand] = useState(false)
@@ -32,7 +31,7 @@ export const MainLayout = () => {
         isExpanded={isMenuExpand}
       />
       <S.Content ref={contentRef}>
-        <button onClick={onOpenSubscribe}>subscribe modal</button>
+        <button onClick={() => onOpen('subscribe')}>open subscribe</button>
         <Outlet />
         <Footer />
       </S.Content>
@@ -42,7 +41,7 @@ export const MainLayout = () => {
           shape="pill"
           onMouseOver={() => setTooltipVisible(true)}
           onMouseLeave={() => setTooltipVisible(false)}
-          onClick={onOpen}
+          onClick={() => onOpen('donate')}
         >
           <BiDonateHeart size={50} />
           <S.Tooltip visible={tooltipVisible}>

@@ -6,6 +6,8 @@ import ImageGallery, { ReactImageGalleryItem } from 'react-image-gallery'
 import { Navigate, useParams } from 'react-router-dom'
 
 import { useFetchEventQuery } from '@/api/events'
+import { MapsEmbed } from '@/components/MapsEmbed'
+import { YouTubeEmbed } from '@/components/YouTubeEmbed'
 import { Routes } from '@/routes/routes'
 
 import * as S from './styles'
@@ -76,8 +78,14 @@ export const EventsId = () => {
             {theAddress}
           </S.InfoText>
         </S.Info>
-        <S.DescriptionTitle>Descrição do Evento</S.DescriptionTitle>
-        <S.Description>{event.description}</S.Description>
+        <S.DescriptionContainer>
+          <S.DescriptionContent>
+            <S.DescriptionTitle>Descrição do Evento</S.DescriptionTitle>
+            <S.DescriptionText>{event.description}</S.DescriptionText>
+          </S.DescriptionContent>
+          {videoId && <YouTubeEmbed videoId={videoId} />}
+        </S.DescriptionContainer>
+        <MapsEmbed address={theAddress} />
       </S.Content>
     </S.Container>
   )
