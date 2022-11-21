@@ -19,6 +19,7 @@ import { Events } from '@/pages/Events'
 import { EventsId } from '@/pages/Events/Id'
 import { Home } from '@/pages/Home'
 import { Missions } from '@/pages/Missions'
+import { MissionsId } from '@/pages/Missions/Id'
 import { NotFound } from '@/pages/NotFound'
 import { Playground } from '@/pages/Playground'
 
@@ -37,6 +38,7 @@ export const Router = () => {
           <DOMRoute path={Routes.Eventos} element={<Events />} />
           <DOMRoute path={Routes.Eventos_Id} element={<EventsId />} />
           <DOMRoute path={Routes.Missoes} element={<Missions />} />
+          <DOMRoute path={Routes.Missoes_Id} element={<MissionsId />} />
         </DOMRoute>
 
         <DOMRoute path={AdminRoutes.Admin_SignIn} element={<SignIn />} />
