@@ -47,7 +47,7 @@ export type UpdateMissionRequest = {
   id: string
   title: string
   description: string
-  youtubeUrl?: string
+  youtubeUrl?: string | null
   startDate: string
   startHour: string
   address: {
