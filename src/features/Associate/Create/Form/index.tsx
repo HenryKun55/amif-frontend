@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useCallback, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 import { useCreateAssociateMutation } from '@/api/associates'
 import { Checkbox } from '@/components/Form/Checkbox'
@@ -32,7 +33,10 @@ export const FormAssociate = () => {
   const onSubmit = useCallback((data: FormProps) => {
     createAssociate(data)
       .unwrap()
-      .then(() => navigate(Routes.Home))
+      .then(() => {
+        toast.success('Solicitação enviada.')
+        navigate(Routes.Home)
+      })
   }, [])
 
   return (
