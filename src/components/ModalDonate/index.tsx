@@ -19,7 +19,7 @@ export const ModalDonate = () => {
   const [contentAnimated] = useAutoAnimate<HTMLDivElement>()
   const [active, setActive] = useState<Options>('mp')
 
-  const type = useMemo(() => 'donate', [])
+  const type = 'donate'
 
   const handleActiveMenu = (item: Options) => {
     setActive(item)
