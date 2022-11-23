@@ -11,6 +11,7 @@ import { AdminEventsCreate } from '@/pages/Admin/Events/Create'
 import { AdminEventsId } from '@/pages/Admin/Events/Id'
 import { AdminHome } from '@/pages/Admin/Home'
 import { AdminMaintainers } from '@/pages/Admin/Maintainers'
+import { AdminMaintainersCreate } from '@/pages/Admin/Maintainers/Create'
 import { AdminMissions } from '@/pages/Admin/Missions'
 import { AdminMissionsCreate } from '@/pages/Admin/Missions/Create'
 import { AdminMissionsId } from '@/pages/Admin/Missions/Id'
@@ -73,6 +74,10 @@ export const Router = () => {
           <DOMRoute
             path={AdminRoutes.Admin_Mantenedores}
             element={<AdminMaintainers />}
+          />
+          <DOMRoute
+            path={AdminRoutes.Admin_Mantenedores_Criar}
+            element={<AdminMaintainersCreate />}
           />
         </DOMRoute>
       </DOMRoutes>

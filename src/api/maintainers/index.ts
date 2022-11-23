@@ -1,8 +1,14 @@
 import api from '..'
-import { ListMaintainersRequest, ListMaintainersResponse } from './types'
+import {
+  CreateMaintainerRequest,
+  CreateMaintainerResponse,
+  ListMaintainersRequest,
+  ListMaintainersResponse,
+} from './types'
 
 const endpoints = {
   listMaintainers: () => 'maintainers',
+  createMaintainer: () => 'maintainers',
 }
 
 const maintainersApi = api.injectEndpoints({
@@ -17,10 +23,22 @@ const maintainersApi = api.injectEndpoints({
       }),
       providesTags: ['Maintaners'],
     }),
+    createMaintainer: builder.mutation<
+      CreateMaintainerResponse,
+      CreateMaintainerRequest
+    >({
+      query: body => ({
+        url: endpoints.createMaintainer(),
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: ['Maintaners'],
+    }),
   }),
   overrideExisting: false,
 })
 
-export const { useListMaintainersQuery } = maintainersApi
+export const { useListMaintainersQuery, useCreateMaintainerMutation } =
+  maintainersApi
 
 export default maintainersApi

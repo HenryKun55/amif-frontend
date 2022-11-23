@@ -12,3 +12,23 @@ export type ListMaintainersRequest = PagedRequest<MaintainerSortBy> & {
 }
 
 export type ListMaintainersResponse = Paged<Maintainer>
+
+export type CreateMaintainerRequest = {
+  name: string
+  cpf: string
+  phone: string
+  donateAmount: number
+  donateDay: number
+  address: {
+    state: string
+    district: string
+    city: string
+    street: string
+    number: string
+    zipCode: string
+  }
+}
+
+export type CreateMaintainerResponse = {
+  maintainerId: string
+}

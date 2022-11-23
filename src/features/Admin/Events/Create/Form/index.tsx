@@ -8,6 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useCallback, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 import { uploadEventImage, useCreateEventMutation } from '@/api/events'
 import { AddressForm } from '@/components/AddressForm'
@@ -57,7 +58,7 @@ export const CreateEventForm = () => {
         )
       } catch (error) {
         const err = error as { message: string }
-        alert(err.message)
+        toast.error(err.message)
       } finally {
         if (isEventCreated) {
           navigate(AdminRoutes.Admin_Eventos)
