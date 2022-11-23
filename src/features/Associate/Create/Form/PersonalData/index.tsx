@@ -43,7 +43,7 @@ export const PersonalData = () => {
           required
           name="rg"
           label="R.G"
-          placeholder="Informe o numero do documento"
+          placeholder="Informe o número do documento"
           register={register}
           errors={errors}
         />
@@ -51,7 +51,7 @@ export const PersonalData = () => {
           required
           name="cpf"
           label="CPF"
-          placeholder="Informe o numero do CPF"
+          placeholder="Informe o número do CPF"
           register={register}
           errors={errors}
         />
@@ -59,7 +59,7 @@ export const PersonalData = () => {
           required
           name="phone"
           label="Telefone"
-          placeholder="Informe o numero de contato"
+          placeholder="Informe o número de contato"
           register={register}
           errors={errors}
         />

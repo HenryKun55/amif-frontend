@@ -29,5 +29,5 @@ export type CreateAssociateRequest = {
 }
 
 export type CreateAssociateResponse = {
-  AssociateId: string
+  associateId: string
 }
