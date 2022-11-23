@@ -19,10 +19,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
     return (
       <S.Container className={className}>
         <S.Wrapper>
-          <S.Label
-            htmlFor={String(value)}
-            onClick={({ currentTarget }) => console.log(currentTarget)}
-          >
+          <S.Label htmlFor={String(value)}>
             <S.Radio
               {...props}
               ref={ref}
