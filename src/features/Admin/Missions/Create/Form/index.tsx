@@ -44,7 +44,10 @@ export const CreateMissionForm = () => {
       setIsUploadingImages(true)
       let isMissionCreated = false
       try {
-        const { missionId } = await createMission(data).unwrap()
+        const { missionId } = await createMission({
+          ...data,
+          youtubeUrl: data.youtubeUrl || undefined,
+        }).unwrap()
         isMissionCreated = true
         await Promise.all(
           images.map(async image => {

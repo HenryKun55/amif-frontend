@@ -19,6 +19,8 @@ import { Donate } from '@/pages/Donate'
 import { Events } from '@/pages/Events'
 import { EventsId } from '@/pages/Events/Id'
 import { Home } from '@/pages/Home'
+import { Missions } from '@/pages/Missions'
+import { MissionsId } from '@/pages/Missions/Id'
 import { NotFound } from '@/pages/NotFound'
 import { Playground } from '@/pages/Playground'
 
@@ -33,10 +35,12 @@ export const Router = () => {
         <DOMRoute path={Routes.Home} element={<MainLayout />}>
           <DOMRoute path="*" element={<NotFound />} />
           <DOMRoute index element={<Home />} />
-          <DOMRoute path={Routes.Donate} element={<Donate />} />
+          <DOMRoute path={Routes.Doe} element={<Donate />} />
           <DOMRoute path={Routes.Eventos} element={<Events />} />
           <DOMRoute path={Routes.Eventos_Id} element={<EventsId />} />
-          <DOMRoute path={Routes.Associate} element={<Associate />} />
+          <DOMRoute path={Routes.Associados} element={<Associate />} />
+          <DOMRoute path={Routes.Missoes} element={<Missions />} />
+          <DOMRoute path={Routes.Missoes_Id} element={<MissionsId />} />
         </DOMRoute>
 
         <DOMRoute path={AdminRoutes.Admin_SignIn} element={<SignIn />} />

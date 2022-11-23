@@ -2,33 +2,39 @@ import { useMemo } from 'react'
 import ImageGallery, { ReactImageGalleryItem } from 'react-image-gallery'
 import { Navigate, useParams } from 'react-router-dom'
 
-import { useFetchEventQuery } from '@/api/events'
+import { useFetchMissionQuery } from '@/api/missions'
 import { YouTubeEmbed } from '@/components/YouTubeEmbed'
 import { Routes } from '@/routes/routes'
 import { getIdFromYouTubeUrl } from '@/utils/youtube'
 
 import * as S from './styles'
 
-export const EventsId = () => {
+export const MissionsId = () => {
   const params = useParams<{ id: string }>()
   const id = params.id || ''
-  const { data: event, isLoading } = useFetchEventQuery({ id })
+  const { data: mission, isLoading } = useFetchMissionQuery({ id })
 
-  const videoId = useMemo(() => getIdFromYouTubeUrl(event?.youtubeUrl), [event])
+  const videoId = useMemo(
+    () => getIdFromYouTubeUrl(mission?.youtubeUrl),
+    [mission],
+  )
 
   const images: ReactImageGalleryItem[] = useMemo(
     () =>
-      event?.images.map(
-        image => ({ original: image.url } as ReactImageGalleryItem),
+      mission?.images.map(
+        image =>
+          ({
+            original: image.url,
+            thumbnail: image.url,
+          } as ReactImageGalleryItem),
       ) || [],
-    [event],
+    [mission],
   )
 
   if (isLoading) {
-    return <div>Loading... </div>
+    return <div>Carregando...</div>
   }
-
-  if (!event) {
+  if (!mission) {
     return <Navigate to={Routes.NotFound} replace />
   }
 
@@ -38,15 +44,15 @@ export const EventsId = () => {
         <ImageGallery
           items={images}
           showPlayButton={false}
-          showThumbnails={false}
+          showBullets={false}
           showFullscreenButton={false}
-          showBullets={images.length > 1}
+          showThumbnails={images.length > 1}
         />
       </S.Banner>
       <S.Content>
         <S.LeftContent>
-          <S.Title>{event.title}</S.Title>
-          <S.Description>{event.description}</S.Description>
+          <S.Title>{mission.title}</S.Title>
+          <S.Description>{mission.description}</S.Description>
         </S.LeftContent>
         <S.RightContent>
           {videoId && <YouTubeEmbed videoId={videoId} />}

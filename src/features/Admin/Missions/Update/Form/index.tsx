@@ -89,7 +89,11 @@ export const UpdateMissionForm = ({ mission }: UpdateMissionFormProps) => {
     async (data: FormProps) => {
       setIsUploadingImages(true)
       try {
-        await updateMission({ id: mission.id, ...data }).unwrap()
+        await updateMission({
+          ...data,
+          id: mission.id,
+          youtubeUrl: data.youtubeUrl || undefined,
+        }).unwrap()
         const { toDelete, toUpload } = getDiffImages(images, mission.images)
         await uploadImages(toUpload)
         await deleteImages(toDelete)

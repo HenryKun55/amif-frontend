@@ -29,16 +29,16 @@ export const Footer = () => {
           </S.Social>
         </S.Content>
         <S.Navigation>
-          <S.NavigationLink to={Routes.Mission}>
+          <S.NavigationLink to={Routes.Missoes}>
             <S.NavigationText>Missões</S.NavigationText>
           </S.NavigationLink>
           <S.NavigationLink to={Routes.Eventos}>
             <S.NavigationText>Eventos</S.NavigationText>
           </S.NavigationLink>
-          <S.NavigationLink to={Routes.Associate}>
+          <S.NavigationLink to={Routes.Associados}>
             <S.NavigationText>Torne-se um Associado</S.NavigationText>
           </S.NavigationLink>
-          <S.NavigationLink to={Routes.Donate}>
+          <S.NavigationLink to={Routes.Doe}>
             <S.NavigationText>Doe</S.NavigationText>
           </S.NavigationLink>
         </S.Navigation>

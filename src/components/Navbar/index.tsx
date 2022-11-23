@@ -20,10 +20,10 @@ import * as S from './style'
 export const menuItems = [
   { name: 'Início', href: Routes.Home, icon: <AiOutlineHome size={25} /> },
   { name: 'Eventos', href: Routes.Eventos, icon: <BsCalendarEvent /> },
-  { name: 'Missões', href: Routes.Mission, icon: <GiCrucifix /> },
+  { name: 'Missões', href: Routes.Missoes, icon: <GiCrucifix /> },
   {
     name: 'Torne-se um Associado',
-    href: Routes.Associate,
+    href: Routes.Associados,
     icon: <BiDonateHeart />,
   },
 ]
@@ -62,7 +62,7 @@ export const Navbar = ({ onOpenMobile }: NavbarProps) => {
             ))}
           </S.Menu>
         </S.Content>
-        <S.Donate to={Routes.Donate}>
+        <S.Donate to={Routes.Doe}>
           <Button variant="outlined" shape="pill">
             Doe
           </Button>
