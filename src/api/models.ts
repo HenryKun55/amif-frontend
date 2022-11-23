@@ -7,6 +7,15 @@ export type User = {
   }
 }
 
+export type Address = {
+  state?: string
+  district?: string
+  city?: string
+  street?: string
+  number?: string
+  zipCode?: string
+}
+
 export type Event = {
   id: string
   title: string
@@ -36,14 +45,7 @@ export type Event = {
     id?: string
     username?: string
   }
-  address?: {
-    state?: string
-    district?: string
-    city?: string
-    street?: string
-    number?: string
-    zipCode?: string
-  }
+  address?: Address
 }
 
 export type Mission = {
@@ -62,14 +64,19 @@ export type Mission = {
     id?: string
     username?: string
   }
-  address?: {
-    state?: string
-    district?: string
-    city?: string
-    street?: string
-    number?: string
-    zipCode?: string
-  }
+  address?: Address
+}
+
+export type Maintainer = {
+  id: string
+  name: string
+  address?: Address
+  cpf: string
+  phone: string
+  donateAmount: number
+  donateDate: string
+  isActive?: boolean
+  createdAt?: string
 }
 
 export type Associate = {

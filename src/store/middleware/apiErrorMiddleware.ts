@@ -1,18 +1,9 @@
 import { Middleware } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
 
-import { AppState } from '../types'
+import { ApiError } from '@/api/types'
 
-type ApiError = {
-  app?: {
-    type: 'danger' | 'warning'
-    message: string
-  }[]
-  field?: {
-    name: string
-    message: string
-  }[]
-}
+import { AppState } from '../types'
 
 const apiErrorMiddleware: Middleware<any, AppState> = () => {
   return next => action => {
