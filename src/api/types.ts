@@ -14,3 +14,14 @@ export type Paged<T> = {
   perPage: number
   data: T[]
 }
+
+export type ApiError = {
+  app?: {
+    type: 'danger' | 'warning'
+    message: string
+  }[]
+  fields?: {
+    name: string
+    message: string
+  }[]
+}
