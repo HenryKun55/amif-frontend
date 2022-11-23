@@ -19,8 +19,8 @@ export const Title = styled.h3(
 
 export const Input = styled(InputComponent)(tw`max-w-2xl`) as InputAs<FormProps>
 
-export const Button = styled(ButtonComponent)(tw`
-  w-4/12
+export const Button = styled(ButtonComponent)(tw`w-full
+  md:w-4/12
 `)
 
 export const WrapperButton = styled.div(tw`w-full flex justify-center`)
