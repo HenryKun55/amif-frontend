@@ -4,6 +4,8 @@ export const requiredString = z
   .string({ required_error: 'Campo obrigatório.' })
   .min(1, 'Campo obrigatório')
 
+export const optionalString = z.string().optional()
+
 export const requiredTodayDate = requiredString.refine(value => {
   const [theDate] = value.split('T')
   return new Date(`${theDate}T23:59:59`) >= new Date()

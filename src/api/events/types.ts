@@ -83,3 +83,18 @@ export type DeleteEventImageRequest = {
 export type MakeEventMainRequest = {
   eventId: string
 }
+
+export type SubscribeToEventRequest = {
+  eventId: string
+  pastorName?: string
+  howKnow?: string
+  church?: string
+  alreadyHeard?: string | boolean
+  phone: string
+  name: string
+  email: string
+}
+
+export type SubscribeToEventResponse = {
+  subscriptionId: string
+}

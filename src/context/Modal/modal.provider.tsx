@@ -16,6 +16,7 @@ const defaultOpenValues: ModalOpenProps[] = [
 ]
 
 export function ModalProvider({ children }: ModalProviderProps) {
+  const [eventId, setEventId] = useState('')
   const [open, setOpen] = useState<ModalOpenProps[]>(defaultOpenValues)
 
   const handleMode = (type: string, mode: boolean) => {
@@ -31,16 +32,19 @@ export function ModalProvider({ children }: ModalProviderProps) {
     )
   }
 
-  const onOpen = (type: string) => {
+  const onOpen = (type: string, eventId?: string) => {
     handleMode(type, true)
+    eventId && setEventId(eventId)
   }
 
   const onClose = (type: string) => {
     handleMode(type, false)
+    setEventId('')
   }
 
   const value = {
     open: (type: string) => !!open?.find(o => o.open && o.type === type),
+    eventId,
     onOpen,
     onClose,
   }

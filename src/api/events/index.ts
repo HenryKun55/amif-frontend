@@ -11,6 +11,8 @@ import {
   ListEventsReponse,
   ListEventsRequest,
   MakeEventMainRequest,
+  SubscribeToEventRequest,
+  SubscribeToEventResponse,
   UpdateEventRequest,
   UploadEventImageRequest,
 } from './types'
@@ -27,6 +29,7 @@ const endpoints = {
   uploadImage: (id: string) => `events/${id}/upload`,
   deleteImage: (eventId: string, imageId: string) =>
     `events/${eventId}/images/${imageId}`,
+  subscribeToEvent: (id: string) => `events/${id}/subscribe`,
 }
 
 const eventsApi = api.injectEndpoints({
@@ -89,6 +92,17 @@ const eventsApi = api.injectEndpoints({
       }),
       invalidatesTags: ['Events', { type: 'Events', id: 'Id' }],
     }),
+    createSubscribeToEvent: builder.mutation<
+      SubscribeToEventResponse,
+      SubscribeToEventRequest
+    >({
+      query: ({ eventId, ...body }) => ({
+        url: endpoints.subscribeToEvent(eventId),
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: ['Events'],
+    }),
   }),
   overrideExisting: false,
 })
@@ -113,6 +127,7 @@ export const {
   useActivateEventMutation,
   useDeactivateEventMutation,
   useDeleteEventImageMutation,
+  useCreateSubscribeToEventMutation,
 } = eventsApi
 
 export default eventsApi

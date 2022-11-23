@@ -7,12 +7,14 @@ export type ModalOpenProps = {
 }
 
 type ModalContext = {
+  eventId: string
   open: (type: string) => boolean
-  onOpen: (type: string) => void
+  onOpen: (type: string, eventId?: string) => void
   onClose: (type: string) => void
 }
 
 export const modalContextDefaultValues: ModalContext = {
+  eventId: '',
   open: () => false,
   onOpen: () => {},
   onClose: () => {},

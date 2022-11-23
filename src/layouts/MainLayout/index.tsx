@@ -31,7 +31,6 @@ export const MainLayout = () => {
         isExpanded={isMenuExpand}
       />
       <S.Content ref={contentRef}>
-        <button onClick={() => onOpen('subscribe')}>open subscribe</button>
         <Outlet />
         <Footer />
       </S.Content>

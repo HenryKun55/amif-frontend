@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 /**
  *
  * Checkbox
@@ -26,7 +27,6 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     ref,
   ) => {
     const defaultRef = useRef<HTMLInputElement | null>(null)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const resolvedRef: any = ref || defaultRef
 
     useEffect(() => {

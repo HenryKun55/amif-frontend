@@ -8,6 +8,7 @@ import { Navigate, useParams } from 'react-router-dom'
 import { useFetchEventQuery } from '@/api/events'
 import { MapsEmbed } from '@/components/MapsEmbed'
 import { YouTubeEmbed } from '@/components/YouTubeEmbed'
+import { useModal } from '@/context/Modal'
 import { Routes } from '@/routes/routes'
 
 import * as S from './styles'
@@ -21,6 +22,7 @@ function getIdFromYouTubeUrl(url?: string) {
 }
 
 export const EventsId = () => {
+  const { onOpen } = useModal()
   const params = useParams<{ id: string }>()
   const id = params.id || ''
   const { data: event, isLoading } = useFetchEventQuery({ id })
@@ -66,7 +68,9 @@ export const EventsId = () => {
       <S.Content>
         <S.TitleContainer>
           <S.Title>{event.title}</S.Title>
-          <S.Button>Increver-se</S.Button>
+          <S.Button onClick={() => onOpen('subscribe', event.id)}>
+            Inscreva-se
+          </S.Button>
         </S.TitleContainer>
         <S.Info>
           <BsClock size={20} />
