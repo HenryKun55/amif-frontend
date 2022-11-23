@@ -10,14 +10,19 @@ import { AdminEvents } from '@/pages/Admin/Events'
 import { AdminEventsCreate } from '@/pages/Admin/Events/Create'
 import { AdminEventsId } from '@/pages/Admin/Events/Id'
 import { AdminHome } from '@/pages/Admin/Home'
+import { AdminMaintainers } from '@/pages/Admin/Maintainers'
+import { AdminMaintainersCreate } from '@/pages/Admin/Maintainers/Create'
 import { AdminMissions } from '@/pages/Admin/Missions'
 import { AdminMissionsCreate } from '@/pages/Admin/Missions/Create'
 import { AdminMissionsId } from '@/pages/Admin/Missions/Id'
 import { SignIn } from '@/pages/Admin/SignIn'
+import { Associate } from '@/pages/Associate'
 import { Donate } from '@/pages/Donate'
 import { Events } from '@/pages/Events'
 import { EventsId } from '@/pages/Events/Id'
 import { Home } from '@/pages/Home'
+import { Missions } from '@/pages/Missions'
+import { MissionsId } from '@/pages/Missions/Id'
 import { NotFound } from '@/pages/NotFound'
 import { Playground } from '@/pages/Playground'
 
@@ -32,9 +37,12 @@ export const Router = () => {
         <DOMRoute path={Routes.Home} element={<MainLayout />}>
           <DOMRoute path="*" element={<NotFound />} />
           <DOMRoute index element={<Home />} />
-          <DOMRoute path={Routes.Donate} element={<Donate />} />
+          <DOMRoute path={Routes.Doe} element={<Donate />} />
           <DOMRoute path={Routes.Eventos} element={<Events />} />
           <DOMRoute path={Routes.Eventos_Id} element={<EventsId />} />
+          <DOMRoute path={Routes.Associados} element={<Associate />} />
+          <DOMRoute path={Routes.Missoes} element={<Missions />} />
+          <DOMRoute path={Routes.Missoes_Id} element={<MissionsId />} />
         </DOMRoute>
 
         <DOMRoute path={AdminRoutes.Admin_SignIn} element={<SignIn />} />
@@ -64,6 +72,14 @@ export const Router = () => {
           <DOMRoute
             path={AdminRoutes.Admin_Missoes_Id}
             element={<AdminMissionsId />}
+          />
+          <DOMRoute
+            path={AdminRoutes.Admin_Mantenedores}
+            element={<AdminMaintainers />}
+          />
+          <DOMRoute
+            path={AdminRoutes.Admin_Mantenedores_Criar}
+            element={<AdminMaintainersCreate />}
           />
         </DOMRoute>
       </DOMRoutes>

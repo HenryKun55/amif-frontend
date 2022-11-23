@@ -4,6 +4,7 @@ import {
   CreateMissionRequest,
   CreateMissionResponse,
   DeleteMissionImageRequest,
+  DeleteMissionRequest,
   FetchMissionRequest,
   FetchMissionResponse,
   ListMissionsRequest,
@@ -17,6 +18,7 @@ const endpoints = {
   listMissions: () => 'missions',
   createMission: () => 'missions',
   updateMission: (id: string) => `missions/${id}`,
+  deleteMission: (id: string) => `missions/${id}`,
   uploadImage: (id: string) => `missions/${id}/upload`,
   deleteImage: (missionId: string, imageId: string) =>
     `missions/${missionId}/images/${imageId}`,
@@ -54,6 +56,13 @@ const eventsApi = api.injectEndpoints({
       }),
       invalidatesTags: ['Missions'],
     }),
+    deleteMission: builder.mutation<void, DeleteMissionRequest>({
+      query: ({ id }) => ({
+        url: endpoints.deleteMission(id),
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Missions'],
+    }),
     deleteMissionImage: builder.mutation<void, DeleteMissionImageRequest>({
       query: ({ missionId, imageId }) => ({
         url: endpoints.deleteImage(missionId, imageId),
@@ -80,6 +89,7 @@ export const {
   useListMissionsQuery,
   useCreateMissionMutation,
   useUpdateMissionMutation,
+  useDeleteMissionMutation,
   useDeleteMissionImageMutation,
 } = eventsApi
 

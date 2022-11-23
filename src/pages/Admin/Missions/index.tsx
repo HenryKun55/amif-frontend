@@ -1,15 +1,17 @@
 import { format } from 'date-fns'
 import { useCallback, useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { MdOutlineRemoveRedEye, MdSearch } from 'react-icons/md'
+import { MdDelete, MdOutlineRemoveRedEye, MdSearch } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
 import { Column } from 'react-table'
+import { toast } from 'react-toastify'
 
-import { useListMissionsQuery } from '@/api/missions'
+import { useDeleteMissionMutation, useListMissionsQuery } from '@/api/missions'
 import { MissionSortBy } from '@/api/missions/types'
 import { Mission } from '@/api/models'
 import { Order } from '@/api/types'
 import { Breadcrumb } from '@/components/Breadcrumb'
+import { ModalConfirmAction } from '@/components/ModalConfirmAction'
 import { FetchDataProps, Table } from '@/components/Table'
 import { TableMenu } from '@/components/Table/Menu'
 import { useDebounce } from '@/hooks/useDebounce'
@@ -23,11 +25,16 @@ export const AdminMissions = () => {
     'startDate',
   )
   const [orderBy, setOrderBy] = useState<Order>('desc')
+  const [confirmDeleteMission, setConfirmDeleteMission] = useState<{
+    id?: string
+    isOpen: boolean
+  }>({ isOpen: false })
 
   const navigate = useNavigate()
   const { register, watch } = useForm()
   const searchDebounced = useDebounce(watch('search'), 300)
 
+  const [deleteMission] = useDeleteMissionMutation()
   const { data, isLoading } = useListMissionsQuery({
     page,
     orderBy,
@@ -91,6 +98,12 @@ export const AdminMissions = () => {
                       AdminRoutes.Admin_Missoes_Id.replace(':id', mission.id),
                     ),
                 },
+                {
+                  title: 'Deletar',
+                  icon: <MdDelete size={20} />,
+                  onClick: () =>
+                    setConfirmDeleteMission({ id: mission.id, isOpen: true }),
+                },
               ]}
             />
           ),
@@ -104,6 +117,17 @@ export const AdminMissions = () => {
     setOrderBy(args.orderBy || 'desc')
     setSortBy((args.sortBy || 'startsAt') as keyof MissionSortBy)
   }, [])
+
+  const handleDeleteMission = useCallback(() => {
+    const id = confirmDeleteMission.id
+    if (id) {
+      deleteMission({ id })
+        .unwrap()
+        .then(() => toast.success('Missão deletada'))
+        .catch(error => toast.error(error.message))
+        .finally(() => setConfirmDeleteMission({ isOpen: false }))
+    }
+  }, [confirmDeleteMission])
 
   return (
     <S.Container>
@@ -130,6 +154,12 @@ export const AdminMissions = () => {
           totalCount={data?.total || 0}
           onFetchData={handleFetchData}
           isLoading={isLoading}
+        />
+        <ModalConfirmAction
+          title="Tem certeza que deseja deletar essa missão?"
+          isOpen={confirmDeleteMission.isOpen}
+          onCancel={() => setConfirmDeleteMission({ isOpen: false })}
+          onConfirm={handleDeleteMission}
         />
       </S.Content>
     </S.Container>

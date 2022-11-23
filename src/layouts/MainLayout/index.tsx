@@ -4,7 +4,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 
 import { Footer } from '@/components/Footer'
 import { ModalDonate } from '@/components/ModalDonate'
-import { ModalSubscribe } from '@/components/ModalSubscribe'
+import { ModalSubscribeToEvent } from '@/components/ModalSubscribeToEvent'
 import { Navbar } from '@/components/Navbar'
 import { Mobile } from '@/components/Navbar/Mobile'
 import { useModal } from '@/context/Modal'
@@ -49,7 +49,7 @@ export const MainLayout = () => {
         </S.DonateButton>
       </S.Donate>
       <ModalDonate />
-      <ModalSubscribe />
+      <ModalSubscribeToEvent />
     </S.Wrapper>
   )
 }

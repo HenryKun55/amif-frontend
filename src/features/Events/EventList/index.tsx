@@ -1,10 +1,8 @@
-import { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
-
 import { useListEventsQuery } from '@/api/events'
 import { CardEvent } from '@/components/CardEvent'
 import { Skeleton } from '@/components/Skeleton'
 import { Pagination } from '@/components/Table/Pagination'
+import { usePagePagination } from '@/hooks/usePagePagination'
 import { Routes } from '@/routes/routes'
 
 import * as S from './styles'
@@ -12,8 +10,10 @@ import * as S from './styles'
 const PER_PAGE = 12
 
 export const EventList = () => {
-  const location = useLocation()
-  const [page, setPage] = useState(1)
+  const { page, setPage } = usePagePagination({
+    title: 'Eventos',
+    route: Routes.Eventos,
+  })
   const { data, isLoading } = useListEventsQuery({
     page,
     perPage: PER_PAGE,
@@ -28,22 +28,6 @@ export const EventList = () => {
       setPage(pageIndex)
     }
   }
-
-  useEffect(() => {
-    window.history.replaceState(
-      null,
-      'Eventos',
-      `${Routes.Eventos}?page=${page}`,
-    )
-  }, [page])
-
-  useEffect(() => {
-    const query = new URLSearchParams(location.search)
-    const pageParam = query.get('page')
-    if (pageParam) {
-      setPage(Number(pageParam))
-    }
-  }, [location.search])
 
   if (isLoading) {
     return (
@@ -65,11 +49,7 @@ export const EventList = () => {
     <S.Container>
       <S.EventList>
         {data.data.map(event => (
-          <CardEvent
-            key={event.id}
-            event={event}
-            onSubscribe={() => console.log('Subscribe')}
-          />
+          <CardEvent key={event.id} event={event} />
         ))}
       </S.EventList>
       <Pagination

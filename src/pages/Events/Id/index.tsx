@@ -8,21 +8,15 @@ import { Navigate, useParams } from 'react-router-dom'
 import { useFetchEventQuery } from '@/api/events'
 import { MapsEmbed } from '@/components/MapsEmbed'
 import { YouTubeEmbed } from '@/components/YouTubeEmbed'
-import { useModal } from '@/context/Modal'
 import { Routes } from '@/routes/routes'
+import { useAppDispatch } from '@/store'
+import { openSubscribeEventModal } from '@/store/event/slice'
+import { getIdFromYouTubeUrl } from '@/utils/youtube'
 
 import * as S from './styles'
 
-function getIdFromYouTubeUrl(url?: string) {
-  if (!url) return ''
-  const regExp =
-    /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/
-  const match = url.match(regExp)
-  return match && match[7].length == 11 ? match[7] : false
-}
-
 export const EventsId = () => {
-  const { onOpen } = useModal()
+  const dispatch = useAppDispatch()
   const params = useParams<{ id: string }>()
   const id = params.id || ''
   const { data: event, isLoading } = useFetchEventQuery({ id })
@@ -68,7 +62,16 @@ export const EventsId = () => {
       <S.Content>
         <S.TitleContainer>
           <S.Title>{event.title}</S.Title>
-          <S.Button onClick={() => onOpen('subscribe', event.id)}>
+          <S.Button
+            onClick={() =>
+              dispatch(
+                openSubscribeEventModal({
+                  eventId: id,
+                  eventTitle: event.title,
+                }),
+              )
+            }
+          >
             Inscreva-se
           </S.Button>
         </S.TitleContainer>

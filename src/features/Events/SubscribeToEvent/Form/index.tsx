@@ -7,19 +7,26 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useCallback } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
+import { useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 
 import { useCreateSubscribeToEventMutation } from '@/api/events'
 import { Button } from '@/components/Form/Button'
 import { Input } from '@/components/Form/Input'
 import { Radio } from '@/components/Form/Radio'
-import { useModal } from '@/context/Modal'
+import { useAppDispatch } from '@/store'
+import { selectEventSubscribeModal } from '@/store/event/selector'
+import { closeSubscribeEventModal } from '@/store/event/slice'
+import handleFormError from '@/utils/handle-form-error'
 
 import * as S from './styles'
 import schema, { FormProps } from './validator'
 
 export const SubscribeToEventForm = () => {
-  const { eventId, onClose } = useModal()
+  const dispatch = useAppDispatch()
+  const { eventId, eventTitle: eventName } = useSelector(
+    selectEventSubscribeModal,
+  )
   const [subscribeToEvent, { isLoading }] = useCreateSubscribeToEventMutation()
 
   const formMethods = useForm<FormProps>({
@@ -30,25 +37,24 @@ export const SubscribeToEventForm = () => {
     },
   })
   const {
+    setError,
     register,
     handleSubmit,
     formState: { errors },
   } = formMethods
 
-  const onSubmit = useCallback(async (data: FormProps) => {
-    try {
-      await subscribeToEvent({
-        ...data,
-        alreadyHeard: data.alreadyHeard === 'Sim' ? true : false,
-        eventId,
-      }).unwrap()
-      toast.success('Inscrição Enviada')
-    } catch (error) {
-      const err = error as { message: string }
-      alert(err.message)
-    } finally {
-      onClose('subscribe')
-    }
+  const onSubmit = useCallback((data: FormProps) => {
+    subscribeToEvent({
+      ...data,
+      alreadyHeard: data.alreadyHeard === 'true',
+      eventId,
+    })
+      .unwrap()
+      .then(() => {
+        toast.success(`Sua inscrição para o evento ${eventName} foi enviada.`)
+        dispatch(closeSubscribeEventModal())
+      })
+      .catch(error => handleFormError(error, setError))
   }, [])
 
   return (
@@ -103,25 +109,39 @@ export const SubscribeToEventForm = () => {
           <S.Label htmlFor="alreadyHeard">
             Já tinha ouvido falar da AMIF?
           </S.Label>
-          <Radio value="Sim" {...register('alreadyHeard')}>
+          <Radio
+            value="true"
+            name="alreadyHeard"
+            register={register}
+            errors={errors}
+          >
             Sim
           </Radio>
-          <Radio value="Não" {...register('alreadyHeard')}>
+          <Radio
+            value="false"
+            name="alreadyHeard"
+            register={register}
+            errors={errors}
+          >
             Não
           </Radio>
         </S.Fieldset>
         <S.Fieldset>
           <S.Label htmlFor="howKnow">Como soube deste evento?</S.Label>
-          <Radio value="Divulgação na minha igreja" {...register('howKnow')}>
+          <Radio
+            name="howKnow"
+            register={register}
+            value="Divulgação na minha igreja"
+          >
             Divulgação na minha igreja
           </Radio>
-          <Radio value="Redes Sociais" {...register('howKnow')}>
+          <Radio name="howKnow" register={register} value="Redes Sociais">
             Redes Sociais
           </Radio>
-          <Radio value="Amigos" {...register('howKnow')}>
+          <Radio name="howKnow" register={register} value="Amigos">
             Amigos
           </Radio>
-          <Radio value="Outro" {...register('howKnow')}>
+          <Radio name="howKnow" register={register} value="Outro">
             Outro
           </Radio>
         </S.Fieldset>
