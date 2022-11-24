@@ -59,6 +59,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_PROD }}
           aws-region: ${{ secrets.AWS_REGION_PROD }}
       - name: Deploy to S3
-        run: pnpm run deploy
+        run: pnpm run deploy:prod
       - name: Cleaning CloudFront pnpm-cach
         run: aws cloudfront create-invalidation --distribution-id=${{ secrets.AWS_DISTRIBUTION_ID_PROD }} --paths "/index.html" "/assets/*"
