@@ -1,0 +1,16 @@
+export enum AdminRoutes {
+  Admin_SignIn = '/admin/sign-in',
+  Admin_Home = '/admin',
+  Admin_Eventos = '/admin/eventos',
+  Admin_Eventos_Id = '/admin/eventos/:id',
+  Admin_Eventos_Criar = '/admin/eventos/criar',
+  Admin_Missoes = '/admin/missoes',
+  Admin_Missoes_Id = '/admin/missoes/:id',
+  Admin_Missoes_Criar = '/admin/missoes/criar',
+  Admin_Associados = '/admin/associados',
+  Admin_Mantenedores = '/admin/mantenedores',
+  Admin_Mantenedores_Criar = '/admin/mantenedores/criar',
+  Admin_Mantenedores_Id = '/admin/mantenedores/:id',
+  Admin_Acessos = '/admin/acessos',
+  NotFound = '/admin/404',
+}

@@ -1,18 +1,15 @@
-import { useListProductsQuery } from '../../hooks/products/useListProductsQuery'
+import { MainEventBanner } from '@/components/MainEventBanner'
+import { About } from '@/features/Home/About'
+import { EventList } from '@/features/Home/EventList'
+
 import * as S from './styles'
 
-export function Home() {
-  const { products, isLoading } = useListProductsQuery()
-
+export const Home = () => {
   return (
     <S.Container>
-      {isLoading && <span>Loading...</span>}
-      <S.List>
-        {!isLoading &&
-          products.map(product => (
-            <S.ListItem key={product.id}>{product.name}</S.ListItem>
-          ))}
-      </S.List>
+      <MainEventBanner />
+      <EventList />
+      <About />
     </S.Container>
   )
 }

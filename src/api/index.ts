@@ -1,5 +1,22 @@
-import axios from 'axios'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-export const api = axios.create({
-  baseURL: 'https://63250b209075b9cbee458b97.mockapi.io/v1/api/',
+const baseUrl = import.meta.env.VITE_API_URL
+
+export const TOKEN_KEY = '@amif/token'
+
+const api = createApi({
+  tagTypes: ['Events', 'Missions', 'Maintaners', 'Associates'],
+  baseQuery: fetchBaseQuery({
+    baseUrl,
+    prepareHeaders: headers => {
+      const token = localStorage.getItem(TOKEN_KEY)
+      if (token) {
+        headers.set('Authorization', `Bearer ${token}`)
+      }
+      return headers
+    },
+  }),
+  endpoints: () => ({}),
 })
+
+export default api

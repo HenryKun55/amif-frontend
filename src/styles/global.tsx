@@ -1,5 +1,5 @@
-import { Fragment } from 'react'
 import { Global } from '@emotion/react'
+import { Fragment } from 'react'
 import tw, { css, GlobalStyles as BaseStyles } from 'twin.macro'
 
 const customStyles = css([
@@ -9,6 +9,7 @@ const customStyles = css([
     #root {
       width: 100vw;
       height: 100vh;
+      font-family: 'Sora', sans-serif;
     }
   `,
   {
