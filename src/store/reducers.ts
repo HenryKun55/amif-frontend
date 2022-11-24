@@ -8,6 +8,7 @@ import { AnyAction, CombinedState, combineReducers } from '@reduxjs/toolkit'
 
 import api from '../api'
 import authSlice, { logout } from './auth/slice'
+import eventSlice from './event/slice'
 
 /**
  * Merges the main reducer with the router state
@@ -15,6 +16,7 @@ import authSlice, { logout } from './auth/slice'
 const appReducer = combineReducers({
   [api.reducerPath]: api.reducer,
   auth: authSlice,
+  event: eventSlice,
 })
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

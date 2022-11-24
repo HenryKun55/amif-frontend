@@ -4,6 +4,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 
 import { Footer } from '@/components/Footer'
 import { ModalDonate } from '@/components/ModalDonate'
+import { ModalSubscribeToEvent } from '@/components/ModalSubscribeToEvent'
 import { Navbar } from '@/components/Navbar'
 import { Mobile } from '@/components/Navbar/Mobile'
 import { useModal } from '@/context/Modal'
@@ -39,7 +40,7 @@ export const MainLayout = () => {
           shape="pill"
           onMouseOver={() => setTooltipVisible(true)}
           onMouseLeave={() => setTooltipVisible(false)}
-          onClick={onOpen}
+          onClick={() => onOpen('donate')}
         >
           <BiDonateHeart size={50} />
           <S.Tooltip visible={tooltipVisible}>
@@ -48,6 +49,7 @@ export const MainLayout = () => {
         </S.DonateButton>
       </S.Donate>
       <ModalDonate />
+      <ModalSubscribeToEvent />
     </S.Wrapper>
   )
 }
