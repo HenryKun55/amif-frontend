@@ -98,3 +98,7 @@ export type SubscribeToEventRequest = {
 export type SubscribeToEventResponse = {
   subscriptionId: string
 }
+
+export type DeleteEventRequest = {
+  id: string
+}

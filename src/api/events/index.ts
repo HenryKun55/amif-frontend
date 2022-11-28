@@ -6,6 +6,7 @@ import {
   CreateEventResponse,
   DeactivateEventRequest,
   DeleteEventImageRequest,
+  DeleteEventRequest,
   FetchEventRequest,
   FetchEventResponse,
   ListEventsReponse,
@@ -30,6 +31,7 @@ const endpoints = {
   deleteImage: (eventId: string, imageId: string) =>
     `events/${eventId}/images/${imageId}`,
   subscribeToEvent: (id: string) => `events/${id}/subscribe`,
+  deleteEvent: (id: string) => `events/${id}`,
 }
 
 const eventsApi = api.injectEndpoints({
@@ -63,6 +65,13 @@ const eventsApi = api.injectEndpoints({
         body,
       }),
       invalidatesTags: ['Events'],
+    }),
+    deleteEvent: builder.mutation<void, DeleteEventRequest>({
+      query: ({ id }) => ({
+        url: endpoints.deleteEvent(id),
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Events', { type: 'Events', id: 'Id' }],
     }),
     makeEventMain: builder.mutation<void, MakeEventMainRequest>({
       query: ({ eventId }) => ({
@@ -128,6 +137,7 @@ export const {
   useDeactivateEventMutation,
   useDeleteEventImageMutation,
   useCreateSubscribeToEventMutation,
+  useDeleteEventMutation,
 } = eventsApi
 
 export default eventsApi
