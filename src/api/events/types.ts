@@ -1,4 +1,4 @@
-import { Event } from '../models'
+import { Event, Subscription } from '../models'
 import { Paged, PagedRequest } from '../types'
 
 export interface EventSortBy {
@@ -21,7 +21,7 @@ export type ListEventsRequest = PagedRequest<EventSortBy> & {
   active?: boolean
 }
 
-export type ListEventsReponse = Paged<Event>
+export type ListEventsResponse = Paged<Event>
 
 export type ActivateEventRequest = {
   id: string
@@ -98,3 +98,19 @@ export type SubscribeToEventRequest = {
 export type SubscribeToEventResponse = {
   subscriptionId: string
 }
+
+export interface SubscriptionsSortBy {
+  name: string
+  startDate: string
+  createdAt: string
+  active: boolean
+}
+
+export type ListSubscriptionsRequest = PagedRequest<SubscriptionsSortBy> & {
+  eventId: string
+  title?: string
+  startDate?: string
+  active?: boolean
+}
+
+export type ListSubscriptionsResponse = Paged<Subscription>

@@ -21,7 +21,7 @@ const maintainersApi = api.injectEndpoints({
         url: endpoints.listMaintainers(),
         params,
       }),
-      providesTags: ['Maintaners'],
+      providesTags: ['Maintainers'],
     }),
     createMaintainer: builder.mutation<
       CreateMaintainerResponse,
@@ -32,7 +32,7 @@ const maintainersApi = api.injectEndpoints({
         method: 'POST',
         body,
       }),
-      invalidatesTags: ['Maintaners'],
+      invalidatesTags: ['Maintainers'],
     }),
   }),
   overrideExisting: false,
