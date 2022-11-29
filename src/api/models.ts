@@ -109,3 +109,16 @@ export type Associate = {
     language?: string
   }
 }
+
+export type Subscription = {
+  id: string
+  event: Event
+  name: string
+  phone: string
+  email: string
+  church: string
+  pastorName: string
+  alreadyHeard: boolean
+  howKnow: string
+  createdAt: string
+}

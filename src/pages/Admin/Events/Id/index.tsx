@@ -16,6 +16,7 @@ import { UpdateEventForm } from '@/features/Admin/Events/Update/Form'
 import { AdminRoutes } from '@/routes/admin-routes'
 
 import * as S from './styles'
+import { SubscriptionsTable } from './SubscriptionsTable'
 
 export const AdminEventsId = () => {
   const params = useParams<{ id: string }>()
@@ -97,6 +98,7 @@ export const AdminEventsId = () => {
           onDelete={() => setConfirmDeleteEvent({ id, isOpen: true })}
         />
       )}
+      {event && <SubscriptionsTable eventId={event.id} />}
       <ModalConfirmAction
         title={
           <div>

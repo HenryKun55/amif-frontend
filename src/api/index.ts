@@ -5,7 +5,7 @@ const baseUrl = import.meta.env.VITE_API_URL
 export const TOKEN_KEY = '@amif/token'
 
 const api = createApi({
-  tagTypes: ['Events', 'Missions', 'Maintaners', 'Associates'],
+  tagTypes: ['Events', 'Missions', 'Maintainers', 'Associates'],
   baseQuery: fetchBaseQuery({
     baseUrl,
     prepareHeaders: headers => {
