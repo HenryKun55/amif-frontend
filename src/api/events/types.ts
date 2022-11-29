@@ -115,3 +115,6 @@ export type ListEventSubscriptionsRequest =
   }
 
 export type ListEventSubscriptionsResponse = Paged<Subscription>
+export type DeleteEventRequest = {
+  id: string
+}
