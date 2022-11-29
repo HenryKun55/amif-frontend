@@ -1,8 +1,18 @@
 import api from '..'
-import { CreateAssociateRequest, CreateAssociateResponse } from './types'
+import {
+  ActivateAssociateRequest,
+  CreateAssociateRequest,
+  CreateAssociateResponse,
+  DeactivateAssociateRequest,
+  ListAssociatesRequest,
+  ListAssociatesResponse,
+} from './types'
 
 const endpoints = {
   createAssociate: () => 'associates',
+  listAssociates: () => 'associates',
+  activateAssociate: (id: string) => `associates/${id}/activate`,
+  deactivateAssociate: (id: string) => `associates/${id}/deactivate`,
 }
 
 const associatesApi = api.injectEndpoints({
@@ -18,10 +28,39 @@ const associatesApi = api.injectEndpoints({
       }),
       invalidatesTags: ['Associates'],
     }),
+    listAssociates: builder.query<
+      ListAssociatesResponse,
+      ListAssociatesRequest
+    >({
+      query: params => ({
+        url: endpoints.listAssociates(),
+        params,
+      }),
+      providesTags: ['Associates'],
+    }),
+    activateAssociate: builder.mutation<void, ActivateAssociateRequest>({
+      query: ({ id }) => ({
+        url: endpoints.activateAssociate(id),
+        method: 'PUT',
+      }),
+      invalidatesTags: ['Associates', { type: 'Associates', id: 'Id' }],
+    }),
+    deactivateAssociate: builder.mutation<void, DeactivateAssociateRequest>({
+      query: ({ id }) => ({
+        url: endpoints.deactivateAssociate(id),
+        method: 'PUT',
+      }),
+      invalidatesTags: ['Associates', { type: 'Associates', id: 'Id' }],
+    }),
   }),
   overrideExisting: false,
 })
 
-export const { useCreateAssociateMutation } = associatesApi
+export const {
+  useCreateAssociateMutation,
+  useListAssociatesQuery,
+  useActivateAssociateMutation,
+  useDeactivateAssociateMutation,
+} = associatesApi
 
 export default associatesApi

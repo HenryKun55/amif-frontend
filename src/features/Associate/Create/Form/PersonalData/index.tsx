@@ -2,6 +2,7 @@ import { useFormContext } from 'react-hook-form'
 
 import { AddressForm } from '@/components/AddressForm'
 import { Input } from '@/components/Form/Input'
+import { maskPhone } from '@/utils/mask'
 
 import * as S from '../styles'
 
@@ -61,6 +62,7 @@ export const PersonalData = () => {
           label="Telefone"
           placeholder="Informe o número de contato"
           register={register}
+          mask={maskPhone}
           errors={errors}
         />
         <Input

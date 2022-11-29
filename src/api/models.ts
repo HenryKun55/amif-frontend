@@ -108,4 +108,7 @@ export type Associate = {
     hasTheologyBackground?: boolean
     language?: string
   }
+  createdAt?: string
+  isActive?: boolean
+  status: 'Pendente' | 'Aprovado' | 'Inativo'
 }
