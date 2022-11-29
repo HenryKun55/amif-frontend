@@ -2,7 +2,7 @@ import { format } from 'date-fns'
 import { useCallback, useMemo, useState } from 'react'
 import { Column } from 'react-table'
 
-import { useListSubscriptionsQuery } from '@/api/events'
+import { useListEventSubscriptionsQuery } from '@/api/events'
 import { SubscriptionsSortBy } from '@/api/events/types'
 import { Subscription } from '@/api/models'
 import { Order } from '@/api/types'
@@ -21,7 +21,7 @@ export const SubscriptionsTable = ({ eventId }: SubscriptionsTableProps) => {
   )
   const [orderBy, setOrderBy] = useState<Order>('desc')
 
-  const { data, isLoading } = useListSubscriptionsQuery({
+  const { data, isLoading } = useListEventSubscriptionsQuery({
     eventId,
     page,
     orderBy,

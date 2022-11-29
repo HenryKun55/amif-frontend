@@ -10,8 +10,8 @@ import {
   FetchEventResponse,
   ListEventsRequest,
   ListEventsResponse,
-  ListSubscriptionsRequest,
-  ListSubscriptionsResponse,
+  ListEventSubscriptionsRequest,
+  ListEventSubscriptionsResponse,
   MakeEventMainRequest,
   SubscribeToEventRequest,
   SubscribeToEventResponse,
@@ -32,7 +32,7 @@ const endpoints = {
   deleteImage: (eventId: string, imageId: string) =>
     `events/${eventId}/images/${imageId}`,
   subscribeToEvent: (id: string) => `events/${id}/subscribe`,
-  listSubscriptions: (id: string) => `events/${id}/subscriptions`,
+  listEventSubscriptions: (id: string) => `events/${id}/subscriptions`,
 }
 
 const eventsApi = api.injectEndpoints({
@@ -106,12 +106,12 @@ const eventsApi = api.injectEndpoints({
       }),
       invalidatesTags: ['Events'],
     }),
-    listSubscriptions: builder.query<
-      ListSubscriptionsResponse,
-      ListSubscriptionsRequest
+    listEventSubscriptions: builder.query<
+      ListEventSubscriptionsResponse,
+      ListEventSubscriptionsRequest
     >({
-      query: ({ eventId }) => endpoints.listSubscriptions(eventId),
-      providesTags: ['Events', 'Subscriptions'],
+      query: ({ eventId }) => endpoints.listEventSubscriptions(eventId),
+      providesTags: [{ type: 'Events', id: 'Subscriptions' }],
     }),
   }),
   overrideExisting: false,
@@ -138,7 +138,7 @@ export const {
   useDeactivateEventMutation,
   useDeleteEventImageMutation,
   useCreateSubscribeToEventMutation,
-  useListSubscriptionsQuery,
+  useListEventSubscriptionsQuery,
 } = eventsApi
 
 export default eventsApi

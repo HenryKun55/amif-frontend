@@ -106,11 +106,12 @@ export interface SubscriptionsSortBy {
   active: boolean
 }
 
-export type ListSubscriptionsRequest = PagedRequest<SubscriptionsSortBy> & {
-  eventId: string
-  title?: string
-  startDate?: string
-  active?: boolean
-}
+export type ListEventSubscriptionsRequest =
+  PagedRequest<SubscriptionsSortBy> & {
+    eventId: string
+    title?: string
+    startDate?: string
+    active?: boolean
+  }
 
-export type ListSubscriptionsResponse = Paged<Subscription>
+export type ListEventSubscriptionsResponse = Paged<Subscription>
