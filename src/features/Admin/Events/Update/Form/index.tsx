@@ -29,6 +29,7 @@ export type UpdateEventFormProps = {
   isLoading: boolean
   onMakeMain: () => void
   onToggleActive: () => void
+  onDelete: () => void
 }
 
 export const UpdateEventForm = ({
@@ -36,6 +37,7 @@ export const UpdateEventForm = ({
   isLoading,
   onMakeMain,
   onToggleActive,
+  onDelete,
 }: UpdateEventFormProps) => {
   const [images, setImages] = useState<Image[]>([])
   const [isUploadingImages, setIsUploadingImages] = useState(false)
@@ -177,6 +179,14 @@ export const UpdateEventForm = ({
         <AddressForm />
         <S.Actions>
           <S.LeftActions>
+            <S.ButtonDelete
+              variant="outlined"
+              disabled={isActionsDisabled || event.isMain}
+              onClick={onDelete}
+              size="sm"
+            >
+              Deletar
+            </S.ButtonDelete>
             <Button
               disabled={isActionsDisabled}
               onClick={onToggleActive}
