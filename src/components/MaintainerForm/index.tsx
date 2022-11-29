@@ -13,11 +13,7 @@ import { Input } from '../Form/Input'
 import * as S from './styles'
 import type { FormPropsOutput } from './validator'
 
-export type MaintainerFormProps = {
-  isLoading: boolean
-}
-
-export const MaintainerForm = ({ isLoading }: MaintainerFormProps) => {
+export const MaintainerForm = () => {
   const {
     register,
     formState: { errors },

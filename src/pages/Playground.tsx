@@ -16,7 +16,7 @@ export function Playground() {
     <Container>
       <FormProvider {...formMethods}>
         <form onSubmit={formMethods.handleSubmit(data => console.log(data))}>
-          <MaintainerForm isLoading={false} />
+          <MaintainerForm />
         </form>
       </FormProvider>
     </Container>

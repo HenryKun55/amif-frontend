@@ -34,7 +34,7 @@ export const AdminMaintainersCreate = () => {
       <Breadcrumb path={['Mantenedores', 'Criar']} />
       <FormProvider {...formMethods}>
         <S.Form onSubmit={formMethods.handleSubmit(handleSubmit)}>
-          <MaintainerForm isLoading={isLoading} />
+          <MaintainerForm />
           <S.SubmitButton disabled={isLoading}>Criar Mantenedor</S.SubmitButton>
         </S.Form>
       </FormProvider>
