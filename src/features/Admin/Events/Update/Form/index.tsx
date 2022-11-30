@@ -7,6 +7,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useCallback, useMemo, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
 
 import {
   uploadEventImage,
@@ -82,7 +83,7 @@ export const UpdateEventForm = ({
         }),
       )
     } catch (error) {
-      alert('Ocorreu um erro ao tentar fazer o upload de algumas imagens')
+      toast.error('Ocorreu um erro ao tentar fazer o upload de algumas imagens')
     }
   }, [])
 
@@ -97,7 +98,7 @@ export const UpdateEventForm = ({
         }),
       )
     } catch (error) {
-      alert('Ocorreu um erro ao tentar deletar algumas imagens')
+      toast.error('Ocorreu um erro ao tentar deletar algumas imagens')
     }
   }, [])
 
@@ -111,7 +112,7 @@ export const UpdateEventForm = ({
         await deleteImages(toDelete)
       } catch (error) {
         const err = error as { message: string }
-        alert(err.message)
+        toast.error(err.message)
       } finally {
         setIsUploadingImages(false)
       }

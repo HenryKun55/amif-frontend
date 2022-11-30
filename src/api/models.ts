@@ -74,7 +74,7 @@ export type Maintainer = {
   cpf: string
   phone: string
   donateAmount: number
-  donateDate: string
+  donateDay: string
   isActive?: boolean
   createdAt?: string
 }

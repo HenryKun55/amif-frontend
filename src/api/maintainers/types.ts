@@ -7,6 +7,12 @@ export interface MaintainerSortBy {
   createdAt: string
 }
 
+export type FetchMaintainerRequest = {
+  id: string
+}
+
+export type FetchMaintainerResponse = Maintainer
+
 export type ListMaintainersRequest = PagedRequest<MaintainerSortBy> & {
   name?: string
 }
@@ -31,4 +37,21 @@ export type CreateMaintainerRequest = {
 
 export type CreateMaintainerResponse = {
   maintainerId: string
+}
+
+export type UpdateMaintainerRequest = {
+  id: string
+  name: string
+  cpf: string
+  phone: string
+  donateAmount: number
+  donateDay: number
+  address: {
+    state: string
+    district: string
+    city: string
+    street: string
+    number: string
+    zipCode: string
+  }
 }
