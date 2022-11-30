@@ -55,3 +55,15 @@ export type UpdateMaintainerRequest = {
     zipCode: string
   }
 }
+
+export type ActivateMaintainerRequest = {
+  id: string
+}
+
+export type DeactivateMaintainerRequest = {
+  id: string
+}
+
+export type DeleteMaintainerRequest = {
+  id: string
+}

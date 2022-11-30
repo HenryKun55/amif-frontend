@@ -64,7 +64,7 @@ export const AdminEventsId = () => {
     if (id) {
       deleteEvent({ id })
         .unwrap()
-        .then(() => toast.success('Evento deletado'))
+        .then(() => toast.success('Evento deletado.'))
         .catch(error => toast.error(error.message))
         .finally(() => {
           setConfirmDeleteEvent({ isOpen: false })
