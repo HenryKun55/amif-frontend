@@ -30,6 +30,7 @@ const schema = z.lazy(() =>
     })),
 )
 
-export type FormPropsOutput = z.infer<typeof schema>
+export type FormPropsInput = z.input<typeof schema>
+export type FormPropsOutput = z.output<typeof schema>
 
 export default schema
