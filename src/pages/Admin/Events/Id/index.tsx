@@ -15,8 +15,8 @@ import { ModalConfirmAction } from '@/components/ModalConfirmAction'
 import { UpdateEventForm } from '@/features/Admin/Events/Update/Form'
 import { AdminRoutes } from '@/routes/admin-routes'
 
+import { SubscriptionsTable } from '../../../../features/Events/SubscriptionsTable'
 import * as S from './styles'
-import { SubscriptionsTable } from './SubscriptionsTable'
 
 export const AdminEventsId = () => {
   const params = useParams<{ id: string }>()

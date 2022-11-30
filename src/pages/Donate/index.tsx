@@ -8,14 +8,14 @@ import * as S from './styles'
 
 export const Donate = () => {
   return (
-    <S.Container>
-      <S.Wrapper>
+    <S.Wrapper>
+      <S.Container>
         <MainDonate />
         <AttendDonate />
         <DifferenceDonate />
         <HelpDonate />
         <CtaMaintainer />
-      </S.Wrapper>
-    </S.Container>
+      </S.Container>
+    </S.Wrapper>
   )
 }
