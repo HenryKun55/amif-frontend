@@ -1,19 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-export type EventState = {
+export type MaintainerState = {
   maintainerModal: {
     isOpen: boolean
   }
 }
 
-export const initialState: EventState = {
+export const initialState: MaintainerState = {
   maintainerModal: {
     isOpen: false,
   },
 }
 
 const slice = createSlice({
-  name: 'event',
+  name: 'maintainer',
   initialState,
   reducers: {
     openMaintainerModal: state => {
