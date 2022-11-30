@@ -3,18 +3,26 @@ import { useCallback, useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import {
   MdCheckCircleOutline,
+  MdDelete,
   MdOutlineCancel,
   MdOutlineRemoveRedEye,
   MdSearch,
 } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
 import { Column } from 'react-table'
+import { toast } from 'react-toastify'
 
-import { useListMaintainersQuery } from '@/api/maintainers'
+import {
+  useActivateMaintainerMutation,
+  useDeactivateMaintainerMutation,
+  useDeleteMaintainerMutation,
+  useListMaintainersQuery,
+} from '@/api/maintainers'
 import { MaintainerSortBy } from '@/api/maintainers/types'
 import { Maintainer } from '@/api/models'
 import { Order } from '@/api/types'
 import { Breadcrumb } from '@/components/Breadcrumb'
+import { ModalConfirmAction } from '@/components/ModalConfirmAction'
 import { FetchDataProps, Table } from '@/components/Table'
 import { TableMenu } from '@/components/Table/Menu'
 import { useDebounce } from '@/hooks/useDebounce'
@@ -29,6 +37,17 @@ export const AdminMaintainers = () => {
     'createdAt',
   )
   const [orderBy, setOrderBy] = useState<Order>('desc')
+  const [confirmDeleteMaintainer, setConfirmDeleteMaintainer] = useState<{
+    id?: string
+    isOpen: boolean
+  }>({ isOpen: false })
+
+  const [activateMaintainer, { isLoading: isActivating }] =
+    useActivateMaintainerMutation()
+  const [deactivateMaintainer, { isLoading: isDeactivating }] =
+    useDeactivateMaintainerMutation()
+  const [deleteMainteiner, { isLoading: isDeleting }] =
+    useDeleteMaintainerMutation()
 
   const { register, watch } = useForm()
   const searchDebounced = useDebounce(watch('search'), 300)
@@ -87,6 +106,7 @@ export const AdminMaintainers = () => {
           maxWidth: '8ch',
           accessor: (maintainer: Maintainer) => (
             <TableMenu
+              disabled={isActivating || isDeactivating || isDeleting}
               actions={[
                 {
                   title: 'Ver',
@@ -106,7 +126,19 @@ export const AdminMaintainers = () => {
                   ) : (
                     <MdCheckCircleOutline size={20} color="green" />
                   ),
-                  onClick: () => console.log(maintainer),
+                  onClick: () =>
+                    maintainer.isActive
+                      ? deactivateMaintainer({ id: maintainer.id })
+                      : activateMaintainer({ id: maintainer.id }),
+                },
+                {
+                  title: 'Deletar',
+                  icon: <MdDelete size={20} color="red" />,
+                  onClick: () =>
+                    setConfirmDeleteMaintainer({
+                      isOpen: true,
+                      id: maintainer.id,
+                    }),
                 },
               ]}
             />
@@ -115,6 +147,17 @@ export const AdminMaintainers = () => {
       ] as unknown as Column<Maintainer>[],
     [],
   )
+
+  const handleDeleteMaintainer = useCallback(() => {
+    const id = confirmDeleteMaintainer.id
+    if (id) {
+      deleteMainteiner({ id })
+        .unwrap()
+        .then(() => toast.success('Mantenedor deletado.'))
+        .catch(error => toast.error(error.message))
+    }
+    setConfirmDeleteMaintainer({ isOpen: false })
+  }, [confirmDeleteMaintainer])
 
   const handleFetchData = useCallback((args: FetchDataProps<Maintainer>) => {
     setPage(args.pageIndex + 1)
@@ -149,6 +192,12 @@ export const AdminMaintainers = () => {
           isLoading={isLoading}
         />
       </S.Content>
+      <ModalConfirmAction
+        title="Tem certeza que deseja deletar esse mantenedor permanentemente?"
+        isOpen={confirmDeleteMaintainer.isOpen}
+        onCancel={() => setConfirmDeleteMaintainer({ isOpen: false })}
+        onConfirm={handleDeleteMaintainer}
+      />
     </S.Container>
   )
 }
