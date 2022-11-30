@@ -12,11 +12,15 @@ export const Container = styled.div([
 
 export const Content = styled.div([tw`flex flex-wrap flex-col`])
 
-export const Logo = styled.img([tw`w-[134px] h-[64px] object-contain`])
+export const Logo = styled.img([
+  tw`w-[134px] h-[64px] object-contain mx-auto md:ml-0`,
+])
 
-export const Title = styled.span([tw`text-sm text-gray-700`])
+export const Title = styled.span([tw`text-sm text-gray-700 font-bold`])
 
-export const Social = styled.div([tw`flex gap-4 pt-5 justify-center`])
+export const Social = styled.div([
+  tw`flex gap-4 pt-5 justify-center md:justify-start`,
+])
 
 export const SocialLink = styled.a()
 
