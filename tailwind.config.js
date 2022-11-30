@@ -12,6 +12,10 @@ module.exports = {
       animation: {
         loading: 'loading 1.25s linear infinite alternate',
       },
+      width: {
+        container: '1500px',
+        content: '1366px',
+      },
       maxWidth: {
         container: '1500px',
         content: '1366px',

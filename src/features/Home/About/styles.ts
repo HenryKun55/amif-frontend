@@ -2,7 +2,7 @@ import tw, { css, styled } from 'twin.macro'
 
 export const Container = styled.div([
   tw`flex max-w-container items-center justify-center flex-col`,
-  tw`2xl:mb-24 gap-16 relative h-full p-5 mb-48 mt-12`,
+  tw`2xl:mb-24 gap-16 relative h-full p-5 mt-12`,
 ])
 
 export const Content = styled.div([
