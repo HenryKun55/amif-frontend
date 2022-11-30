@@ -1,16 +1,14 @@
-import { HtmlHTMLAttributes } from 'react'
-
 import { useAppDispatch } from '@/store'
 import { openMaintainerModal } from '@/store/maintainer/slice'
 
 import { Button } from '../Form/Button'
 import * as S from './styles'
 
-export const CtaMaintainer = (props: HtmlHTMLAttributes<HTMLDivElement>) => {
+export const CtaMaintainer = () => {
   const dispatch = useAppDispatch()
 
   return (
-    <S.Wrapper onClick={() => dispatch(openMaintainerModal())} {...props}>
+    <S.Wrapper onClick={() => dispatch(openMaintainerModal())}>
       <S.Container>
         <S.Title>Seja um mantenedor</S.Title>
         <S.Description>
