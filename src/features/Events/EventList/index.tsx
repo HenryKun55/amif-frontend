@@ -31,11 +31,13 @@ export const EventList = () => {
 
   if (isLoading) {
     return (
-      <S.EventList>
-        {Array.from({ length: PER_PAGE }).map((_, idx) => (
-          <Skeleton key={idx} width={300} height={250} />
-        ))}
-      </S.EventList>
+      <S.Container>
+        <S.EventList>
+          {Array.from({ length: PER_PAGE }).map((_, idx) => (
+            <Skeleton key={idx} width={300} height={250} />
+          ))}
+        </S.EventList>
+      </S.Container>
     )
   }
 
@@ -47,11 +49,7 @@ export const EventList = () => {
     <S.Container>
       <S.EventList>
         {data.data.map(event => (
-          <CardEvent
-            key={event.id}
-            event={event}
-            onSubscribe={() => console.log('Subscribe')}
-          />
+          <CardEvent key={event.id} event={event} />
         ))}
       </S.EventList>
       <Pagination

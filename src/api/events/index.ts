@@ -6,11 +6,16 @@ import {
   CreateEventResponse,
   DeactivateEventRequest,
   DeleteEventImageRequest,
+  DeleteEventRequest,
   FetchEventRequest,
   FetchEventResponse,
-  ListEventsReponse,
   ListEventsRequest,
+  ListEventsResponse,
+  ListEventSubscriptionsRequest,
+  ListEventSubscriptionsResponse,
   MakeEventMainRequest,
+  SubscribeToEventRequest,
+  SubscribeToEventResponse,
   UpdateEventRequest,
   UploadEventImageRequest,
 } from './types'
@@ -27,6 +32,9 @@ const endpoints = {
   uploadImage: (id: string) => `events/${id}/upload`,
   deleteImage: (eventId: string, imageId: string) =>
     `events/${eventId}/images/${imageId}`,
+  subscribeToEvent: (id: string) => `events/${id}/subscribe`,
+  listEventSubscriptions: (id: string) => `events/${id}/subscriptions`,
+  deleteEvent: (id: string) => `events/${id}`,
 }
 
 const eventsApi = api.injectEndpoints({
@@ -38,7 +46,7 @@ const eventsApi = api.injectEndpoints({
     fetchEventMain: builder.query<FetchEventResponse, void>({
       query: () => endpoints.fetchEventMain(),
     }),
-    listEvents: builder.query<ListEventsReponse, ListEventsRequest>({
+    listEvents: builder.query<ListEventsResponse, ListEventsRequest>({
       query: params => ({
         url: endpoints.listEvents(),
         params,
@@ -60,6 +68,13 @@ const eventsApi = api.injectEndpoints({
         body,
       }),
       invalidatesTags: ['Events'],
+    }),
+    deleteEvent: builder.mutation<void, DeleteEventRequest>({
+      query: ({ id }) => ({
+        url: endpoints.deleteEvent(id),
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Events', { type: 'Events', id: 'Id' }],
     }),
     makeEventMain: builder.mutation<void, MakeEventMainRequest>({
       query: ({ eventId }) => ({
@@ -89,6 +104,24 @@ const eventsApi = api.injectEndpoints({
       }),
       invalidatesTags: ['Events', { type: 'Events', id: 'Id' }],
     }),
+    createSubscribeToEvent: builder.mutation<
+      SubscribeToEventResponse,
+      SubscribeToEventRequest
+    >({
+      query: ({ eventId, ...body }) => ({
+        url: endpoints.subscribeToEvent(eventId),
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: ['Events'],
+    }),
+    listEventSubscriptions: builder.query<
+      ListEventSubscriptionsResponse,
+      ListEventSubscriptionsRequest
+    >({
+      query: ({ eventId }) => endpoints.listEventSubscriptions(eventId),
+      providesTags: [{ type: 'Events', id: 'Subscriptions' }],
+    }),
   }),
   overrideExisting: false,
 })
@@ -113,6 +146,9 @@ export const {
   useActivateEventMutation,
   useDeactivateEventMutation,
   useDeleteEventImageMutation,
+  useCreateSubscribeToEventMutation,
+  useListEventSubscriptionsQuery,
+  useDeleteEventMutation,
 } = eventsApi
 
 export default eventsApi

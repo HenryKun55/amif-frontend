@@ -1,0 +1,2 @@
+export const MAX_SIZE_TWO_MEGABYTES = 2 * 1024 * 1024
+export const MEGABYTE_IN_BYTES = 1000000

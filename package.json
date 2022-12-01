@@ -8,6 +8,7 @@
     "dev": "vite --host 0.0.0.0 --port 3000",
     "build": "tsc && vite build",
     "deploy": "aws s3 sync dist/ s3://amif.lotuscode.com.br --acl public-read",
+    "deploy:prod": "aws s3 sync dist/ s3://amif.com.br --acl public-read",
     "preview": "vite preview",
     "prepare": "husky install",
     "test": "vitest",

@@ -1,5 +1,7 @@
 import tw, { styled } from 'twin.macro'
 
+import { Button } from '@/components/Form/Button'
+
 export const Form = styled.form([tw`w-full flex flex-col px-8 pb-8 gap-4`])
 
 export const Row = styled.div([
@@ -9,3 +11,7 @@ export const Row = styled.div([
 export const Actions = styled.div([tw`w-full flex justify-between`])
 
 export const LeftActions = styled.div([tw`flex gap-4`])
+
+export const ButtonDelete = styled(Button)([
+  tw`text-red-500 border-red-500 hover:(text-red-400 border-red-500)`,
+])

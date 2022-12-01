@@ -9,7 +9,7 @@ import { Position } from '../Position'
 import * as S from './styles'
 
 export const Positions = () => {
-  const usersPosition = [
+  const users = [
     {
       role: 'Presidente',
       name: 'Missionário Ronaldo Cabral Dias',
@@ -30,8 +30,8 @@ export const Positions = () => {
     },
   ]
   return (
-    <S.ContainerPosition>
-      {usersPosition.map(user => (
+    <S.Wrapper>
+      {users.map(user => (
         <Position
           key={user.name}
           name={user.name}
@@ -39,6 +39,6 @@ export const Positions = () => {
           image={user.image}
         />
       ))}
-    </S.ContainerPosition>
+    </S.Wrapper>
   )
 }

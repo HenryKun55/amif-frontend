@@ -74,7 +74,7 @@ export type Maintainer = {
   cpf: string
   phone: string
   donateAmount: number
-  donateDate: string
+  donateDay: string
   isActive?: boolean
   createdAt?: string
 }
@@ -112,4 +112,17 @@ export type Associate = {
   createdAt?: string
   isActive?: boolean
   status: 'approved' | 'pending' | 'inactive'
+}
+
+export type Subscription = {
+  id: string
+  event: Event
+  name: string
+  phone: string
+  email: string
+  church: string
+  pastorName: string
+  alreadyHeard: boolean
+  howKnow: string
+  createdAt: string
 }

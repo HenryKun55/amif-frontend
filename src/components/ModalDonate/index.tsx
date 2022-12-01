@@ -19,6 +19,8 @@ export const ModalDonate = () => {
   const [contentAnimated] = useAutoAnimate<HTMLDivElement>()
   const [active, setActive] = useState<Options>('mp')
 
+  const type = 'donate'
+
   const handleActiveMenu = (item: Options) => {
     setActive(item)
   }
@@ -37,8 +39,8 @@ export const ModalDonate = () => {
   return (
     <ReactModal
       style={S.reactModalStyles}
-      isOpen={open}
-      onRequestClose={onClose}
+      isOpen={open(type)}
+      onRequestClose={() => onClose(type)}
     >
       <S.MenuTab>
         <S.Tabs>

@@ -7,6 +7,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useCallback, useMemo, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
 
 import {
   uploadEventImage,
@@ -19,6 +20,7 @@ import { Button } from '@/components/Form/Button'
 import { Checkbox } from '@/components/Form/Checkbox'
 import { FileField, Image } from '@/components/Form/FileField'
 import { Input } from '@/components/Form/Input'
+import { MAX_SIZE_TWO_MEGABYTES } from '@/utils/constants'
 import { getDiffImages } from '@/utils/image'
 
 import * as S from './styles'
@@ -29,6 +31,7 @@ export type UpdateEventFormProps = {
   isLoading: boolean
   onMakeMain: () => void
   onToggleActive: () => void
+  onDelete: () => void
 }
 
 export const UpdateEventForm = ({
@@ -36,6 +39,7 @@ export const UpdateEventForm = ({
   isLoading,
   onMakeMain,
   onToggleActive,
+  onDelete,
 }: UpdateEventFormProps) => {
   const [images, setImages] = useState<Image[]>([])
   const [isUploadingImages, setIsUploadingImages] = useState(false)
@@ -80,7 +84,7 @@ export const UpdateEventForm = ({
         }),
       )
     } catch (error) {
-      alert('Ocorreu um erro ao tentar fazer o upload de algumas imagens')
+      toast.error('Ocorreu um erro ao tentar fazer o upload de algumas imagens')
     }
   }, [])
 
@@ -95,7 +99,7 @@ export const UpdateEventForm = ({
         }),
       )
     } catch (error) {
-      alert('Ocorreu um erro ao tentar deletar algumas imagens')
+      toast.error('Ocorreu um erro ao tentar deletar algumas imagens')
     }
   }, [])
 
@@ -109,7 +113,7 @@ export const UpdateEventForm = ({
         await deleteImages(toDelete)
       } catch (error) {
         const err = error as { message: string }
-        alert(err.message)
+        toast.error(err.message)
       } finally {
         setIsUploadingImages(false)
       }
@@ -172,11 +176,25 @@ export const UpdateEventForm = ({
         <Checkbox {...register('canSubscribe')}>
           É possível se inscrever nesse evento?
         </Checkbox>
-        <FileField initialState={event.images} onChange={setImages} />
+        <FileField
+          maxSizeInMegabytes={MAX_SIZE_TWO_MEGABYTES}
+          allowedTypes={['image/jpeg', 'image/pjpeg', 'image/png']}
+          initialState={event.images}
+          onChange={setImages}
+          onError={data => toast.error(data.message)}
+        />
         <hr />
         <AddressForm />
         <S.Actions>
           <S.LeftActions>
+            <S.ButtonDelete
+              variant="outlined"
+              disabled={isActionsDisabled || event.isMain}
+              onClick={onDelete}
+              size="sm"
+            >
+              Deletar
+            </S.ButtonDelete>
             <Button
               disabled={isActionsDisabled}
               onClick={onToggleActive}

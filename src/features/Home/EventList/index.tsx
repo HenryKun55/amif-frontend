@@ -34,13 +34,7 @@ export const EventList = () => {
       <S.Title>Eventos em destaque</S.Title>
       <S.CardList>
         {data?.data && data.data.length > 0 ? (
-          data.data.map(event => (
-            <S.CardEvent
-              key={event.id}
-              event={event}
-              onSubscribe={() => console.log('Subscribe')}
-            />
-          ))
+          data.data.map(event => <S.CardEvent key={event.id} event={event} />)
         ) : (
           <div>Nenhum evento disponível</div>
         )}

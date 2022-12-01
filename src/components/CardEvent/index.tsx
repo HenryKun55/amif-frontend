@@ -5,14 +5,14 @@
  */
 
 import { format } from 'date-fns'
-import { ptBR } from 'date-fns/locale'
-import SetDefaultOptions from 'date-fns/setDefaultOptions'
 import { MouseEventHandler, useMemo } from 'react'
 import { BsClock } from 'react-icons/bs'
 import { HiOutlineLocationMarker } from 'react-icons/hi'
 
 import { Event } from '@/api/models'
 import { Routes } from '@/routes/routes'
+import { useAppDispatch } from '@/store'
+import { openSubscribeEventModal } from '@/store/event/slice'
 
 import DefaultImage from '../../assets/default-image.svg'
 import { Button } from '../Form/Button'
@@ -21,18 +21,12 @@ import * as S from './styles'
 type CardEventProps = {
   event: Event
   className?: string
-  onSubscribe?: () => void
 }
 
-export const CardEvent = ({
-  event,
-  className,
-  onSubscribe,
-}: CardEventProps) => {
+export const CardEvent = ({ event, className }: CardEventProps) => {
+  const dispatch = useAppDispatch()
   const { id, startDate, startHour, canSubscribe, title, images, address } =
     event
-
-  SetDefaultOptions({ locale: ptBR })
 
   const [day, month] = format(new Date(startDate), 'dd LLL').split(' ')
 
@@ -40,7 +34,7 @@ export const CardEvent = ({
 
   const handleSubscribe: MouseEventHandler<HTMLButtonElement> = event => {
     event.preventDefault()
-    onSubscribe?.()
+    dispatch(openSubscribeEventModal({ eventId: id, eventTitle: title }))
   }
 
   return (
