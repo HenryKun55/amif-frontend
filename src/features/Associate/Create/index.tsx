@@ -1,12 +1,13 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useCallback, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 import { useCreateAssociateMutation } from '@/api/associates'
 import { Checkbox } from '@/components/Form/Checkbox'
 import { Input } from '@/components/Form/Input'
+import { AdminRoutes } from '@/routes/admin-routes'
 import { Routes } from '@/routes/routes'
 
 import { EcclesiasticalData } from '../Form/EcclesiasticalData'
@@ -15,8 +16,9 @@ import { PersonalData } from '../Form/PersonalData'
 import * as S from './styles'
 import schema, { FormPropsInput, FormPropsOutput } from './validator'
 
-export const FormAssociate = () => {
+export const FormAssociateCreate = () => {
   const navigate = useNavigate()
+  const location = useLocation()
   const [createAssociate, { isLoading }] = useCreateAssociateMutation()
   const [isIndication, setIsIndication] = useState(false)
 
@@ -39,7 +41,11 @@ export const FormAssociate = () => {
       .unwrap()
       .then(() => {
         toast.success('Solicitação enviada.')
-        navigate(Routes.Home)
+        navigate(
+          location.pathname.split('/')[1] === 'admin'
+            ? AdminRoutes.Admin_Associados
+            : Routes.Home,
+        )
       })
   }, [])
 

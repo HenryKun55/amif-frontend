@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -50,20 +50,26 @@ export const UpdateAssociate = ({
       rg: associate.rg,
       indication: associate.indication,
       address: { ...associate.address },
-      ecclesiastical: { ...associate.ecclesiastical },
+      ecclesiastical: {
+        ...associate.ecclesiastical,
+        admissionDate: associate.ecclesiastical?.admissionDate?.split('T')[0],
+      },
       education: { ...associate.education },
     },
   })
+
+  useEffect(() => {
+    if (associate.indication) {
+      setIsIndication(true)
+    }
+  }, [])
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     control,
-    watch,
   } = formMethods
-
-  console.log(watch('status'), errors)
 
   const onSubmit = useCallback((values: unknown) => {
     const data = values as FormPropsOutput
@@ -79,10 +85,15 @@ export const UpdateAssociate = ({
     <FormProvider {...formMethods}>
       <S.Form onSubmit={handleSubmit(onSubmit)}>
         <PersonalData />
-        <EcclesiasticalData />
+        <EcclesiasticalData
+          isPosition={associate.ecclesiastical?.position ? true : false}
+        />
         <EducationData />
         <S.Row>
-          <Checkbox onChange={() => setIsIndication(!isIndication)}>
+          <Checkbox
+            checked={isIndication}
+            onChange={() => setIsIndication(!isIndication)}
+          >
             Teve indicação de outro sócio da AMIF ?
           </Checkbox>
           {isIndication && (
@@ -95,9 +106,9 @@ export const UpdateAssociate = ({
             />
           )}
         </S.Row>
-        <S.Row>
+        <S.WrapperCategory>
           <S.Row>
-            <span>Categoria de associado:</span>
+            <span>Categoria de associado:*</span>
             <input
               id="founded_partners"
               {...register('category')}
@@ -113,8 +124,12 @@ export const UpdateAssociate = ({
             />
             <label htmlFor="contributing_partner">Sócio contribuinte</label>
           </S.Row>
-        </S.Row>
+          {errors.category?.message && (
+            <S.ErrorText>{errors.category?.message}*</S.ErrorText>
+          )}
+        </S.WrapperCategory>
         <S.Row>
+          <span>Status:</span>
           <Select options={statusOptions} control={control} name="status" />
         </S.Row>
 

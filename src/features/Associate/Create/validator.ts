@@ -24,7 +24,7 @@ const schema = z.lazy(() =>
         .optional(),
       education: z
         .object({
-          level: optionalString,
+          level: optionalString.nullable(),
           background: optionalString,
           hasTheologyBackground: z.boolean().optional().nullable(),
           language: optionalString,
@@ -36,8 +36,15 @@ const schema = z.lazy(() =>
       education: data.education
         ? {
             ...data.education,
+            level: data.education.level || '',
             hasTheologyBackground:
               data.education.hasTheologyBackground || false,
+          }
+        : undefined,
+      ecclesiastical: data.ecclesiastical
+        ? {
+            ...data.ecclesiastical,
+            position: data.ecclesiastical.position || undefined,
           }
         : undefined,
     })),

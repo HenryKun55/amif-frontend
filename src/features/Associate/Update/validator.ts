@@ -7,14 +7,17 @@ const schema = z.lazy(() =>
   z
     .object({
       address: addressSchema,
-      indication: optionalString,
+      indication: optionalString.nullable(),
       name: requiredString,
       email: z.string().email(),
       birthDate: requiredString,
       phone: requiredString,
       rg: requiredString,
       cpf: requiredString,
-      category: z.enum(['founded_partners', 'contributing_partner']),
+      category: z.enum(['founded_partners', 'contributing_partner'], {
+        required_error: 'Campo obrigatório',
+        invalid_type_error: 'Campo obrigatório',
+      }),
       status: z.object({
         label: z.string(),
         value: z.string(),
@@ -24,7 +27,7 @@ const schema = z.lazy(() =>
         .object({
           church: optionalString,
           admissionDate: optionalString,
-          position: optionalString,
+          position: optionalString.nullable(),
         })
         .optional(),
       education: z
@@ -39,11 +42,19 @@ const schema = z.lazy(() =>
     .transform(data => ({
       ...data,
       status: data.status.value as UpdateAssociateRequest['status'],
+      indication: data.indication || undefined,
       education: data.education
         ? {
             ...data.education,
             hasTheologyBackground:
               data.education.hasTheologyBackground || false,
+            level: data.education.level || undefined,
+          }
+        : undefined,
+      ecclesiastical: data.ecclesiastical
+        ? {
+            ...data.ecclesiastical,
+            position: data.ecclesiastical.position || undefined,
           }
         : undefined,
     })),

@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 
 import { Checkbox } from '@/components/Form/Checkbox'
@@ -10,11 +11,17 @@ export const EducationData = () => {
     watch,
     formState: { errors },
   } = useFormContext()
+  const [isFormation, setIsFormation] = useState(false)
+
+  useEffect(() => {
+    if (watch('education.background')) {
+      setIsFormation(true)
+    }
+  }, [])
 
   return (
     <S.Wrapper>
       <hr />
-
       <S.Title>Dados educacionais/ acadêmicos</S.Title>
       <S.Row>
         <span>Formação:</span>
@@ -48,13 +55,17 @@ export const EducationData = () => {
         />
         <label htmlFor="Pós-graduação">Pós-graduação</label>
       </S.Row>
+
       <S.Row>
-        <Checkbox {...register('education.background')}>
+        <Checkbox
+          checked={isFormation}
+          onChange={() => setIsFormation(!isFormation)}
+        >
           Possui formação em teologia?
         </Checkbox>
       </S.Row>
 
-      {watch('education.background') && (
+      {isFormation && (
         <S.Row>
           <input
             id="Básico em teologia"

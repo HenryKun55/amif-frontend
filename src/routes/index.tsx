@@ -7,6 +7,7 @@ import {
 import { AdminLayout } from '@/layouts/AdminLayout'
 import { MainLayout } from '@/layouts/MainLayout'
 import { AdminAssociates } from '@/pages/Admin/Associate'
+import { AdminAssociatesCreate } from '@/pages/Admin/Associate/Create'
 import { AdminAssociatesId } from '@/pages/Admin/Associate/Id'
 import { AdminEvents } from '@/pages/Admin/Events'
 import { AdminEventsCreate } from '@/pages/Admin/Events/Create'
@@ -91,6 +92,10 @@ export const Router = () => {
           <DOMRoute
             path={AdminRoutes.Admin_Associados}
             element={<AdminAssociates />}
+          />
+          <DOMRoute
+            path={AdminRoutes.Admin_Associateos_Criar}
+            element={<AdminAssociatesCreate />}
           />
           <DOMRoute
             path={AdminRoutes.Admin_Associados_Id}
