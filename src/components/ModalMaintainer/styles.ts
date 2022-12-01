@@ -3,8 +3,11 @@ import tw, { styled } from 'twin.macro'
 import { Button } from '../Form/Button'
 
 export const reactModalStyles: ReactModal.Styles = {
-  overlay: { zIndex: 50 },
-
+  overlay: {
+    zIndex: 50,
+    backdropFilter: 'blur(5px)',
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+  },
   content: {
     top: '50%',
     left: '50%',

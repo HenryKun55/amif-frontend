@@ -1,6 +1,8 @@
 import api from '..'
 import {
   ActivateMaintainerRequest,
+  CreateMaintainerPaymentRequest,
+  CreateMaintainerPaymentResponse,
   CreateMaintainerRequest,
   CreateMaintainerResponse,
   DeactivateMaintainerRequest,
@@ -20,6 +22,7 @@ const endpoints = {
   activateMaintainer: (id: string) => `maintainers/${id}/activate`,
   deactivateMaintainer: (id: string) => `maintainers/${id}/deactivate`,
   deleteMaintainer: (id: string) => `maintainers/${id}`,
+  createPayment: (id: string) => `maintainers/${id}/payments`,
 }
 
 const maintainersApi = api.injectEndpoints({
@@ -81,6 +84,16 @@ const maintainersApi = api.injectEndpoints({
       }),
       invalidatesTags: ['Maintainers'],
     }),
+    createMaintainerPayment: builder.mutation<
+      CreateMaintainerPaymentResponse,
+      CreateMaintainerPaymentRequest
+    >({
+      query: ({ id, ...body }) => ({
+        url: endpoints.createPayment(id),
+        method: 'POST',
+        body,
+      }),
+    }),
   }),
   overrideExisting: false,
 })
@@ -93,6 +106,7 @@ export const {
   useActivateMaintainerMutation,
   useDeactivateMaintainerMutation,
   useDeleteMaintainerMutation,
+  useCreateMaintainerPaymentMutation,
 } = maintainersApi
 
 export default maintainersApi

@@ -1,5 +1,5 @@
 import { format } from 'date-fns'
-import { useCallback, useMemo, useState } from 'react'
+import { Fragment, useCallback, useMemo, useState } from 'react'
 import { Column } from 'react-table'
 
 import { useListEventSubscriptionsQuery } from '@/api/events'
@@ -91,17 +91,20 @@ export const SubscriptionsTable = ({ eventId }: SubscriptionsTableProps) => {
   if (!data?.data.length) return null
 
   return (
-    <S.Container>
-      <S.Title>Inscrições</S.Title>
-      <Table<Subscription>
-        data={data?.data || []}
-        columns={columns}
-        pageSize={data?.perPage || 0}
-        totalPages={data?.totalPages || 0}
-        totalCount={data?.total || 0}
-        onFetchData={handleFetchData}
-        isLoading={isLoading}
-      />
-    </S.Container>
+    <Fragment>
+      <hr />
+      <S.Container>
+        <S.Title>Inscrições</S.Title>
+        <Table<Subscription>
+          data={data?.data || []}
+          columns={columns}
+          pageSize={data?.perPage || 0}
+          totalPages={data?.totalPages || 0}
+          totalCount={data?.total || 0}
+          onFetchData={handleFetchData}
+          isLoading={isLoading}
+        />
+      </S.Container>
+    </Fragment>
   )
 }

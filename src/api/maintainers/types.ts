@@ -67,3 +67,13 @@ export type DeactivateMaintainerRequest = {
 export type DeleteMaintainerRequest = {
   id: string
 }
+
+export type CreateMaintainerPaymentRequest = {
+  id: string
+  paymentDate: string
+  amount: number
+}
+
+export type CreateMaintainerPaymentResponse = {
+  paymentId: string
+}
