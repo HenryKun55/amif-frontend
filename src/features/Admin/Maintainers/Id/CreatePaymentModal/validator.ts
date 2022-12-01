@@ -11,7 +11,7 @@ const schema = z.lazy(() =>
     })
     .transform(data => ({
       ...data,
-      amount: removeMaskCurrency(data.amount),
+      amount: parseFloat(removeMaskCurrency(data.amount).toFixed(2)) * 100,
     })),
 )
 
