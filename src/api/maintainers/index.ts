@@ -93,6 +93,7 @@ const maintainersApi = api.injectEndpoints({
         method: 'POST',
         body,
       }),
+      invalidatesTags: ['Maintainers', { type: 'Maintainers', id: 'Id' }],
     }),
   }),
   overrideExisting: false,

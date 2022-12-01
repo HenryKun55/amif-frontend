@@ -11,3 +11,5 @@ export const PaymentsTitle = styled.div([
 ])
 
 export const AddPaymentButton = styled(Button)([tw`flex gap-2 items-center`])
+
+export const TableWrapper = styled.div([tw`w-full p-8`])

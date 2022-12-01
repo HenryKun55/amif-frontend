@@ -66,7 +66,7 @@ export const AdminMaintainersId = () => {
           </S.Form>
         </FormProvider>
       )}
-      {maintainer && <PaymentsTable maintainerId={maintainer.id} />}
+      {maintainer && <PaymentsTable maintainer={maintainer} />}
     </S.Container>
   )
 }
