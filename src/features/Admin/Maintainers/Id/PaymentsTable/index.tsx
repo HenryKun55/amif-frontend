@@ -73,7 +73,7 @@ export const PaymentsTable = ({ maintainer }: PaymentsTableProps) => {
           columns={columns}
           pageSize={maintainer.payments.length}
           totalPages={1}
-          totalCount={maintainer.payments.length}
+          totalCount={1}
           emptyMessage="Nenhum pagamento foi criado ainda."
           onFetchData={() => {
             /** do nothing */
