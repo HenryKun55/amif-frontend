@@ -17,6 +17,7 @@ import { Checkbox } from '@/components/Form/Checkbox'
 import { FileField, Image } from '@/components/Form/FileField'
 import { Input } from '@/components/Form/Input'
 import { AdminRoutes } from '@/routes/admin-routes'
+import { MAX_SIZE_TWO_MEGABYTES } from '@/utils/constants'
 
 import * as S from './styles'
 import schema, { FormProps } from './validator'
@@ -125,7 +126,12 @@ export const CreateEventForm = () => {
           É possível se inscrever nesse evento?
         </Checkbox>
         <hr />
-        <FileField onChange={setImages} />
+        <FileField
+          maxSizeInMegabytes={MAX_SIZE_TWO_MEGABYTES}
+          allowedTypes={['image/jpeg', 'image/pjpeg', 'image/png']}
+          onChange={setImages}
+          onError={data => toast.error(data.message)}
+        />
         <hr />
         <AddressForm />
         <Button type="submit" disabled={isLoading || isUploadingImages}>

@@ -19,6 +19,7 @@ import { AddressForm } from '@/components/AddressForm'
 import { Button } from '@/components/Form/Button'
 import { FileField, Image } from '@/components/Form/FileField'
 import { Input } from '@/components/Form/Input'
+import { MAX_SIZE_TWO_MEGABYTES } from '@/utils/constants'
 import { getDiffImages } from '@/utils/image'
 
 import * as S from './styles'
@@ -160,7 +161,13 @@ export const UpdateMissionForm = ({ mission }: UpdateMissionFormProps) => {
           />
         </S.Row>
         <hr />
-        <FileField initialState={mission.images} onChange={setImages} />
+        <FileField
+          maxSizeInMegabytes={MAX_SIZE_TWO_MEGABYTES}
+          allowedTypes={['image/jpeg', 'image/pjpeg', 'image/png']}
+          initialState={mission.images}
+          onChange={setImages}
+          onError={data => toast.error(data.message)}
+        />
         <hr />
         <AddressForm />
         <Button
