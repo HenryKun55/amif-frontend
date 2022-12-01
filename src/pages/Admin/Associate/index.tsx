@@ -61,19 +61,19 @@ export const AdminAssociates = () => {
 
   const StatusFind = (associate: Associate) => {
     switch (associate.status) {
-      case 'Pendente':
+      case 'pending':
         return (
           <S.Text color="orange">
             <FaUserClock size={20} /> Pendente
           </S.Text>
         )
-      case 'Aprovado':
+      case 'approved':
         return (
           <S.Text color="green">
-            <MdCheckCircleOutline size={20} /> Ativo
+            <MdCheckCircleOutline size={20} /> Aprovado
           </S.Text>
         )
-      case 'Inativo':
+      case 'inactive':
         return (
           <S.Text color="red">
             <MdOutlineCancel size={20} /> Inativo

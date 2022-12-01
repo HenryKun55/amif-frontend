@@ -14,6 +14,7 @@ const schema: z.ZodType<CreateAssociateRequest> = z.lazy(() =>
     rg: requiredString,
     cpf: requiredString,
     category: z.enum(['founded_partners', 'contributing_partner']).optional(),
+    status: z.enum(['approved', 'pending', 'inactive']),
     ecclesiastical: z
       .object({
         church: optionalString,

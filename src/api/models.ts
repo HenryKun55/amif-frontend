@@ -89,6 +89,7 @@ export type Associate = {
     zipCode: string
   }
   id: string
+  userId?: string
   indication?: string
   name: string
   email: string
@@ -110,5 +111,5 @@ export type Associate = {
   }
   createdAt?: string
   isActive?: boolean
-  status: 'Pendente' | 'Aprovado' | 'Inativo'
+  status: 'approved' | 'pending' | 'inactive'
 }

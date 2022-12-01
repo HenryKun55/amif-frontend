@@ -9,9 +9,9 @@ import { Checkbox } from '@/components/Form/Checkbox'
 import { Input } from '@/components/Form/Input'
 import { Routes } from '@/routes/routes'
 
-import { EcclesiasticalData } from './EcclesiasticalData'
-import { EducationData } from './EducationData'
-import { PersonalData } from './PersonalData'
+import { EcclesiasticalData } from '../Form/EcclesiasticalData'
+import { EducationData } from '../Form/EducationData'
+import { PersonalData } from '../Form/PersonalData'
 import * as S from './styles'
 import schema, { FormProps } from './validator'
 
@@ -22,6 +22,9 @@ export const FormAssociate = () => {
 
   const formMethods = useForm<FormProps>({
     resolver: zodResolver(schema),
+    defaultValues: {
+      status: 'pending',
+    },
   })
 
   const {

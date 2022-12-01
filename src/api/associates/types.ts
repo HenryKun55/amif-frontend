@@ -27,6 +27,7 @@ export type CreateAssociateRequest = {
   rg: string
   cpf: string
   category?: 'founded_partners' | 'contributing_partner'
+  status: 'approved' | 'pending' | 'inactive'
   ecclesiastical?: {
     church?: string
     admissionDate?: string
@@ -39,6 +40,43 @@ export type CreateAssociateRequest = {
     language?: string
   }
 }
+export type UpdateAssociateRequest = {
+  id: string
+  address: {
+    state: string
+    district: string
+    city: string
+    street: string
+    number: string
+    zipCode: string
+  }
+  indication?: string
+  name: string
+  email: string
+  birthDate: string
+  phone: string
+  rg: string
+  cpf: string
+  category?: 'founded_partners' | 'contributing_partner'
+  status: 'approved' | 'pending' | 'inactive'
+  ecclesiastical?: {
+    church?: string
+    admissionDate?: string
+    position?: string
+  }
+  education?: {
+    level?: string
+    background?: string
+    hasTheologyBackground?: boolean
+    language?: string
+  }
+}
+
+export type FetchAssociateRequest = {
+  id: string
+}
+
+export type FetchAssociateResponse = Associate
 
 export type CreateAssociateResponse = {
   associateId: string

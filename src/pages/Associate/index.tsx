@@ -1,4 +1,4 @@
-import { FormAssociate } from '@/features/Associate/Create/Form'
+import { FormAssociate } from '@/features/Associate/Create'
 
 import * as S from './styles'
 
