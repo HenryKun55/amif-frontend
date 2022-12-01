@@ -13,14 +13,14 @@ import { EcclesiasticalData } from '../Form/EcclesiasticalData'
 import { EducationData } from '../Form/EducationData'
 import { PersonalData } from '../Form/PersonalData'
 import * as S from './styles'
-import schema, { FormProps } from './validator'
+import schema, { FormPropsInput, FormPropsOutput } from './validator'
 
 export const FormAssociate = () => {
   const navigate = useNavigate()
   const [createAssociate, { isLoading }] = useCreateAssociateMutation()
   const [isIndication, setIsIndication] = useState(false)
 
-  const formMethods = useForm<FormProps>({
+  const formMethods = useForm<FormPropsInput>({
     resolver: zodResolver(schema),
     defaultValues: {
       status: 'pending',
@@ -33,7 +33,8 @@ export const FormAssociate = () => {
     formState: { errors },
   } = formMethods
 
-  const onSubmit = useCallback((data: FormProps) => {
+  const onSubmit = useCallback((values: unknown) => {
+    const data = values as FormPropsOutput
     createAssociate(data)
       .unwrap()
       .then(() => {
