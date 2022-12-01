@@ -20,6 +20,7 @@ import { Button } from '@/components/Form/Button'
 import { Checkbox } from '@/components/Form/Checkbox'
 import { FileField, Image } from '@/components/Form/FileField'
 import { Input } from '@/components/Form/Input'
+import { MAX_SIZE_TWO_MEGABYTES } from '@/utils/constants'
 import { getDiffImages } from '@/utils/image'
 
 import * as S from './styles'
@@ -175,7 +176,13 @@ export const UpdateEventForm = ({
         <Checkbox {...register('canSubscribe')}>
           É possível se inscrever nesse evento?
         </Checkbox>
-        <FileField initialState={event.images} onChange={setImages} />
+        <FileField
+          maxSizeInMegabytes={MAX_SIZE_TWO_MEGABYTES}
+          allowedTypes={['image/jpeg', 'image/pjpeg', 'image/png']}
+          initialState={event.images}
+          onChange={setImages}
+          onError={data => toast.error(data.message)}
+        />
         <hr />
         <AddressForm />
         <S.Actions>
