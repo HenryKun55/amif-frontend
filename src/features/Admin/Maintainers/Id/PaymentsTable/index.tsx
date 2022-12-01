@@ -1,10 +1,14 @@
 import format from 'date-fns/format'
-import { Fragment, useMemo, useState } from 'react'
-import { MdOutlineAdd } from 'react-icons/md'
+import { Fragment, useCallback, useMemo, useState } from 'react'
+import { MdDelete, MdOutlineAdd } from 'react-icons/md'
 import { Column } from 'react-table'
+import { toast } from 'react-toastify'
 
+import { useDeleteMaintainerPaymentMutation } from '@/api/maintainers'
 import { Maintainer, Payment } from '@/api/models'
+import { ModalConfirmAction } from '@/components/ModalConfirmAction'
 import { Table } from '@/components/Table'
+import { TableMenu } from '@/components/Table/Menu'
 import { maskCurrency } from '@/utils/mask'
 
 import { CreatePaymentModal } from '../CreatePaymentModal'
@@ -15,8 +19,14 @@ export type PaymentsTableProps = {
 }
 
 export const PaymentsTable = ({ maintainer }: PaymentsTableProps) => {
+  const [confirmDeletePayment, setConfirmDeletePayment] = useState<{
+    id?: string
+    isOpen: boolean
+  }>({ isOpen: false })
   const [isCreatePaymentModalOpen, setIsCreatePaymentModalOpen] =
     useState(false)
+  const [deletePayment, { isLoading: isDeleting }] =
+    useDeleteMaintainerPaymentMutation()
 
   const columns = useMemo(
     () =>
@@ -51,9 +61,41 @@ export const PaymentsTable = ({ maintainer }: PaymentsTableProps) => {
             }
           },
         },
+        {
+          id: 'actions',
+          Header: 'Ações',
+          maxWidth: '8ch',
+          accessor: (payment: Payment) => (
+            <TableMenu
+              disabled={isDeleting}
+              actions={[
+                {
+                  title: 'Deletar',
+                  icon: <MdDelete size={20} color="red" />,
+                  onClick: () =>
+                    setConfirmDeletePayment({
+                      isOpen: true,
+                      id: payment.id,
+                    }),
+                },
+              ]}
+            />
+          ),
+        },
       ] as unknown as Column<Payment>[],
-    [],
+    [isDeleting],
   )
+
+  const handleDeletePayment = useCallback(() => {
+    const id = confirmDeletePayment.id
+    if (id) {
+      deletePayment({ maintainerId: maintainer.id, paymentId: id })
+        .unwrap()
+        .then(() => toast.success('Pagamento deletado.'))
+    }
+    setConfirmDeletePayment({ isOpen: false })
+  }, [maintainer, confirmDeletePayment])
+
   return (
     <Fragment>
       <hr />
@@ -84,6 +126,12 @@ export const PaymentsTable = ({ maintainer }: PaymentsTableProps) => {
         maintainerId={maintainer.id}
         isOpen={isCreatePaymentModalOpen}
         onClose={() => setIsCreatePaymentModalOpen(false)}
+      />
+      <ModalConfirmAction
+        title="Tem certeza que deseja deletar esse pagamento permanentemente?"
+        isOpen={confirmDeletePayment.isOpen}
+        onCancel={() => setConfirmDeletePayment({ isOpen: false })}
+        onConfirm={handleDeletePayment}
       />
     </Fragment>
   )

@@ -77,3 +77,8 @@ export type CreateMaintainerPaymentRequest = {
 export type CreateMaintainerPaymentResponse = {
   paymentId: string
 }
+
+export type DeleteMaintainerPaymentRequest = {
+  maintainerId: string
+  paymentId: string
+}
