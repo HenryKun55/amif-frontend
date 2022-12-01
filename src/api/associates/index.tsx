@@ -1,9 +1,8 @@
 import api from '..'
 import {
-  ActivateAssociateRequest,
   CreateAssociateRequest,
   CreateAssociateResponse,
-  DeactivateAssociateRequest,
+  DeleteAssociateRequest,
   FetchAssociateRequest,
   FetchAssociateResponse,
   ListAssociatesRequest,
@@ -16,8 +15,7 @@ const endpoints = {
   createAssociate: () => 'associates',
   updateAssociate: (id: string) => `associates/${id}`,
   listAssociates: () => 'associates',
-  activateAssociate: (id: string) => `associates/${id}/activate`,
-  deactivateAssociate: (id: string) => `associates/${id}/deactivate`,
+  deleteAssociate: (id: string) => `associates/${id}`,
 }
 
 const associatesApi = api.injectEndpoints({
@@ -58,19 +56,12 @@ const associatesApi = api.injectEndpoints({
       }),
       providesTags: ['Associates'],
     }),
-    activateAssociate: builder.mutation<void, ActivateAssociateRequest>({
+    deleteAssociate: builder.mutation<void, DeleteAssociateRequest>({
       query: ({ id }) => ({
-        url: endpoints.activateAssociate(id),
-        method: 'PUT',
+        url: endpoints.deleteAssociate(id),
+        method: 'DELETE',
       }),
-      invalidatesTags: ['Associates', { type: 'Associates', id: 'Id' }],
-    }),
-    deactivateAssociate: builder.mutation<void, DeactivateAssociateRequest>({
-      query: ({ id }) => ({
-        url: endpoints.deactivateAssociate(id),
-        method: 'PUT',
-      }),
-      invalidatesTags: ['Associates', { type: 'Associates', id: 'Id' }],
+      invalidatesTags: ['Associates'],
     }),
   }),
   overrideExisting: false,
@@ -81,8 +72,7 @@ export const {
   useCreateAssociateMutation,
   useUpdateAssociateMutation,
   useListAssociatesQuery,
-  useActivateAssociateMutation,
-  useDeactivateAssociateMutation,
+  useDeleteAssociateMutation,
 } = associatesApi
 
 export default associatesApi

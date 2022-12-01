@@ -4,22 +4,24 @@ import { useForm } from 'react-hook-form'
 import { FaUserClock } from 'react-icons/fa'
 import {
   MdCheckCircleOutline,
+  MdDelete,
   MdOutlineCancel,
   MdOutlineRemoveRedEye,
   MdSearch,
 } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
 import { Column } from 'react-table'
+import { toast } from 'react-toastify'
 
 import {
-  useActivateAssociateMutation,
-  useDeactivateAssociateMutation,
+  useDeleteAssociateMutation,
   useListAssociatesQuery,
 } from '@/api/associates'
 import { AssociateSortBy } from '@/api/associates/types'
 import { Associate } from '@/api/models'
 import { Order } from '@/api/types'
 import { Breadcrumb } from '@/components/Breadcrumb'
+import { ModalConfirmAction } from '@/components/ModalConfirmAction'
 import { FetchDataProps, Table } from '@/components/Table'
 import { TableMenu } from '@/components/Table/Menu'
 import { useDebounce } from '@/hooks/useDebounce'
@@ -35,6 +37,10 @@ export const AdminAssociates = () => {
     'createdAt',
   )
   const [orderBy, setOrderBy] = useState<Order>('desc')
+  const [confirmDeleteAssociate, setConfirmDeleteAssociate] = useState<{
+    id?: string
+    isOpen: boolean
+  }>({ isOpen: false })
 
   const { register, watch } = useForm()
   const searchDebounced = useDebounce(watch('search'), 300)
@@ -46,18 +52,8 @@ export const AdminAssociates = () => {
     name: searchDebounced,
   })
 
-  const [activateAssociate, { isLoading: isActivating }] =
-    useActivateAssociateMutation()
-  const [deactivateAssociate, { isLoading: isDeactivating }] =
-    useDeactivateAssociateMutation()
-
-  const handleActivaDeactiveAssociate = useCallback((associate: Associate) => {
-    if (associate.isActive) {
-      deactivateAssociate({ id: associate.id })
-    } else {
-      activateAssociate({ id: associate.id })
-    }
-  }, [])
+  const [deleteAssociate, { isLoading: isDeleting }] =
+    useDeleteAssociateMutation()
 
   const StatusFind = (associate: Associate) => {
     switch (associate.status) {
@@ -124,7 +120,6 @@ export const AdminAssociates = () => {
           maxWidth: '8ch',
           accessor: (associate: Associate) => (
             <TableMenu
-              disabled={isActivating || isDeactivating}
               actions={[
                 {
                   title: 'Ver',
@@ -138,13 +133,13 @@ export const AdminAssociates = () => {
                     ),
                 },
                 {
-                  title: associate.isActive ? 'Desativar' : 'Ativar',
-                  icon: associate.isActive ? (
-                    <MdOutlineCancel size={20} color="red" />
-                  ) : (
-                    <MdCheckCircleOutline size={20} color="green" />
-                  ),
-                  onClick: () => handleActivaDeactiveAssociate(associate),
+                  title: 'Deletar',
+                  icon: <MdDelete size={20} color="red" />,
+                  onClick: () =>
+                    setConfirmDeleteAssociate({
+                      isOpen: true,
+                      id: associate.id,
+                    }),
                 },
               ]}
             />
@@ -159,6 +154,17 @@ export const AdminAssociates = () => {
     setOrderBy(args.orderBy || 'desc')
     setSortBy((args.sortBy || 'startDate') as keyof AssociateSortBy)
   }, [])
+
+  const handleDeleteAssociate = useCallback(() => {
+    const id = confirmDeleteAssociate.id
+    if (id) {
+      deleteAssociate({ id })
+        .unwrap()
+        .then(() => toast.success('Associado deletado.'))
+        .catch(error => toast.error(error.message))
+    }
+    setConfirmDeleteAssociate({ isOpen: false })
+  }, [confirmDeleteAssociate])
 
   return (
     <S.Container>
@@ -187,6 +193,12 @@ export const AdminAssociates = () => {
           isLoading={isLoading}
         />
       </S.Content>
+      <ModalConfirmAction
+        title="Tem certeza que deseja deletar esse Associado permanentemente?"
+        isOpen={confirmDeleteAssociate.isOpen}
+        onCancel={() => setConfirmDeleteAssociate({ isOpen: false })}
+        onConfirm={handleDeleteAssociate}
+      />
     </S.Container>
   )
 }

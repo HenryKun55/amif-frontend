@@ -90,10 +90,6 @@ export type ListAssociatesRequest = PagedRequest<AssociateSortBy> & {
 
 export type ListAssociatesResponse = Paged<Associate>
 
-export type ActivateAssociateRequest = {
-  id: string
-}
-
-export type DeactivateAssociateRequest = {
+export type DeleteAssociateRequest = {
   id: string
 }
