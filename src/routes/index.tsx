@@ -87,7 +87,10 @@ export const Router = () => {
             path={AdminRoutes.Admin_Mantenedores_Id}
             element={<AdminMaintainersId />}
           />
-          <DOMRoute path={AdminRoutes.Admin_Acessos} element={<AdminUsers />} />
+          <DOMRoute
+            path={AdminRoutes.Admin_Usuarios}
+            element={<AdminUsers />}
+          />
         </DOMRoute>
       </DOMRoutes>
     </BrowserRouter>

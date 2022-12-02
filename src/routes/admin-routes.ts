@@ -11,6 +11,6 @@ export enum AdminRoutes {
   Admin_Mantenedores = '/admin/mantenedores',
   Admin_Mantenedores_Criar = '/admin/mantenedores/criar',
   Admin_Mantenedores_Id = '/admin/mantenedores/:id',
-  Admin_Acessos = '/admin/acessos',
+  Admin_Usuarios = '/admin/usuarios',
   NotFound = '/admin/404',
 }

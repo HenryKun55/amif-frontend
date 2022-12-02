@@ -67,11 +67,11 @@ export const SideBar = () => {
         </S.ListItem>
         <S.ListItem>
           <S.Link
-            active={isActive(AdminRoutes.Admin_Acessos)}
-            to={AdminRoutes.Admin_Acessos}
+            active={isActive(AdminRoutes.Admin_Usuarios)}
+            to={AdminRoutes.Admin_Usuarios}
           >
             <MdManageAccounts size={20} />
-            Acessos
+            Usuarios
           </S.Link>
         </S.ListItem>
       </S.List>
