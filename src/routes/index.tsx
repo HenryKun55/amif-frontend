@@ -17,6 +17,7 @@ import { AdminMissions } from '@/pages/Admin/Missions'
 import { AdminMissionsCreate } from '@/pages/Admin/Missions/Create'
 import { AdminMissionsId } from '@/pages/Admin/Missions/Id'
 import { SignIn } from '@/pages/Admin/SignIn'
+import { AdminUsers } from '@/pages/Admin/Users'
 import { Associate } from '@/pages/Associate'
 import { Donate } from '@/pages/Donate'
 import { Events } from '@/pages/Events'
@@ -85,6 +86,10 @@ export const Router = () => {
           <DOMRoute
             path={AdminRoutes.Admin_Mantenedores_Id}
             element={<AdminMaintainersId />}
+          />
+          <DOMRoute
+            path={AdminRoutes.Admin_Usuarios}
+            element={<AdminUsers />}
           />
         </DOMRoute>
       </DOMRoutes>

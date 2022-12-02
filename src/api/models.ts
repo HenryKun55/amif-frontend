@@ -7,6 +7,11 @@ export type User = {
   }
 }
 
+export type UserTable = {
+  username: string
+  createdAt: string
+}
+
 export type Address = {
   state?: string
   district?: string
