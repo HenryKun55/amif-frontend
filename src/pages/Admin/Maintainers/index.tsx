@@ -41,7 +41,7 @@ export const AdminMaintainers = () => {
     id?: string
     isOpen: boolean
   }>({ isOpen: false })
-  const [havePayersOfTheDay, setHavePayersOfTheDay] = useState(false)
+  const [hasPayersOfTheDay, setHasPayersOfTheDay] = useState(false)
 
   const [activateMaintainer, { isLoading: isActivating }] =
     useActivateMaintainerMutation()
@@ -58,7 +58,7 @@ export const AdminMaintainers = () => {
     orderBy,
     sortBy,
     name: searchDebounced || undefined,
-    donateDay: havePayersOfTheDay ? new Date().getDate().toString() : undefined,
+    donateDay: hasPayersOfTheDay ? new Date().getDate().toString() : undefined,
   })
 
   const columns = useMemo(
@@ -186,8 +186,8 @@ export const AdminMaintainers = () => {
           <S.Switch>
             <S.SwitchText>Pagantes do dia</S.SwitchText>
             <S.SwitchComponent
-              checked={havePayersOfTheDay}
-              onChange={() => setHavePayersOfTheDay(!havePayersOfTheDay)}
+              checked={hasPayersOfTheDay}
+              onChange={() => setHasPayersOfTheDay(!hasPayersOfTheDay)}
             />
           </S.Switch>
           <S.Input
