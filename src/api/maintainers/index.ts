@@ -1,3 +1,5 @@
+import { removeUndefinedValues } from '@/utils/guards'
+
 import api from '..'
 import {
   ActivateMaintainerRequest,
@@ -43,7 +45,7 @@ const maintainersApi = api.injectEndpoints({
     >({
       query: params => ({
         url: endpoints.listMaintainers(),
-        params,
+        params: removeUndefinedValues(params),
       }),
       providesTags: ['Maintainers'],
     }),

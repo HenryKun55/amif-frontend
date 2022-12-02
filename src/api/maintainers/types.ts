@@ -15,6 +15,7 @@ export type FetchMaintainerResponse = Maintainer
 
 export type ListMaintainersRequest = PagedRequest<MaintainerSortBy> & {
   name?: string
+  donateDay?: string
 }
 
 export type ListMaintainersResponse = Paged<Maintainer>

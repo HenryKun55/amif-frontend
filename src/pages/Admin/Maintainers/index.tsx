@@ -41,6 +41,7 @@ export const AdminMaintainers = () => {
     id?: string
     isOpen: boolean
   }>({ isOpen: false })
+  const [havePayersOfTheDay, setHavePayersOfTheDay] = useState(false)
 
   const [activateMaintainer, { isLoading: isActivating }] =
     useActivateMaintainerMutation()
@@ -56,7 +57,8 @@ export const AdminMaintainers = () => {
     page,
     orderBy,
     sortBy,
-    name: searchDebounced,
+    name: searchDebounced || undefined,
+    donateDay: havePayersOfTheDay ? new Date().getDate().toString() : undefined,
   })
 
   const columns = useMemo(
@@ -78,6 +80,12 @@ export const AdminMaintainers = () => {
           accessor: 'cpf',
           maxWidth: '15ch',
           defaultCanSort: true,
+        },
+        {
+          Header: 'Dia de pagamento',
+          accessor: 'donateDay',
+          responsive: true,
+          maxWidth: '15ch',
         },
         {
           id: 'isActive',
@@ -174,14 +182,23 @@ export const AdminMaintainers = () => {
         href={AdminRoutes.Admin_Mantenedores_Criar}
       />
       <S.Content>
-        <S.Input
-          leftIcon={<MdSearch size={18} color="gray" />}
-          shape="pill"
-          label="Pesquisar por título"
-          register={register}
-          name="search"
-          height="sm"
-        />
+        <S.HeaderContent>
+          <S.Switch>
+            <S.SwitchText>Pagantes do dia</S.SwitchText>
+            <S.SwitchComponent
+              checked={havePayersOfTheDay}
+              onChange={() => setHavePayersOfTheDay(!havePayersOfTheDay)}
+            />
+          </S.Switch>
+          <S.Input
+            leftIcon={<MdSearch size={18} color="gray" />}
+            shape="pill"
+            label="Pesquisar por título"
+            register={register}
+            name="search"
+            height="sm"
+          />
+        </S.HeaderContent>
         <Table<Maintainer>
           data={data?.data || []}
           columns={columns}
