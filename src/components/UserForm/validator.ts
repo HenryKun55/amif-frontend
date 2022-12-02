@@ -6,7 +6,6 @@ import { requiredString } from '@/utils/zod'
 const schema: z.ZodType<CreateUserRequest> = z.lazy(() =>
   z.object({
     username: requiredString,
-    creatorId: requiredString,
     password: requiredString,
   }),
 )

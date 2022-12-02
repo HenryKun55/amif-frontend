@@ -66,7 +66,7 @@ export const AdminUsers = () => {
   return (
     <S.Container>
       <Breadcrumb
-        path={['Usuarios']}
+        path={['Usuários']}
         showButton
         buttonAsLink
         href={AdminRoutes.Admin_Usuarios}

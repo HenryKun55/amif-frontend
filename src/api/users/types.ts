@@ -7,7 +7,6 @@ export interface UserSortBy {
 }
 
 export type CreateUserRequest = {
-  creatorId: string
   username: string
   password: string
 }
