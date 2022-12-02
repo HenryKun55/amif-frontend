@@ -1,9 +1,8 @@
 import { z } from 'zod'
 
-import { CreateUserRequest } from '@/api/users/types'
 import { requiredString } from '@/utils/zod'
 
-const schema: z.ZodType<CreateUserRequest> = z.lazy(() =>
+const schema = z.lazy(() =>
   z.object({
     username: requiredString,
     password: requiredString,
