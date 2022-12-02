@@ -7,6 +7,11 @@ export type User = {
   }
 }
 
+export type UserTable = {
+  username: string
+  createdAt: string
+}
+
 export type Address = {
   state?: string
   district?: string
@@ -67,10 +72,18 @@ export type Mission = {
   address?: Address
 }
 
+export type Payment = {
+  id: string
+  paymentDate: string
+  amount: number
+  createdAt?: string
+}
+
 export type Maintainer = {
   id: string
   name: string
   address?: Address
+  payments: Payment[]
   cpf: string
   phone: string
   donateAmount: number

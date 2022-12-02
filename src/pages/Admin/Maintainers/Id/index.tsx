@@ -14,6 +14,7 @@ import schema, {
   FormPropsInput,
   FormPropsOutput,
 } from '@/components/MaintainerForm/validator'
+import { PaymentsTable } from '@/features/Admin/Maintainers/Id/PaymentsTable'
 import { AdminRoutes } from '@/routes/admin-routes'
 import handleFormError from '@/utils/handle-form-error'
 import { maskCurrency } from '@/utils/mask'
@@ -59,12 +60,13 @@ export const AdminMaintainersId = () => {
         <FormProvider {...formMethods}>
           <S.Form onSubmit={formMethods.handleSubmit(handleSubmit)}>
             <MaintainerForm />
-            <S.SubmitButton disabled={isLoading || isUpdating}>
-              Atualizar
+            <S.SubmitButton size="sm" disabled={isLoading || isUpdating}>
+              Salvar
             </S.SubmitButton>
           </S.Form>
         </FormProvider>
       )}
+      {maintainer && <PaymentsTable maintainer={maintainer} />}
     </S.Container>
   )
 }

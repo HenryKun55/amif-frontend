@@ -15,6 +15,7 @@ export type FetchMaintainerResponse = Maintainer
 
 export type ListMaintainersRequest = PagedRequest<MaintainerSortBy> & {
   name?: string
+  donateDay?: string
 }
 
 export type ListMaintainersResponse = Paged<Maintainer>
@@ -66,4 +67,19 @@ export type DeactivateMaintainerRequest = {
 
 export type DeleteMaintainerRequest = {
   id: string
+}
+
+export type CreateMaintainerPaymentRequest = {
+  id: string
+  paymentDate: string
+  amount: number
+}
+
+export type CreateMaintainerPaymentResponse = {
+  paymentId: string
+}
+
+export type DeleteMaintainerPaymentRequest = {
+  maintainerId: string
+  paymentId: string
 }

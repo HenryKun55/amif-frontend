@@ -1,9 +1,14 @@
+import { removeUndefinedValues } from '@/utils/guards'
+
 import api from '..'
 import {
   ActivateMaintainerRequest,
+  CreateMaintainerPaymentRequest,
+  CreateMaintainerPaymentResponse,
   CreateMaintainerRequest,
   CreateMaintainerResponse,
   DeactivateMaintainerRequest,
+  DeleteMaintainerPaymentRequest,
   DeleteMaintainerRequest,
   FetchMaintainerRequest,
   FetchMaintainerResponse,
@@ -20,6 +25,9 @@ const endpoints = {
   activateMaintainer: (id: string) => `maintainers/${id}/activate`,
   deactivateMaintainer: (id: string) => `maintainers/${id}/deactivate`,
   deleteMaintainer: (id: string) => `maintainers/${id}`,
+  createPayment: (id: string) => `maintainers/${id}/payments`,
+  deletePayment: (maintainerId: string, paymentId: string) =>
+    `maintainers/${maintainerId}/payments/${paymentId}`,
 }
 
 const maintainersApi = api.injectEndpoints({
@@ -37,7 +45,7 @@ const maintainersApi = api.injectEndpoints({
     >({
       query: params => ({
         url: endpoints.listMaintainers(),
-        params,
+        params: removeUndefinedValues(params),
       }),
       providesTags: ['Maintainers'],
     }),
@@ -81,6 +89,27 @@ const maintainersApi = api.injectEndpoints({
       }),
       invalidatesTags: ['Maintainers'],
     }),
+    createMaintainerPayment: builder.mutation<
+      CreateMaintainerPaymentResponse,
+      CreateMaintainerPaymentRequest
+    >({
+      query: ({ id, ...body }) => ({
+        url: endpoints.createPayment(id),
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: ['Maintainers', { type: 'Maintainers', id: 'Id' }],
+    }),
+    deleteMaintainerPayment: builder.mutation<
+      void,
+      DeleteMaintainerPaymentRequest
+    >({
+      query: ({ maintainerId, paymentId }) => ({
+        url: endpoints.deletePayment(maintainerId, paymentId),
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Maintainers', { type: 'Maintainers', id: 'Id' }],
+    }),
   }),
   overrideExisting: false,
 })
@@ -93,6 +122,8 @@ export const {
   useActivateMaintainerMutation,
   useDeactivateMaintainerMutation,
   useDeleteMaintainerMutation,
+  useCreateMaintainerPaymentMutation,
+  useDeleteMaintainerPaymentMutation,
 } = maintainersApi
 
 export default maintainersApi
