@@ -78,9 +78,7 @@ export const AdditionalData = ({
               </Radio>
             </S.Row>
             {errors.category?.message && (
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              //@ts-ignore
-              <S.ErrorText>{errors.category?.message}*</S.ErrorText>
+              <S.ErrorText>{errors.category?.message + '*'}</S.ErrorText>
             )}
           </S.WrapperCategory>
           <S.Row>
