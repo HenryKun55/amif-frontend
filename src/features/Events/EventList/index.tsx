@@ -1,5 +1,6 @@
 import { useListEventsQuery } from '@/api/events'
 import { CardEvent } from '@/components/CardEvent'
+import { CtaDonate } from '@/components/CtaDonate'
 import { Skeleton } from '@/components/Skeleton'
 import { Pagination } from '@/components/Table/Pagination'
 import { usePagePagination } from '@/hooks/usePagePagination'
@@ -61,6 +62,7 @@ export const EventList = () => {
         previous="Anterior"
         onPageChange={handlePageChange}
       />
+      <CtaDonate />
     </S.Container>
   )
 }

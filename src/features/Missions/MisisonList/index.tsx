@@ -7,6 +7,7 @@
 import { Fragment } from 'react'
 
 import { useListMissionsQuery } from '@/api/missions'
+import { CtaDonate } from '@/components/CtaDonate'
 import { Pagination } from '@/components/Table/Pagination'
 import { usePagePagination } from '@/hooks/usePagePagination'
 import { Routes } from '@/routes/routes'
@@ -31,6 +32,10 @@ export const MissionList = () => {
     if (pageIndex > 0 && pageIndex <= data.totalPages) {
       setPage(pageIndex)
     }
+  }
+
+  if (!data?.data || data.data.length === 0) {
+    return <div>Nenhuma missão encontrada</div>
   }
 
   return (
@@ -62,6 +67,8 @@ export const MissionList = () => {
           </S.PaginationWrapper>
         </Fragment>
       )}
+
+      <CtaDonate />
     </S.Container>
   )
 }

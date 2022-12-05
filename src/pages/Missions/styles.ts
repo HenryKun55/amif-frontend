@@ -4,7 +4,7 @@ export const Container = styled.div([
   tw`flex-1 w-full bg-gray-100 overflow-x-hidden`,
 ])
 
-export const Header = styled.header([tw`w-full bg-gray-200 mb-10`])
+export const Header = styled.header([tw`w-full bg-gray-200 mb-[72px]`])
 
 export const TitleWrapper = styled.div([tw`w-full max-w-content mx-auto px-4`])
 
