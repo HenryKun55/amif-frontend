@@ -27,6 +27,16 @@ const associatesApi = api.injectEndpoints({
       query: ({ id }) => endpoints.fetchAssociate(id),
       providesTags: [{ type: 'Associates', id: 'Id' }],
     }),
+    listAssociates: builder.query<
+      ListAssociatesResponse,
+      ListAssociatesRequest
+    >({
+      query: params => ({
+        url: endpoints.listAssociates(),
+        params,
+      }),
+      providesTags: ['Associates'],
+    }),
     createAssociate: builder.mutation<
       CreateAssociateResponse,
       CreateAssociateRequest
@@ -44,17 +54,7 @@ const associatesApi = api.injectEndpoints({
         method: 'PUT',
         body,
       }),
-      invalidatesTags: [{ type: 'Associates', id: 'Id' }],
-    }),
-    listAssociates: builder.query<
-      ListAssociatesResponse,
-      ListAssociatesRequest
-    >({
-      query: params => ({
-        url: endpoints.listAssociates(),
-        params,
-      }),
-      providesTags: ['Associates'],
+      invalidatesTags: ['Associates', { type: 'Associates', id: 'Id' }],
     }),
     deleteAssociate: builder.mutation<void, DeleteAssociateRequest>({
       query: ({ id }) => ({
