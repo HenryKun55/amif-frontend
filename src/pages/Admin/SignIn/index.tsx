@@ -1,6 +1,6 @@
 import logo from 'assets/logo.svg'
 
-import { Form } from '@/features/Admin/SignIn/Form'
+import { Form } from '@/features/Admin/SignIn/Create/Form'
 
 import * as S from './styles'
 

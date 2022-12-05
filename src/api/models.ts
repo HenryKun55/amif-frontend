@@ -8,6 +8,7 @@ export type User = {
 }
 
 export type UserTable = {
+  id: string
   username: string
   createdAt: string
 }

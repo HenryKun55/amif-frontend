@@ -6,6 +6,12 @@ export interface UserSortBy {
   createdAt: string
 }
 
+export type FetchUserRequest = {
+  id: string
+}
+
+export type FetchUserResponse = UserTable
+
 export type CreateUserRequest = {
   username: string
   password: string
@@ -21,3 +27,13 @@ export type ListUsersRequest = PagedRequest<UserSortBy> & {
 }
 
 export type ListUsersResponse = Paged<UserTable>
+
+export type DeleteUserRequest = {
+  id: string
+}
+
+export type UpdateUserRequest = {
+  id: string
+  username: string
+  password: string
+}
