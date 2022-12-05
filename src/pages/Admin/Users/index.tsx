@@ -69,7 +69,7 @@ export const AdminUsers = () => {
         path={['Usuários']}
         showButton
         buttonAsLink
-        href={AdminRoutes.Admin_Usuarios}
+        href={AdminRoutes.Admin_Usuarios_Criar}
       />
       <S.Content>
         <S.Input

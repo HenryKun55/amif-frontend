@@ -50,7 +50,7 @@ export const Form = () => {
 
   return (
     <S.Form onSubmit={handleSubmit(onSubmit)}>
-      <S.Title>Bem-vindo de volta</S.Title>
+      <S.Title>Bem-vindo</S.Title>
       <Input
         name="username"
         errors={errors}
