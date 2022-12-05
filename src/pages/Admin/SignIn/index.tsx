@@ -1,3 +1,5 @@
+import logo from 'assets/logo.svg'
+
 import { Form } from '@/features/Admin/SignIn/Form'
 
 import * as S from './styles'
@@ -9,7 +11,7 @@ export const SignIn = () => {
         <Form />
       </S.FormContainer>
       <S.Box>
-        <S.LogoFake />
+        <S.Logo src={logo} />
       </S.Box>
     </S.Container>
   )
