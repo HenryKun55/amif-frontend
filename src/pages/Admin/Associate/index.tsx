@@ -99,7 +99,7 @@ export const AdminAssociates = () => {
           defaultCanSort: true,
           accessor: (associate: Associate) =>
             associate.createdAt
-              ? format(new Date(associate.createdAt), 'dd/MM/yyyy HH:mm')
+              ? format(new Date(associate.createdAt), 'dd/MM/yyyy')
               : '',
         },
 
