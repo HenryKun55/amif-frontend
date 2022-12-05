@@ -19,7 +19,7 @@ export const AdminAssociatesId = () => {
 
   return (
     <S.Container>
-      <Breadcrumb path={['Associates', associate?.name || 'Atualizar']} />
+      <Breadcrumb path={['Associados', associate?.name || 'Atualizar']} />
       {isLoading && <div>Carregando...</div>}
       <S.Wrapper>
         {associate && (

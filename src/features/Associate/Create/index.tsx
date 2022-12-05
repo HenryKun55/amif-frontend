@@ -1,31 +1,33 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useCallback, useState } from 'react'
+import { useCallback } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 import { useCreateAssociateMutation } from '@/api/associates'
-import { Checkbox } from '@/components/Form/Checkbox'
-import { Input } from '@/components/Form/Input'
 import { AdminRoutes } from '@/routes/admin-routes'
 import { Routes } from '@/routes/routes'
 
+import { AdditionalData } from '../Form/AdditionalData'
 import { EcclesiasticalData } from '../Form/EcclesiasticalData'
 import { EducationData } from '../Form/EducationData'
 import { PersonalData } from '../Form/PersonalData'
 import * as S from './styles'
 import schema, { FormPropsInput, FormPropsOutput } from './validator'
 
-export const FormAssociateCreate = () => {
+export type CreateAssociateFormProps = {
+  mode: 'client' | 'admin'
+}
+
+export const CreateAssociateForm = ({ mode }: CreateAssociateFormProps) => {
   const navigate = useNavigate()
-  const location = useLocation()
   const [createAssociate, { isLoading }] = useCreateAssociateMutation()
-  const [isIndication, setIsIndication] = useState(false)
 
   const formMethods = useForm<FormPropsInput>({
     resolver: zodResolver(schema),
     defaultValues: {
-      status: 'pending',
+      mode: mode,
+      status: { value: 'pending', label: 'Pendente', color: '#FF8B00' },
     },
   })
 
@@ -33,19 +35,25 @@ export const FormAssociateCreate = () => {
     register,
     handleSubmit,
     formState: { errors },
+    control,
   } = formMethods
+
+  const onSuccess = () => {
+    if (mode === 'admin') {
+      toast.success('Cadastrado com sucesso!')
+      navigate(AdminRoutes.Admin_Associados)
+      return
+    }
+    toast.success('Sua solicitação foi enviada com sucesso!')
+    navigate(Routes.Home)
+  }
 
   const onSubmit = useCallback((values: unknown) => {
     const data = values as FormPropsOutput
     createAssociate(data)
       .unwrap()
       .then(() => {
-        toast.success('Solicitação enviada.')
-        navigate(
-          location.pathname.split('/')[1] === 'admin'
-            ? AdminRoutes.Admin_Associados
-            : Routes.Home,
-        )
+        onSuccess()
       })
   }, [])
 
@@ -55,20 +63,7 @@ export const FormAssociateCreate = () => {
         <PersonalData />
         <EcclesiasticalData />
         <EducationData />
-        <S.Row>
-          <Checkbox onChange={() => setIsIndication(!isIndication)}>
-            Teve indicação de outro sócio da AMIF ?
-          </Checkbox>
-          {isIndication && (
-            <Input
-              name="indication"
-              label="Quem?"
-              placeholder="Informe o nome"
-              register={register}
-              errors={errors}
-            />
-          )}
-        </S.Row>
+        <AdditionalData control={control} mode={mode} />
         <S.WrapperButton>
           <S.Button type="submit">Enviar</S.Button>
         </S.WrapperButton>

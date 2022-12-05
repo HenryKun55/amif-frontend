@@ -1,20 +1,31 @@
 import { z } from 'zod'
 
+import { UpdateAssociateRequest } from '@/api/associates/types'
 import { addressSchema, optionalString, requiredString } from '@/utils/zod'
 
 const schema = z.lazy(() =>
   z
     .object({
+      mode: z.string(),
       address: addressSchema,
-      indication: optionalString,
+      indication: optionalString.nullable(),
       name: requiredString,
       email: z.string().email(),
       birthDate: requiredString,
       phone: requiredString,
       rg: requiredString,
       cpf: requiredString,
-      category: z.enum(['founded_partners', 'contributing_partner']).optional(),
-      status: z.enum(['approved', 'pending', 'inactive']),
+      category: z
+        .enum(['founded_partners', 'contributing_partner'], {
+          required_error: 'Campo obrigatório',
+          invalid_type_error: 'Campo obrigatório',
+        })
+        .optional(),
+      status: z.object({
+        label: z.string(),
+        value: z.string(),
+        color: z.string(),
+      }),
       ecclesiastical: z
         .object({
           church: optionalString,
@@ -33,6 +44,8 @@ const schema = z.lazy(() =>
     })
     .transform(data => ({
       ...data,
+      indication: data.indication || undefined,
+      status: data.status.value as UpdateAssociateRequest['status'],
       education: data.education
         ? {
             ...data.education,

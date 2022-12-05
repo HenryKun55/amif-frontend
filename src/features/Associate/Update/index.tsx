@@ -1,16 +1,13 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 import { useUpdateAssociateMutation } from '@/api/associates'
 import { Associate } from '@/api/models'
-import { Checkbox } from '@/components/Form/Checkbox'
-import { Input } from '@/components/Form/Input'
-import { Select } from '@/components/Form/Select'
-import { AdminRoutes } from '@/routes/admin-routes'
 
+import { AdditionalData } from '../Form/AdditionalData'
 import { EcclesiasticalData } from '../Form/EcclesiasticalData'
 import { EducationData } from '../Form/EducationData'
 import { PersonalData } from '../Form/PersonalData'
@@ -27,7 +24,6 @@ export const UpdateAssociate = ({
   isLoading,
 }: UpdateAssociateProps) => {
   const navigate = useNavigate()
-  const [isIndication, setIsIndication] = useState(false)
   const [updateAssociate, { isLoading: isUpdating }] =
     useUpdateAssociateMutation()
 
@@ -58,12 +54,6 @@ export const UpdateAssociate = ({
     },
   })
 
-  useEffect(() => {
-    if (associate.indication) {
-      setIsIndication(true)
-    }
-  }, [])
-
   const {
     register,
     handleSubmit,
@@ -71,67 +61,29 @@ export const UpdateAssociate = ({
     control,
   } = formMethods
 
-  const onSubmit = useCallback((values: unknown) => {
-    const data = values as FormPropsOutput
-    updateAssociate({ ...data, id: associate.id })
-      .unwrap()
-      .then(() => {
-        toast.success('Salvo!')
-        navigate(AdminRoutes.Admin_Associados)
-      })
-  }, [])
+  const onSubmit = useCallback(
+    (values: unknown) => {
+      const data = values as FormPropsOutput
+      updateAssociate({ ...data, id: associate.id })
+        .unwrap()
+        .then(() => {
+          toast.success('Associado atualizado')
+        })
+    },
+    [associate.id],
+  )
 
   return (
     <FormProvider {...formMethods}>
       <S.Form onSubmit={handleSubmit(onSubmit)}>
         <PersonalData />
-        <EcclesiasticalData
-          isPosition={associate.ecclesiastical?.position ? true : false}
-        />
+        <EcclesiasticalData isPosition={!!associate.ecclesiastical?.position} />
         <EducationData />
-        <S.Row>
-          <Checkbox
-            checked={isIndication}
-            onChange={() => setIsIndication(!isIndication)}
-          >
-            Teve indicação de outro sócio da AMIF ?
-          </Checkbox>
-          {isIndication && (
-            <Input
-              name="indication"
-              label="Quem?"
-              placeholder="Informe o nome"
-              register={register}
-              errors={errors}
-            />
-          )}
-        </S.Row>
-        <S.WrapperCategory>
-          <S.Row>
-            <span>Categoria de associado:*</span>
-            <input
-              id="founded_partners"
-              {...register('category')}
-              type="radio"
-              value="founded_partners"
-            />
-            <label htmlFor="founded_partners">Sócio fundador</label>
-            <input
-              id="contributing_partner"
-              {...register('category')}
-              type="radio"
-              value="contributing_partner"
-            />
-            <label htmlFor="contributing_partner">Sócio contribuinte</label>
-          </S.Row>
-          {errors.category?.message && (
-            <S.ErrorText>{errors.category?.message}*</S.ErrorText>
-          )}
-        </S.WrapperCategory>
-        <S.Row>
-          <span>Status:</span>
-          <Select options={statusOptions} control={control} name="status" />
-        </S.Row>
+        <AdditionalData
+          control={control}
+          mode={'admin'}
+          associate={associate}
+        />
 
         <S.WrapperButton>
           <S.Button type="submit">Enviar</S.Button>

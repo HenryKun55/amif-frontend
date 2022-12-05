@@ -11,10 +11,7 @@ type EcclesiasticalDataProps = {
 }
 
 export const EcclesiasticalData = ({ isPosition }: EcclesiasticalDataProps) => {
-  const {
-    register,
-    formState: { errors },
-  } = useFormContext()
+  const [position, setPosition] = useState(false)
 
   useEffect(() => {
     if (isPosition) {
@@ -22,11 +19,15 @@ export const EcclesiasticalData = ({ isPosition }: EcclesiasticalDataProps) => {
     }
   }, [])
 
-  const [position, setPosition] = useState(false)
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext()
 
   const showPicker = (event: any) => {
     event.target.showPicker()
   }
+
   return (
     <S.Wrapper>
       <hr />

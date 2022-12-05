@@ -172,7 +172,7 @@ export const AdminAssociates = () => {
         path={['Associateos']}
         showButton
         buttonAsLink
-        href={AdminRoutes.Admin_Associateos_Criar}
+        href={AdminRoutes.Admin_Associados_Criar}
       />
       <S.Content>
         <S.Input
@@ -194,7 +194,7 @@ export const AdminAssociates = () => {
         />
       </S.Content>
       <ModalConfirmAction
-        title="Tem certeza que deseja deletar esse Associado permanentemente?"
+        title="Tem certeza que deseja deletar esse associado permanentemente?"
         isOpen={confirmDeleteAssociate.isOpen}
         onCancel={() => setConfirmDeleteAssociate({ isOpen: false })}
         onConfirm={handleDeleteAssociate}

@@ -44,7 +44,7 @@ const associatesApi = api.injectEndpoints({
         method: 'PUT',
         body,
       }),
-      invalidatesTags: ['Associates'],
+      invalidatesTags: [{ type: 'Associates', id: 'Id' }],
     }),
     listAssociates: builder.query<
       ListAssociatesResponse,

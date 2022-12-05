@@ -1,14 +1,14 @@
 import { Breadcrumb } from '@/components/Breadcrumb'
-import { FormAssociateCreate } from '@/features/Associate/Create'
+import { CreateAssociateForm } from '@/features/Associate/Create'
 
 import * as S from './styles'
 
 export const AdminAssociatesCreate = () => {
   return (
     <S.Container>
-      <Breadcrumb path={['Associates', 'Cadastro']} />
+      <Breadcrumb path={['Associados', 'Cadastro']} />
       <S.Wrapper>
-        <FormAssociateCreate />
+        <CreateAssociateForm mode="admin" />
       </S.Wrapper>
     </S.Container>
   )

@@ -13,6 +13,7 @@ export const Input = styled(InputComponent)([tw`w-1/3 max-w-md self-end`])
 type ColorProps = {
   color: string
 }
+
 export const Text = styled.span<ColorProps>(({ color }) => [
   tw`flex gap-1`,
   css`

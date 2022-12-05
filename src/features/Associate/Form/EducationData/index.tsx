@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 
 import { Checkbox } from '@/components/Form/Checkbox'
+import { Radio } from '@/components/Form/Radio'
 
 import * as S from '../styles'
 
@@ -24,36 +25,28 @@ export const EducationData = () => {
       <hr />
       <S.Title>Dados educacionais/ acadêmicos</S.Title>
       <S.Row>
-        <span>Formação:</span>
+        <S.Label htmlFor="howKnow">Formação: </S.Label>
 
-        <input
-          id="Ensino Fundamental"
-          {...register('education.level')}
-          type="radio"
+        <Radio
+          name="education.level"
+          register={register}
           value="Ensino Fundamental"
-        />
-        <label htmlFor="Ensino Fundamental">Ensino Fundamental</label>
-        <input
-          id="Ensino Médio"
-          {...register('education.level')}
-          type="radio"
-          value="Ensino Médio"
-        />
-        <label htmlFor="Ensino Médio">Ensino Médio</label>
-        <input
-          id="Ensino Superior"
-          {...register('education.level')}
-          type="radio"
+        >
+          Ensino Fundamental
+        </Radio>
+        <Radio name="education.level" register={register} value="Ensino Médio">
+          Ensino Médio
+        </Radio>
+        <Radio
+          name="education.level"
+          register={register}
           value="Ensino Superior"
-        />
-        <label htmlFor="Ensino Superior">Ensino Superior</label>
-        <input
-          id="Pós-graduação"
-          {...register('education.level')}
-          type="radio"
-          value="Pós-graduação"
-        />
-        <label htmlFor="Pós-graduação">Pós-graduação</label>
+        >
+          Ensino Superior
+        </Radio>
+        <Radio name="education.level" register={register} value="Pós-graduação">
+          Pós-graduação
+        </Radio>
       </S.Row>
 
       <S.Row>
@@ -67,34 +60,30 @@ export const EducationData = () => {
 
       {isFormation && (
         <S.Row>
-          <input
-            id="Básico em teologia"
-            {...register('education.background')}
-            type="radio"
+          <Radio
+            name="education.background"
+            register={register}
             value="Básico em teologia"
-          />
-          <label htmlFor="Básico em teologia">Básico em teologia</label>
-          <input
-            id="Bacharel em Teologia"
-            {...register('education.background')}
-            type="radio"
+          >
+            Básico em teologia
+          </Radio>
+          <Radio
+            name="education.background"
+            register={register}
             value="Bacharel em Teologia"
-          />
-          <label htmlFor="Bacharel em Teologia">Bacharel em Teologia</label>
-          <input
-            id="Missiologia"
-            {...register('education.background')}
-            type="radio"
+          >
+            Bacharel em Teologia
+          </Radio>
+          <Radio
+            name="education.background"
+            register={register}
             value="Missiologia"
-          />
-          <label htmlFor="Missiologia">Missiologia</label>
-          <input
-            id="Outro"
-            {...register('education.background')}
-            type="radio"
-            value="Outro"
-          />
-          <label htmlFor="Outro">Outro</label>
+          >
+            Missiologia
+          </Radio>
+          <Radio name="education.background" register={register} value="Outro">
+            Outro
+          </Radio>
         </S.Row>
       )}
       <S.Row>

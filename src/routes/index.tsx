@@ -95,7 +95,7 @@ export const Router = () => {
             element={<AdminAssociates />}
           />
           <DOMRoute
-            path={AdminRoutes.Admin_Associateos_Criar}
+            path={AdminRoutes.Admin_Associados_Criar}
             element={<AdminAssociatesCreate />}
           />
           <DOMRoute

@@ -8,7 +8,7 @@ export enum AdminRoutes {
   Admin_Missoes_Id = '/admin/missoes/:id',
   Admin_Missoes_Criar = '/admin/missoes/criar',
   Admin_Associados = '/admin/associados',
-  Admin_Associateos_Criar = '/admin/associados/criar',
+  Admin_Associados_Criar = '/admin/associados/criar',
   Admin_Associados_Id = '/admin/associados/:id',
   Admin_Mantenedores = '/admin/mantenedores',
   Admin_Mantenedores_Criar = '/admin/mantenedores/criar',

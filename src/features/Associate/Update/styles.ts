@@ -28,7 +28,3 @@ export const Text = styled.span<ColorProps>(({ color }) => [
     color: ${color};
   `,
 ])
-
-export const WrapperCategory = styled.div(tw` flex flex-col`)
-
-export const ErrorText = styled.span(tw`text-red-500 text-sm `)
