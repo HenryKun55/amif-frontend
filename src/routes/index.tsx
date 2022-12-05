@@ -6,6 +6,9 @@ import {
 
 import { AdminLayout } from '@/layouts/AdminLayout'
 import { MainLayout } from '@/layouts/MainLayout'
+import { AdminAssociates } from '@/pages/Admin/Associate'
+import { AdminAssociatesCreate } from '@/pages/Admin/Associate/Create'
+import { AdminAssociatesId } from '@/pages/Admin/Associate/Id'
 import { AdminEvents } from '@/pages/Admin/Events'
 import { AdminEventsCreate } from '@/pages/Admin/Events/Create'
 import { AdminEventsId } from '@/pages/Admin/Events/Id'
@@ -88,6 +91,18 @@ export const Router = () => {
           <DOMRoute
             path={AdminRoutes.Admin_Mantenedores_Id}
             element={<AdminMaintainersId />}
+          />
+          <DOMRoute
+            path={AdminRoutes.Admin_Associados}
+            element={<AdminAssociates />}
+          />
+          <DOMRoute
+            path={AdminRoutes.Admin_Associados_Criar}
+            element={<AdminAssociatesCreate />}
+          />
+          <DOMRoute
+            path={AdminRoutes.Admin_Associados_Id}
+            element={<AdminAssociatesId />}
           />
           <DOMRoute
             path={AdminRoutes.Admin_Usuarios}

@@ -103,6 +103,7 @@ export type Associate = {
     zipCode: string
   }
   id: string
+  userId?: string
   indication?: string
   name: string
   email: string
@@ -122,6 +123,9 @@ export type Associate = {
     hasTheologyBackground?: boolean
     language?: string
   }
+  createdAt?: string
+  isActive?: boolean
+  status: 'approved' | 'pending' | 'inactive'
 }
 
 export type Subscription = {

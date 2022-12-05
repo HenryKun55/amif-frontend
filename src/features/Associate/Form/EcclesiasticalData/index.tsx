@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 
 import { Checkbox } from '@/components/Form/Checkbox'
@@ -6,17 +6,28 @@ import { Input } from '@/components/Form/Input'
 
 import * as S from '../styles'
 
-export const EcclesiasticalData = () => {
+type EcclesiasticalDataProps = {
+  isPosition?: boolean
+}
+
+export const EcclesiasticalData = ({ isPosition }: EcclesiasticalDataProps) => {
+  const [position, setPosition] = useState(false)
+
+  useEffect(() => {
+    if (isPosition) {
+      setPosition(true)
+    }
+  }, [])
+
   const {
     register,
     formState: { errors },
   } = useFormContext()
 
-  const [position, setPosition] = useState(false)
-
   const showPicker = (event: any) => {
     event.target.showPicker()
   }
+
   return (
     <S.Wrapper>
       <hr />
@@ -42,7 +53,7 @@ export const EcclesiasticalData = () => {
         />
       </S.Row>
       <S.Row>
-        <Checkbox onChange={() => setPosition(!position)}>
+        <Checkbox checked={position} onChange={() => setPosition(!position)}>
           Ocupa cargo ou função na igreja?
         </Checkbox>
         {position && (

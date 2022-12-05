@@ -23,3 +23,9 @@ export const Button = styled(ButtonComponent)(tw`w-full
 `)
 
 export const WrapperButton = styled.div(tw`w-full flex justify-center`)
+
+export const WrapperCategory = styled.div(tw` flex flex-col`)
+
+export const ErrorText = styled.span(tw`text-red-500 text-sm mb-2.5`)
+
+export const Label = styled.label([tw`font-medium cursor-pointer`])
