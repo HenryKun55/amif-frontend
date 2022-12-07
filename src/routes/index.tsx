@@ -6,16 +6,23 @@ import {
 
 import { AdminLayout } from '@/layouts/AdminLayout'
 import { MainLayout } from '@/layouts/MainLayout'
+import { AdminAssociates } from '@/pages/Admin/Associate'
+import { AdminAssociatesCreate } from '@/pages/Admin/Associate/Create'
+import { AdminAssociatesId } from '@/pages/Admin/Associate/Id'
 import { AdminEvents } from '@/pages/Admin/Events'
 import { AdminEventsCreate } from '@/pages/Admin/Events/Create'
 import { AdminEventsId } from '@/pages/Admin/Events/Id'
 import { AdminHome } from '@/pages/Admin/Home'
 import { AdminMaintainers } from '@/pages/Admin/Maintainers'
 import { AdminMaintainersCreate } from '@/pages/Admin/Maintainers/Create'
+import { AdminMaintainersId } from '@/pages/Admin/Maintainers/Id'
 import { AdminMissions } from '@/pages/Admin/Missions'
 import { AdminMissionsCreate } from '@/pages/Admin/Missions/Create'
 import { AdminMissionsId } from '@/pages/Admin/Missions/Id'
 import { SignIn } from '@/pages/Admin/SignIn'
+import { AdminUsers } from '@/pages/Admin/Users'
+import { AdminUsersCreate } from '@/pages/Admin/Users/Create'
+import { AdminUsersId } from '@/pages/Admin/Users/Id'
 import { Associate } from '@/pages/Associate'
 import { Donate } from '@/pages/Donate'
 import { Events } from '@/pages/Events'
@@ -80,6 +87,34 @@ export const Router = () => {
           <DOMRoute
             path={AdminRoutes.Admin_Mantenedores_Criar}
             element={<AdminMaintainersCreate />}
+          />
+          <DOMRoute
+            path={AdminRoutes.Admin_Mantenedores_Id}
+            element={<AdminMaintainersId />}
+          />
+          <DOMRoute
+            path={AdminRoutes.Admin_Associados}
+            element={<AdminAssociates />}
+          />
+          <DOMRoute
+            path={AdminRoutes.Admin_Associados_Criar}
+            element={<AdminAssociatesCreate />}
+          />
+          <DOMRoute
+            path={AdminRoutes.Admin_Associados_Id}
+            element={<AdminAssociatesId />}
+          />
+          <DOMRoute
+            path={AdminRoutes.Admin_Usuarios}
+            element={<AdminUsers />}
+          />
+          <DOMRoute
+            path={AdminRoutes.Admin_Usuarios_Criar}
+            element={<AdminUsersCreate />}
+          />
+          <DOMRoute
+            path={AdminRoutes.Admin_Usuarios_Id}
+            element={<AdminUsersId />}
           />
         </DOMRoute>
       </DOMRoutes>

@@ -1,4 +1,4 @@
-import { FormAssociate } from '@/features/Associate/Create/Form'
+import { CreateAssociateForm } from '@/features/Associate/Create'
 
 import * as S from './styles'
 
@@ -21,7 +21,7 @@ export const Associate = () => {
         </S.TitleWrapper>
       </S.Header>
       <S.Content>
-        <FormAssociate />
+        <CreateAssociateForm mode="client" />
       </S.Content>
     </S.Wrapper>
   )

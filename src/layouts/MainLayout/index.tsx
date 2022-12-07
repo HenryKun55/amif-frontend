@@ -4,6 +4,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 
 import { Footer } from '@/components/Footer'
 import { ModalDonate } from '@/components/ModalDonate'
+import { ModalMaintainer } from '@/components/ModalMaintainer'
 import { ModalSubscribeToEvent } from '@/components/ModalSubscribeToEvent'
 import { Navbar } from '@/components/Navbar'
 import { Mobile } from '@/components/Navbar/Mobile'
@@ -48,6 +49,7 @@ export const MainLayout = () => {
           </S.Tooltip>
         </S.DonateButton>
       </S.Donate>
+      <ModalMaintainer />
       <ModalDonate />
       <ModalSubscribeToEvent />
     </S.Wrapper>

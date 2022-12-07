@@ -3,7 +3,9 @@ import tw, { styled } from 'twin.macro'
 import { CardMission as CardMissionComponent } from '@/components/CardMission'
 import { Skeleton as SkeletonComponent } from '@/components/Skeleton'
 
-export const Container = styled.div([tw`w-full h-full max-w-content mx-auto`])
+export const Container = styled.div([
+  tw`w-full h-full max-w-content mx-auto pb-10`,
+])
 
 type CardsContainerProps = {
   withPaddingBottom?: boolean

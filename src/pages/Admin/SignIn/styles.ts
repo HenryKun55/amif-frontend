@@ -12,4 +12,4 @@ export const Box = styled.div([
 
 export const Title = styled.h1([tw`text-5xl font-semibold`])
 
-export const LogoFake = styled.div([tw`w-64 h-44 bg-red-200`])
+export const Logo = styled.img([tw`w-64 h-44 `])

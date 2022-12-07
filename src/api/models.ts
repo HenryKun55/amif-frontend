@@ -7,6 +7,12 @@ export type User = {
   }
 }
 
+export type UserTable = {
+  id: string
+  username: string
+  createdAt: string
+}
+
 export type Address = {
   state?: string
   district?: string
@@ -67,14 +73,22 @@ export type Mission = {
   address?: Address
 }
 
+export type Payment = {
+  id: string
+  paymentDate: string
+  amount: number
+  createdAt?: string
+}
+
 export type Maintainer = {
   id: string
   name: string
   address?: Address
+  payments: Payment[]
   cpf: string
   phone: string
   donateAmount: number
-  donateDate: string
+  donateDay: string
   isActive?: boolean
   createdAt?: string
 }
@@ -89,6 +103,7 @@ export type Associate = {
     zipCode: string
   }
   id: string
+  userId?: string
   indication?: string
   name: string
   email: string
@@ -108,4 +123,20 @@ export type Associate = {
     hasTheologyBackground?: boolean
     language?: string
   }
+  createdAt?: string
+  isActive?: boolean
+  status: 'approved' | 'pending' | 'inactive'
+}
+
+export type Subscription = {
+  id: string
+  event: Event
+  name: string
+  phone: string
+  email: string
+  church: string
+  pastorName: string
+  alreadyHeard: boolean
+  howKnow: string
+  createdAt: string
 }

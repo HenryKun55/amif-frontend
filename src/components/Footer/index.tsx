@@ -10,7 +10,7 @@ export const Footer = () => {
       <S.Container>
         <S.Content>
           <S.Logo src={logo} />
-          <S.Title>Descrição da empresa</S.Title>
+          <S.Title>ASSOCIAÇÃO MISSIONÁRIA IDE E FAZEI</S.Title>
           <S.Social>
             <S.SocialLink
               href="https://www.instagram.com/amifoficial/"
@@ -44,8 +44,8 @@ export const Footer = () => {
         </S.Navigation>
       </S.Container>
       <S.Description>
-        CNPJ: 174192828482149/0001-01 - Rua aqui, Bairro, Numero, Complemento -
-        Caruaru PE
+        CNPJ: 37.687.462/0001-39 - Rua Ariano Suassuna, Boa Vista, 160,
+        Pavimento Térreo - Caruaru PE
       </S.Description>
       <S.Description>Copyright© 2022</S.Description>
     </S.Wrapper>

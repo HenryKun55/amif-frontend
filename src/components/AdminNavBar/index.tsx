@@ -4,8 +4,9 @@
  *
  */
 
+import logo from 'assets/logo.svg'
 import { useCallback } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { AdminRoutes } from '@/routes/admin-routes'
 import { useAppDispatch } from '@/store'
@@ -25,7 +26,9 @@ export const AdminNavBar = () => {
 
   return (
     <S.Container>
-      <S.Logo to={AdminRoutes.Admin_Home}>Logo</S.Logo>
+      <Link to={AdminRoutes.Admin_Home}>
+        <S.Logo src={logo} />
+      </Link>
       <Button variant="outlined" onClick={handleLogout}>
         Sair
       </Button>

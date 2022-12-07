@@ -7,8 +7,15 @@ export interface MaintainerSortBy {
   createdAt: string
 }
 
+export type FetchMaintainerRequest = {
+  id: string
+}
+
+export type FetchMaintainerResponse = Maintainer
+
 export type ListMaintainersRequest = PagedRequest<MaintainerSortBy> & {
   name?: string
+  donateDay?: string
 }
 
 export type ListMaintainersResponse = Paged<Maintainer>
@@ -31,4 +38,48 @@ export type CreateMaintainerRequest = {
 
 export type CreateMaintainerResponse = {
   maintainerId: string
+}
+
+export type UpdateMaintainerRequest = {
+  id: string
+  name: string
+  cpf: string
+  phone: string
+  donateAmount: number
+  donateDay: number
+  address: {
+    state: string
+    district: string
+    city: string
+    street: string
+    number: string
+    zipCode: string
+  }
+}
+
+export type ActivateMaintainerRequest = {
+  id: string
+}
+
+export type DeactivateMaintainerRequest = {
+  id: string
+}
+
+export type DeleteMaintainerRequest = {
+  id: string
+}
+
+export type CreateMaintainerPaymentRequest = {
+  id: string
+  paymentDate: string
+  amount: number
+}
+
+export type CreateMaintainerPaymentResponse = {
+  paymentId: string
+}
+
+export type DeleteMaintainerPaymentRequest = {
+  maintainerId: string
+  paymentId: string
 }
