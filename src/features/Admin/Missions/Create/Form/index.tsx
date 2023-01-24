@@ -129,7 +129,7 @@ export const CreateMissionForm = () => {
           onError={data => toast.error(data.message)}
         />
         <hr />
-        <AddressForm />
+        <AddressForm autoFill={false} />
         <Button type="submit" disabled={isLoading || isUploadingImages}>
           Criar Missão
         </Button>

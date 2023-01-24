@@ -6,11 +6,15 @@ import { useFetchCepQuery } from '@/api/viacep'
 import { Input } from '../Form/Input'
 import * as S from './styles'
 
-export type AddressForm = {
+export type AddressFormProps = {
   className?: string
+  autoFill?: boolean
 }
 
-export const AddressForm = ({ className }: AddressForm) => {
+export const AddressForm = ({
+  className,
+  autoFill = true,
+}: AddressFormProps) => {
   const {
     watch,
     reset,
@@ -21,11 +25,11 @@ export const AddressForm = ({ className }: AddressForm) => {
   const zipCode = watch('address.zipCode')
   const { data } = useFetchCepQuery(
     { cep: zipCode },
-    { skip: !zipCode || zipCode.length < 8 },
+    { skip: !autoFill || !zipCode || zipCode.length < 8 },
   )
 
   useEffect(() => {
-    if (!data) return
+    if (!data || !autoFill) return
     if (data.erro) {
       setError('address.zipCode', { type: 'value', message: 'CEP inválido' })
       return

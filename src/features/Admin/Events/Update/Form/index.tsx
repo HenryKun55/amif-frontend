@@ -111,6 +111,7 @@ export const UpdateEventForm = ({
         const { toDelete, toUpload } = getDiffImages(images, event.images)
         await uploadImages(toUpload)
         await deleteImages(toDelete)
+        toast.success('Evento atualizado.')
       } catch (error) {
         const err = error as { message: string }
         toast.error(err.message)
@@ -184,7 +185,7 @@ export const UpdateEventForm = ({
           onError={data => toast.error(data.message)}
         />
         <hr />
-        <AddressForm />
+        <AddressForm autoFill={false} />
         <S.Actions>
           <S.LeftActions>
             <S.ButtonDelete
