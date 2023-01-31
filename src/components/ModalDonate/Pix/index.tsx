@@ -1,7 +1,5 @@
 import { toast } from 'react-toastify'
 
-import qrcode from '@/assets/qr-pix.svg'
-
 import * as S from './styles'
 
 export const Pix = () => {
@@ -20,7 +18,6 @@ export const Pix = () => {
       <S.Button size="sm" onClick={handleCopyKey}>
         Copiar chave
       </S.Button>
-      <S.QrCode src={qrcode} alt="amif.missoes@gmail.com" />
       <S.Message>Associação Missionária Ide e Fazei</S.Message>
     </S.Wrapper>
   )

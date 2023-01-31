@@ -16,3 +16,7 @@ export function validateTime(time: string) {
   }
   return true
 }
+
+export function toDateBrTimezone(date: string) {
+  return new Date(date.split('T')[0] + 'T03:00:00.000Z')
+}

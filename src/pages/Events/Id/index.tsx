@@ -11,6 +11,7 @@ import { YouTubeEmbed } from '@/components/YouTubeEmbed'
 import { Routes } from '@/routes/routes'
 import { useAppDispatch } from '@/store'
 import { openSubscribeEventModal } from '@/store/event/slice'
+import { toDateBrTimezone } from '@/utils/datetime'
 import { getIdFromYouTubeUrl } from '@/utils/youtube'
 
 import * as S from './styles'
@@ -39,7 +40,9 @@ export const EventsId = () => {
     return <Navigate to={Routes.NotFound} replace />
   }
 
-  const theTime = format(new Date(event.startDate), 'd MMM - HH:KK (EEE)')
+  const theTime =
+    format(toDateBrTimezone(event.startDate), 'd MMM (EEE)') +
+    ` - ${event.startHour}`
   const theAddress = `${event.address?.street}, ${event.address?.city} - ${event.address?.state}`
 
   const handleNavigation = () =>
@@ -62,18 +65,20 @@ export const EventsId = () => {
       <S.Content>
         <S.TitleContainer>
           <S.Title>{event.title}</S.Title>
-          <S.Button
-            onClick={() =>
-              dispatch(
-                openSubscribeEventModal({
-                  eventId: id,
-                  eventTitle: event.title,
-                }),
-              )
-            }
-          >
-            Inscreva-se
-          </S.Button>
+          {event.canSubscribe && (
+            <S.Button
+              onClick={() =>
+                dispatch(
+                  openSubscribeEventModal({
+                    eventId: id,
+                    eventTitle: event.title,
+                  }),
+                )
+              }
+            >
+              Inscreva-se
+            </S.Button>
+          )}
         </S.TitleContainer>
         <S.Info>
           <BsClock size={20} />

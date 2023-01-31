@@ -51,6 +51,7 @@ export const EducationData = () => {
 
       <S.Row>
         <Checkbox
+          name="isFormation"
           checked={isFormation}
           onChange={() => setIsFormation(!isFormation)}
         >

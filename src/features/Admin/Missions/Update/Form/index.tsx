@@ -98,6 +98,7 @@ export const UpdateMissionForm = ({ mission }: UpdateMissionFormProps) => {
         const { toDelete, toUpload } = getDiffImages(images, mission.images)
         await uploadImages(toUpload)
         await deleteImages(toDelete)
+        toast.success('Missão atualizado.')
       } catch (error) {
         const err = error as { message: string }
         alert(err.message)
@@ -169,7 +170,7 @@ export const UpdateMissionForm = ({ mission }: UpdateMissionFormProps) => {
           onError={data => toast.error(data.message)}
         />
         <hr />
-        <AddressForm />
+        <AddressForm autoFill={false} />
         <Button
           type="submit"
           disabled={isLoading || isUploadingImages || isDeletingImage}
