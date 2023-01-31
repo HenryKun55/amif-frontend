@@ -5,6 +5,7 @@ import tw from 'twin.macro'
 
 import { useFetchEventMainQuery } from '@/api/events'
 import { Routes } from '@/routes/routes'
+import { toDateBrTimezone } from '@/utils/datetime'
 
 import { InfoCards } from '../InfoCards'
 import * as S from './styles'
@@ -22,7 +23,7 @@ export const MainEvent = () => {
   const { canSubscribe, id, startDate, address, title, startHour, images } =
     event
 
-  const date = format(new Date(startDate), 'dd LLLL')
+  const date = format(toDateBrTimezone(startDate), 'dd LLLL')
 
   return (
     <S.Container>

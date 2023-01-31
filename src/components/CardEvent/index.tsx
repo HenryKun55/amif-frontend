@@ -13,6 +13,7 @@ import { Event } from '@/api/models'
 import { Routes } from '@/routes/routes'
 import { useAppDispatch } from '@/store'
 import { openSubscribeEventModal } from '@/store/event/slice'
+import { toDateBrTimezone } from '@/utils/datetime'
 
 import DefaultImage from '../../assets/default-image.svg'
 import { Button } from '../Form/Button'
@@ -28,7 +29,7 @@ export const CardEvent = ({ event, className }: CardEventProps) => {
   const { id, startDate, startHour, canSubscribe, title, images, address } =
     event
 
-  const [day, month] = format(new Date(startDate), 'dd LLL').split(' ')
+  const [day, month] = format(toDateBrTimezone(startDate), 'dd LLL').split(' ')
 
   const imageUrl = useMemo(() => images[0]?.url || DefaultImage, [images])
 

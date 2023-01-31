@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 import type { Event } from '@/api/models'
 import { Routes } from '@/routes/routes'
+import { toDateBrTimezone } from '@/utils/datetime'
 
 import { Button } from '../Form/Button'
 import * as S from './styles'
@@ -19,7 +20,7 @@ export const Banner = ({ event }: BannerProps) => {
   }, [event])
 
   const formattedDate = useMemo(
-    () => format(new Date(event.startDate), 'E, dd LLL'),
+    () => format(toDateBrTimezone(event.startDate), 'E, dd LLL'),
     [event],
   )
 
