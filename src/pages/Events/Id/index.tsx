@@ -62,18 +62,20 @@ export const EventsId = () => {
       <S.Content>
         <S.TitleContainer>
           <S.Title>{event.title}</S.Title>
-          <S.Button
-            onClick={() =>
-              dispatch(
-                openSubscribeEventModal({
-                  eventId: id,
-                  eventTitle: event.title,
-                }),
-              )
-            }
-          >
-            Inscreva-se
-          </S.Button>
+          {event.canSubscribe && (
+            <S.Button
+              onClick={() =>
+                dispatch(
+                  openSubscribeEventModal({
+                    eventId: id,
+                    eventTitle: event.title,
+                  }),
+                )
+              }
+            >
+              Inscreva-se
+            </S.Button>
+          )}
         </S.TitleContainer>
         <S.Info>
           <BsClock size={20} />
