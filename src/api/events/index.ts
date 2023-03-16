@@ -119,7 +119,12 @@ const eventsApi = api.injectEndpoints({
       ListEventSubscriptionsResponse,
       ListEventSubscriptionsRequest
     >({
-      query: ({ eventId }) => endpoints.listEventSubscriptions(eventId),
+      query: ({ eventId, ...params }) => {
+        return {
+          url: endpoints.listEventSubscriptions(eventId),
+          params,
+        }
+      },
       providesTags: [{ type: 'Events', id: 'Subscriptions' }],
     }),
   }),
@@ -148,6 +153,7 @@ export const {
   useDeleteEventImageMutation,
   useCreateSubscribeToEventMutation,
   useListEventSubscriptionsQuery,
+  useLazyListEventSubscriptionsQuery,
   useDeleteEventMutation,
 } = eventsApi
 
